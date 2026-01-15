@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adventist Accounting Solutions - Professional Accounting for Adventist Academies</title>
+    <title>Adventist Academy Solutions - Professional Accounting for Adventist Academies</title>
     <style>
         * {
             margin: 0;
@@ -167,6 +167,90 @@
             background-color: var(--white);
         }
 
+        /* Pathways Section - NEW */
+        .pathways-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            color: var(--text-medium);
+            font-size: 1.2rem;
+        }
+
+        .pathways-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .pathway-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 6px 25px rgba(44, 95, 124, 0.15);
+            border-top: 5px solid var(--ocean-medium);
+            transition: transform 0.3s;
+        }
+
+        .pathway-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(44, 95, 124, 0.2);
+        }
+
+        .pathway-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .pathway-card h3 {
+            color: var(--ocean-dark);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .pathway-subtitle {
+            text-align: center;
+            color: var(--text-medium);
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .pathway-benefits {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+
+        .pathway-benefits li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--text-dark);
+            font-size: 1.05rem;
+        }
+
+        .pathway-benefits li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        .pathway-outcome {
+            background: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean-pale) 100%);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .pathway-outcome strong {
+            color: var(--ocean-dark);
+            font-size: 1.1rem;
+        }
+
         /* Problem Section */
         .problem-grid {
             display: grid;
@@ -204,59 +288,6 @@
             content: "⚠️";
             position: absolute;
             left: 0;
-        }
-
-        /* Solution Section */
-        .solution-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .solution-text h3 {
-            color: var(--ocean-dark);
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .solution-text p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            color: var(--text-medium);
-        }
-
-        .benefits-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        .benefits-list li {
-            padding: 0.8rem 0;
-            padding-left: 2rem;
-            position: relative;
-            font-size: 1.1rem;
-            color: var(--text-dark);
-        }
-
-        .benefits-list li:before {
-            content: "✅";
-            position: absolute;
-            left: 0;
-        }
-
-        .callout-box {
-            background: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean-pale) 100%);
-            padding: 2rem;
-            border-radius: 10px;
-            margin-top: 2rem;
-            border-left: 5px solid var(--ocean-dark);
-        }
-
-        .callout-box p {
-            color: var(--text-dark);
-            font-style: italic;
-            margin: 0;
         }
 
         /* Services Section */
@@ -310,87 +341,149 @@
             font-weight: bold;
         }
 
-        /* Cost Comparison */
-        .cost-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+        /* Cost Comparison - ENHANCED */
+        .cost-intro {
+            text-align: center;
             max-width: 900px;
-            margin: 0 auto;
+            margin: 0 auto 3rem;
+            color: var(--text-medium);
+            font-size: 1.1rem;
         }
 
-        .cost-card {
+        .cost-scenarios {
+            display: grid;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .scenario-section {
             background: var(--white);
             padding: 3rem;
             border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(44, 95, 124, 0.12);
-            text-align: center;
+            box-shadow: 0 4px 20px rgba(44, 95, 124, 0.1);
         }
 
-        .cost-card.highlight {
-            border: 3px solid var(--ocean-medium);
+        .scenario-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .scenario-header h3 {
+            color: var(--ocean-dark);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .scenario-subtitle {
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .comparison-card {
+            padding: 2rem;
+            border-radius: 10px;
+            border: 2px solid var(--sand-warm);
+        }
+
+        .comparison-card.current {
+            background: #fff5f5;
+            border-color: #ffcccc;
+        }
+
+        .comparison-card.proposed {
+            background: #f0f9ff;
+            border-color: var(--ocean-pale);
+        }
+
+        .comparison-card h4 {
+            color: var(--ocean-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .cost-breakdown {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .cost-breakdown li {
+            padding: 0.5rem 0;
+            color: var(--text-dark);
+            border-bottom: 1px solid var(--sand-warm);
+        }
+
+        .cost-total {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--ocean-dark);
+            margin: 1rem 0;
+            padding-top: 1rem;
+            border-top: 2px solid var(--ocean-medium);
+        }
+
+        .reality-check {
+            background: var(--sand-warm);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .reality-check h5 {
+            color: var(--ocean-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .reality-check ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .reality-check li {
+            padding: 0.4rem 0;
+            color: var(--text-medium);
+            padding-left: 1.5rem;
             position: relative;
         }
 
-        .cost-card.highlight:before {
-            content: "Recommended";
+        .reality-check.current li:before {
+            content: "⚠️";
             position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--accent-coral);
-            color: var(--white);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
+            left: 0;
         }
 
-        .cost-card h3 {
-            color: var(--ocean-dark);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+        .reality-check.proposed li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
         }
 
-        .cost-amount {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: var(--ocean-dark);
-            margin: 1.5rem 0;
-        }
-
-        .cost-details {
-            list-style: none;
-            padding: 0;
-            margin: 2rem 0;
-            text-align: left;
-        }
-
-        .cost-details li {
-            padding: 0.8rem 0;
-            border-bottom: 1px solid var(--sand-warm);
-            color: var(--text-medium);
-        }
-
-        .savings-highlight {
+        .value-proposition {
             background: linear-gradient(135deg, var(--ocean-medium) 0%, var(--ocean-light) 100%);
             color: var(--white);
             padding: 2rem;
             border-radius: 10px;
-            margin-top: 3rem;
+            margin-top: 2rem;
             text-align: center;
         }
 
-        .savings-highlight h3 {
+        .value-proposition h4 {
             color: var(--white);
-            font-size: 2rem;
+            font-size: 1.5rem;
             margin-bottom: 1rem;
         }
 
-        .savings-amount {
-            font-size: 3rem;
-            font-weight: bold;
-            margin: 1rem 0;
+        .value-proposition p {
+            margin: 0;
+            font-size: 1.1rem;
         }
 
         /* Why Us Section */
@@ -533,6 +626,7 @@
             padding: 1.5rem 2rem;
             color: var(--text-medium);
             line-height: 1.8;
+            display: none;
         }
 
         /* CTA Section */
@@ -632,6 +726,16 @@
         }
 
         /* Responsive */
+        @media (max-width: 968px) {
+            .pathways-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
@@ -639,14 +743,6 @@
 
             .hero p {
                 font-size: 1.1rem;
-            }
-
-            .solution-content {
-                grid-template-columns: 1fr;
-            }
-
-            .cost-comparison {
-                grid-template-columns: 1fr;
             }
 
             .trust-grid {
@@ -673,8 +769,9 @@
     <!-- Navigation -->
     <nav>
         <div class="container">
-            <div class="logo">Adventist Accounting Solutions</div>
+            <div class="logo">Adventist Academy Solutions</div>
             <ul>
+                <li><a href="#pathways">Solutions</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#why-us">Why Us</a></li>
                 <li><a href="#process">How It Works</a></li>
@@ -688,84 +785,98 @@
     <section class="hero">
         <div class="container">
             <p class="subtitle">Professional Accounting for Small Adventist Academies</p>
-            <h1>Adventist Accounting Solutions</h1>
-            <p>Get timely financial information, audit-ready books, and expert support—without the cost of a full-time business manager</p>
+            <h1>Adventist Academy Solutions</h1>
+            <p>Empower your leadership to focus on strategic decisions, not data entry—with professional back-office accounting tailored to your school's needs</p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary">Schedule Discovery Call</a>
-                <a href="#services" class="btn btn-secondary">Learn More</a>
+                <a href="#pathways" class="btn btn-secondary">Explore Solutions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pathways Section - NEW -->
+    <section id="pathways">
+        <div class="container">
+            <h2>Two Pathways to Financial Excellence</h2>
+            <p class="pathways-intro">Every school's situation is different. Whether you have a business manager who needs support or you're managing without one, we provide the professional accounting foundation you need.</p>
+            
+            <div class="pathways-grid">
+                <!-- Pathway 1: Partnership -->
+                <div class="pathway-card">
+                    <div class="pathway-icon">🤝</div>
+                    <h3>Strategic Partnership</h3>
+                    <p class="pathway-subtitle">You have a Business Manager</p>
+                    
+                    <p style="color: var(--text-medium); margin-bottom: 1.5rem;">Transform your business manager from overwhelmed bookkeeper to strategic CFO. We handle the operational grind; they lead strategically.</p>
+                    
+                    <ul class="pathway-benefits">
+                        <li>Free your BM from data entry and reconciliations</li>
+                        <li>They focus on planning, forecasting, board advisory</li>
+                        <li>Make better decisions with time to analyze</li>
+                        <li>Develop budgets, not just process transactions</li>
+                        <li>Lead strategically, not react to crises</li>
+                    </ul>
+
+                    <div class="pathway-outcome">
+                        <strong>Outcome:</strong> Your business manager becomes a true CFO without adding headcount. Same or slightly higher cost, exponentially better strategic capacity.
+                    </div>
+                </div>
+
+                <!-- Pathway 2: Complete Service -->
+                <div class="pathway-card">
+                    <div class="pathway-icon">🎯</div>
+                    <h3>Complete Service</h3>
+                    <p class="pathway-subtitle">You don't have a Business Manager</p>
+                    
+                    <p style="color: var(--text-medium); margin-bottom: 1.5rem;">Get professional accounting execution AND strategic financial advisory—without the $80K-100K price tag of an experienced business manager.</p>
+                    
+                    <ul class="pathway-benefits">
+                        <li>Professional back-office accounting team</li>
+                        <li>Strategic financial guidance for leadership</li>
+                        <li>Part-time on-site assistant for physical tasks</li>
+                        <li>Audit-ready systems and documentation</li>
+                        <li>Save $20,000-40,000 annually vs. traditional model</li>
+                    </ul>
+
+                    <div class="pathway-outcome">
+                        <strong>Outcome:</strong> Professional financial management at sustainable cost. Your principal can focus on educational leadership, not accounting.
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Problem Section -->
-    <section>
-        <div class="container">
-            <h2>The Challenge Small Adventist Schools Face</h2>
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h3>Financial Chaos</h3>
-                    <ul>
-                        <li>Books close 30-60 days late (if at all)</li>
-                        <li>Making budget decisions without current data</li>
-                        <li>Principals guessing at cash position</li>
-                        <li>Operating in reactive crisis mode</li>
-                    </ul>
-                </div>
-                <div class="problem-card">
-                    <h3>Staffing Struggles</h3>
-                    <ul>
-                        <li>Can't afford experienced business managers ($80K-100K)</li>
-                        <li>Difficult to find qualified staff at small school salaries</li>
-                        <li>Single-person dependency creates major risk</li>
-                        <li>Vacation and sick leave create gaps</li>
-                    </ul>
-                </div>
-                <div class="problem-card">
-                    <h3>Audit Stress</h3>
-                    <ul>
-                        <li>Disorganized records cause audit nightmares</li>
-                        <li>Days of staff time lost during audit prep</li>
-                        <li>Struggling to document everything auditors need</li>
-                        <li>Last-minute scrambling every year</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
     <section class="section-alt">
         <div class="container">
-            <h2>A Better Model for Small Schools</h2>
-            <div class="solution-content">
-                <div class="solution-text">
-                    <h3>Professional Team + Local Presence = The Best of Both Worlds</h3>
-                    <p>Remote professional accounting services combined with part-time on-site assistant for physical operations</p>
-                    <ul class="benefits-list">
-                        <li>Books closed by the 15th of each month (not 30-60 days late)</li>
-                        <li>Professional expertise in Adventist education accounting</li>
-                        <li>Audit-ready documentation year-round</li>
-                        <li>Save $20,000-50,000 annually vs. traditional business manager</li>
-                        <li>Keep local presence for deposits, checks, parent walk-ins</li>
-                        <li>No single-person dependency risk</li>
+            <h2>The Financial Leadership Challenge</h2>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Overwhelmed Business Managers</h3>
+                    <ul>
+                        <li>Drowning in data entry and reconciliations</li>
+                        <li>No time for strategic planning or analysis</li>
+                        <li>Books close late despite working overtime</li>
+                        <li>Operating as bookkeeper, not CFO</li>
                     </ul>
-                    <div class="callout-box">
-                        <p>"From 6+ years at Adventist Institutions: We understand AASI.NET, APS, FACTS, conference systems, and the unique challenges of boarding academies—because we lived it as a student and managed it professionally."</p>
-                    </div>
                 </div>
-                <div class="solution-visual">
-                    <div style="background: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean-pale) 100%); padding: 3rem; border-radius: 15px; text-align: center;">
-                        <h3 style="color: var(--ocean-dark); font-size: 2rem; margin-bottom: 2rem;">What You Keep</h3>
-                        <div style="background: var(--white); padding: 2rem; border-radius: 10px; margin-bottom: 1rem;">
-                            <h4 style="color: var(--ocean-dark); margin-bottom: 1rem;">Part-Time On-Site Assistant</h4>
-                            <p style="color: var(--text-medium); margin: 0;">Physical deposits, check processing, walk-in parent interactions</p>
-                        </div>
-                        <div style="font-size: 2rem; margin: 1.5rem 0;">+</div>
-                        <div style="background: var(--white); padding: 2rem; border-radius: 10px;">
-                            <h4 style="color: var(--ocean-dark); margin-bottom: 1rem;">Professional Back-Office Team</h4>
-                            <p style="color: var(--text-medium); margin: 0;">Reconciliations, close, statements, reports, audit prep</p>
-                        </div>
-                    </div>
+                <div class="problem-card">
+                    <h3>Schools Without Financial Leadership</h3>
+                    <ul>
+                        <li>Can't afford $80K-100K for experienced leadership</li>
+                        <li>Principal wearing too many hats</li>
+                        <li>No professional guidance for board decisions</li>
+                        <li>Making critical decisions without proper analysis</li>
+                    </ul>
+                </div>
+                <div class="problem-card">
+                    <h3>The Common Result</h3>
+                    <ul>
+                        <li>Books 30-60 days behind (or more)</li>
+                        <li>Budget decisions based on guesswork</li>
+                        <li>Audit season chaos and stress</li>
+                        <li>Reactive crisis management vs. strategic planning</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -795,7 +906,7 @@
                         <li>Student accounts & statements</li>
                         <li>Scholarship administration (all programs)</li>
                         <li>Collections coordination</li>
-                        <li>Parent communication (email/phone)</li>
+                        <li>Parent communication</li>
                     </ul>
                 </div>
                 <div class="service-card">
@@ -824,40 +935,125 @@
         </div>
     </section>
 
-    <!-- Cost Comparison Section -->
+    <!-- Cost Comparison Section - COMPLETELY REWRITTEN -->
     <section class="section-alt">
         <div class="container">
-            <h2>Professional Expertise at Sustainable Costs</h2>
-            <div class="cost-comparison">
-                <div class="cost-card">
-                    <h3>Traditional Model</h3>
-                    <p style="color: var(--text-medium);">Full-Time Business Manager</p>
-                    <div class="cost-amount">$73K-90K</div>
-                    <ul class="cost-details">
-                        <li>Salary: $55,000-65,000</li>
-                        <li>Benefits: $18,000-25,000</li>
-                        <li>⚠️ Single point of failure</li>
-                        <li>⚠️ Vacation/sick leave gaps</li>
-                        <li>⚠️ Turnover risk</li>
-                    </ul>
+            <h2>Investment & Value Analysis</h2>
+            <p class="cost-intro">Let's be transparent about costs and value. The right solution depends on your current situation and what you value most: cost savings, strategic capacity, or both.</p>
+
+            <div class="cost-scenarios">
+                <!-- Scenario 1: Partnership Model -->
+                <div class="scenario-section">
+                    <div class="scenario-header">
+                        <h3>Scenario 1: Strategic Partnership Model</h3>
+                        <p class="scenario-subtitle">You currently have a Business Manager</p>
+                    </div>
+
+                    <div class="comparison-grid">
+                        <div class="comparison-card current">
+                            <h4>Your Current Model</h4>
+                            <ul class="cost-breakdown">
+                                <li>Business Manager: $60,000-70,000</li>
+                                <li>Benefits (30%): $18,000-21,000</li>
+                                <li>Part-time cashier (maybe): $12,000-18,000</li>
+                            </ul>
+                            <div class="cost-total">$90,000-109,000/year</div>
+                            
+                            <div class="reality-check current">
+                                <h5>Current Reality:</h5>
+                                <ul>
+                                    <li>BM spends 70-80% time on data entry</li>
+                                    <li>Books close 30-45 days late</li>
+                                    <li>No time for strategic planning</li>
+                                    <li>Decisions made without analysis</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="comparison-card proposed">
+                            <h4>Partnership Model</h4>
+                            <ul class="cost-breakdown">
+                                <li>Business Manager (strategic): $50,000-60,000</li>
+                                <li>Benefits (30%): $15,000-18,000</li>
+                                <li>Our back-office service: $30,000-36,000</li>
+                                <li>On-site assistant: $12,000-15,000</li>
+                            </ul>
+                            <div class="cost-total">$107,000-129,000/year</div>
+                            
+                            <div class="reality-check proposed">
+                                <h5>New Reality:</h5>
+                                <ul>
+                                    <li>BM spends 70-80% time on strategy</li>
+                                    <li>Books close by 15th monthly</li>
+                                    <li>Forward-looking planning & analysis</li>
+                                    <li>Better board presentations & decisions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="value-proposition">
+                        <h4>The Value Equation</h4>
+                        <p>Similar or slightly higher cost ($0-20K more), but your business manager transforms from data entry clerk to strategic CFO. Better decisions, proactive planning, stronger financial leadership—that's the real ROI.</p>
+                    </div>
                 </div>
-                <div class="cost-card highlight">
-                    <h3>Our Model</h3>
-                    <p style="color: var(--text-medium);">Professional Service + On-Site Assistant</p>
-                    <div class="cost-amount">$50K-60K</div>
-                    <ul class="cost-details">
-                        <li>Professional services: $30K-36K</li>
-                        <li>Part-time assistant: $20K-25K</li>
-                        <li>✅ Team coverage & continuity</li>
-                        <li>✅ Professional liability insurance</li>
-                        <li>✅ Documented systems</li>
-                    </ul>
+
+                <!-- Scenario 2: Complete Service -->
+                <div class="scenario-section">
+                    <div class="scenario-header">
+                        <h3>Scenario 2: Complete Service Model</h3>
+                        <p class="scenario-subtitle">You don't currently have a Business Manager</p>
+                    </div>
+
+                    <div class="comparison-grid">
+                        <div class="comparison-card current">
+                            <h4>Your Current Model</h4>
+                            <ul class="cost-breakdown">
+                                <li>Principal doing oversight: (Burnout cost)</li>
+                                <li>Part-time bookkeeper: $15,000-25,000</li>
+                                <li>Or: Business Manager: $55,000-65,000</li>
+                                <li>Benefits (35%): $19,000-23,000</li>
+                            </ul>
+                            <div class="cost-total">$74,000-88,000/year</div>
+                            
+                            <div class="reality-check current">
+                                <h5>Current Reality:</h5>
+                                <ul>
+                                    <li>Books chronically 45-60+ days late</li>
+                                    <li>Solo BM completely overwhelmed</li>
+                                    <li>No strategic financial capacity</li>
+                                    <li>Principal stressed and overextended</li>
+                            </ul>
+                            </div>
+                        </div>
+
+                        <div class="comparison-card proposed">
+                            <h4>Complete Service Model</h4>
+                            <ul class="cost-breakdown">
+                                <li>Professional back-office service: $30,000-36,000</li>
+                                <li>Strategic advisory included: (No extra cost)</li>
+                                <li>On-site assistant: $20,000-25,000</li>
+                                <li>Insurance & continuity: Included</li>
+                            </ul>
+                            <div class="cost-total">$50,000-61,000/year</div>
+                            
+                            <div class="reality-check proposed">
+                                <h5>New Reality:</h5>
+                                <ul>
+                                    <li>Books close by 15th monthly</li>
+                                    <li>Professional team coverage</li>
+                                    <li>Strategic guidance for board</li>
+                                    <li>Principal focuses on education</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="value-proposition">
+                        <h4>The Value Equation</h4>
+                        <p>Save $13,000-37,000 annually while gaining professional accounting execution, strategic advisory, audit-ready systems, and team continuity. Principal finally freed from financial stress.</p>
+                    </div>
                 </div>
-            </div>
-            <div class="savings-highlight">
-                <h3>Your Annual Savings</h3>
-                <div class="savings-amount">$20,000 - $40,000</div>
-                <p style="margin: 0;">While gaining professional expertise and current financial visibility</p>
             </div>
         </div>
     </section>
@@ -875,7 +1071,7 @@
                 <div class="why-card">
                     <div class="why-icon">🎯</div>
                     <h3>Proven Expertise</h3>
-                    <p>6+ years managing accounting at Shenandoah Valley Academy (172 students). Expert in AASI.NET, APS, FACTS, conference systems. Know Zirkle, VA Tax Credit, conference awards, church subsidies.</p>
+                    <p>6+ years managing accounting at Adventist institutions. Expert in AASI.NET, APS, FACTS, conference systems. Know Zirkle, VA Tax Credit, conference awards, church subsidies.</p>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">❤️</div>
@@ -901,7 +1097,7 @@
                     <div class="step-number">2</div>
                     <h3>Parallel Operation</h3>
                     <p><strong>1-2 months</strong></p>
-                    <p>Work alongside current staff. Verify accuracy. Train on-site person. Test all systems and refine based on actual operations.</p>
+                    <p>Work alongside current staff. Verify accuracy. Train team. Test all systems and refine based on actual operations.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
@@ -970,6 +1166,15 @@
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">
+                        What if I already have a great business manager?
+                        <span>▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        Perfect! That's our Strategic Partnership model. We handle the operational grind (reconciliations, close, data entry, collections) so your business manager can focus on what they do best: strategic planning, budget development, board advisory, and financial leadership. They become your true CFO instead of spending 80% of their time on data entry.
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
                         What about data security?
                         <span>▼</span>
                     </div>
@@ -1031,13 +1236,14 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Academy Accounting Solutions</h3>
+                    <h3>Adventist Academy Solutions</h3>
                     <p>Professional Accounting for Adventist Academies</p>
                     <p style="margin-top: 1rem;">Helping small Adventist schools focus on their mission through professional financial management</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul>
+                        <li><a href="#pathways">Solutions</a></li>
                         <li><a href="#services">Services</a></li>
                         <li><a href="#why-us">Why Us</a></li>
                         <li><a href="#process">How It Works</a></li>
@@ -1047,13 +1253,13 @@
                 </div>
                 <div class="footer-section">
                     <h3>Contact</h3>
-                    <p>📧 kmartinphx@gmail</p>
+                    <p>📧 kmartinphx@gmail.com</p>
                     <p>📱 (423) 749-2123</p>
                     <p style="margin-top: 1rem; font-size: 0.9rem;">Exclusively serving Seventh-day Adventist K-12 Schools</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 Adventist Accounting Solutions. All rights reserved.</p>
+                <p>&copy; 2026 Adventist Academy Solutions. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1087,11 +1293,6 @@
                 // Toggle current answer
                 answer.style.display = isOpen ? 'none' : 'block';
             });
-        });
-
-        // Initially hide all FAQ answers
-        document.querySelectorAll('.faq-answer').forEach(answer => {
-            answer.style.display = 'none';
         });
     </script>
 </body>
