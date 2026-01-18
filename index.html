@@ -72,6 +72,11 @@
             color: var(--ocean-pale);
         }
 
+        nav a.active {
+            color: var(--accent-coral);
+            font-weight: 600;
+        }
+
         /* Container */
         .container {
             max-width: 1200px;
@@ -174,6 +179,14 @@
             margin: 0 auto 4rem;
             color: var(--text-medium);
             font-size: 1.2rem;
+        }
+
+        .value-proposition-section {
+            margin-top: 3rem;
+        }
+
+        .value-intro h3 {
+            font-size: 2rem;
         }
 
         .pathways-grid {
@@ -771,11 +784,12 @@
         <div class="container">
             <div class="logo">Adventist Academy Solutions</div>
             <ul>
+                <li><a href="index.html">Home</a></li>
                 <li><a href="#pathways">Solutions</a></li>
+                <li><a href="operational-excellence.html">Operational Excellence</a></li>
+                <li><a href="who-we-are.html">Who We Are</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#why-us">Why Us</a></li>
-                <li><a href="#process">How It Works</a></li>
-                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </div>
@@ -1058,8 +1072,132 @@
         </div>
     </section>
 
+    <!-- Budget Reallocation Section - NEW -->
+    <section id="value">
+        <div class="container">
+            <h2>The Real Question: Where Are You Investing?</h2>
+            <p class="pathways-intro">Small Adventist academies operate on razor-thin budgets. Every dollar matters. The question isn't just "How much does the business office cost?"—it's "What value are we getting, and what opportunities are we missing?"</p>
+
+            <div class="value-proposition-section">
+                <div class="value-intro">
+                    <h3 style="color: var(--ocean-dark); text-align: center; margin-bottom: 2rem;">The Hidden Opportunity Cost</h3>
+                    <p style="color: var(--text-medium); font-size: 1.1rem; max-width: 900px; margin: 0 auto 3rem; text-align: center;">
+                        Many schools spend $90K-109K on business office operations (business manager + cashier/clerk) that deliver late financial information and zero strategic capacity. 
+                        Meanwhile, mission-critical roles go unfunded: "We can't afford another cafeteria worker" or "We need an assistant maintenance director but there's no budget."
+                    </p>
+                </div>
+
+                <div class="comparison-grid" style="margin-bottom: 4rem;">
+                    <div class="comparison-card current">
+                        <h4>Current Reality at Many Schools</h4>
+                        <p style="color: var(--text-medium); margin-bottom: 1.5rem;">Business office: $90K-109K annually</p>
+                        <ul class="cost-breakdown">
+                            <li>Books close 30-45 days late</li>
+                            <li>No time for strategic analysis</li>
+                            <li>Reactive crisis management</li>
+                            <li>BM working 50+ hours, still behind</li>
+                        </ul>
+                        <div class="reality-check current" style="margin-top: 1.5rem;">
+                            <h5>Meanwhile...</h5>
+                            <ul>
+                                <li>Cafeteria understaffed (no budget)</li>
+                                <li>Maintenance director alone managing 180K+ sq ft</li>
+                                <li>Student life team stretched thin</li>
+                                <li>Mission-critical roles unfunded</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="comparison-card proposed">
+                        <h4>Strategic Budget Reallocation</h4>
+                        <p style="color: var(--text-medium); margin-bottom: 1.5rem;">Better financial management unlocks budget capacity</p>
+                        <ul class="cost-breakdown">
+                            <li>Books close by 15th monthly</li>
+                            <li>Strategic financial leadership</li>
+                            <li>Proactive budget optimization</li>
+                            <li>Professional team coverage</li>
+                        </ul>
+                        <div class="reality-check proposed" style="margin-top: 1.5rem;">
+                            <h5>The Multiplier Effect:</h5>
+                            <ul>
+                                <li>Identify $20K-60K in annual efficiencies</li>
+                                <li>Better vendor negotiations save $5K-15K</li>
+                                <li>Avoid costly mistakes and audit findings</li>
+                                <li>Free budget for operational roles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean-pale) 100%); padding: 3rem; border-radius: 15px; margin-bottom: 3rem;">
+                    <h3 style="color: var(--ocean-dark); text-align: center; margin-bottom: 2rem;">What $25K in Savings or Efficiencies Enables</h3>
+                    <div class="services-grid" style="margin-top: 2rem;">
+                        <div style="background: var(--white); padding: 2rem; border-radius: 10px;">
+                            <div style="font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">🍽️</div>
+                            <h4 style="color: var(--ocean-dark); text-align: center; margin-bottom: 0.5rem;">Cafeteria Support</h4>
+                            <p style="color: var(--text-medium); text-align: center; margin: 0;">Full-time cafeteria worker: $22K-28K</p>
+                        </div>
+                        <div style="background: var(--white); padding: 2rem; border-radius: 10px;">
+                            <div style="font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">🔧</div>
+                            <h4 style="color: var(--ocean-dark); text-align: center; margin-bottom: 0.5rem;">Facilities Support</h4>
+                            <p style="color: var(--text-medium); text-align: center; margin: 0;">Assistant maintenance director: $20K-25K (part-time)</p>
+                        </div>
+                        <div style="background: var(--white); padding: 2rem; border-radius: 10px;">
+                            <div style="font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">🧹</div>
+                            <h4 style="color: var(--ocean-dark); text-align: center; margin-bottom: 0.5rem;">Custodial Support</h4>
+                            <p style="color: var(--text-medium); text-align: center; margin: 0;">Additional custodial hours: $12K-15K</p>
+                        </div>
+                        <div style="background: var(--white); padding: 2rem; border-radius: 10px;">
+                            <div style="font-size: 2.5rem; text-align: center; margin-bottom: 1rem;">🎓</div>
+                            <h4 style="color: var(--ocean-dark); text-align: center; margin-bottom: 0.5rem;">Student Life</h4>
+                            <p style="color: var(--text-medium); text-align: center; margin: 0;">Assistant dean or student life support: $15K-20K</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="background: var(--white); padding: 3rem; border-radius: 15px; box-shadow: 0 4px 20px rgba(44, 95, 124, 0.1);">
+                    <h3 style="color: var(--ocean-dark); text-align: center; margin-bottom: 2rem;">Real-World Scenario: Boarding Academy</h3>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 2rem;">
+                        <div>
+                            <h4 style="color: var(--ocean-medium); margin-bottom: 1rem;">Before Partnership Model</h4>
+                            <ul style="list-style: none; padding: 0; color: var(--text-medium);">
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--sand-warm);">Business office cost: $105K</li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--sand-warm);">Books 45 days late</li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--sand-warm);">BM working 50+ hours/week</li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--sand-warm);">Cafeteria understaffed</li>
+                                <li style="padding: 0.5rem 0;">Maintenance director overwhelmed</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 style="color: var(--ocean-medium); margin-bottom: 1rem;">After Partnership Model</h4>
+                            <ul style="list-style: none; padding: 0; color: var(--text-medium);">
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--sand-warm);">Business office cost: $117.5K</li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--sand-warm);">Books close by 15th</li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--sand-warm);">BM has strategic capacity</li>
+                                <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--sand-warm);">Identifies $48K in efficiencies</li>
+                                <li style="padding: 0.5rem 0;"><strong>Funds 2 critical operational roles</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, var(--ocean-medium) 0%, var(--ocean-light) 100%); color: var(--white); padding: 2rem; border-radius: 10px; text-align: center;">
+                        <p style="font-size: 1.2rem; margin: 0;"><strong>Net Result:</strong> School spends $12.5K more on business office but gains $48K in annual efficiencies—enabling a full-time cafeteria worker ($25K) and part-time maintenance assistant ($18K), with $5K remaining for scholarships.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--sand-warm); border-radius: 10px;">
+                <h3 style="color: var(--ocean-dark); margin-bottom: 1rem;">The Bottom Line</h3>
+                <p style="font-size: 1.2rem; color: var(--text-dark); max-width: 900px; margin: 0 auto;">
+                    Strategic financial management doesn't just save money—it identifies where to invest for maximum mission impact. The question isn't whether you can afford professional accounting. It's whether you can afford NOT to have strategic financial leadership that unlocks budget capacity for your school's real needs.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Why Us Section -->
-    <section id="why-us">
+    <section id="why-us" class="section-alt">
         <div class="container">
             <h2>Not Just Accountants—Adventist Education Specialists</h2>
             <div class="why-us-grid">
@@ -1071,7 +1209,7 @@
                 <div class="why-card">
                     <div class="why-icon">🎯</div>
                     <h3>Proven Expertise</h3>
-                    <p>6+ years managing accounting at Adventist institutions. Expert in AASI.NET, APS, FACTS, conference systems. Know how to handle different types of scholarships, Tax Credits, conference awards, church subsidies.</p>
+                    <p>6+ years managing accounting at Adventist institutions. Expert in AASI.NET, APS, FACTS, conference systems. Know Zirkle, VA Tax Credit, conference awards, church subsidies.</p>
                 </div>
                 <div class="why-card">
                     <div class="why-icon">❤️</div>
@@ -1225,7 +1363,7 @@
                 </div>
             </div>
 
-            <a href="mailto:kmartinphx@gmail.com" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Schedule Your Discovery Call</a>
+            <a href="/cdn-cgi/l/email-protection#cea5a3afbcbaa7a0bea6b68ea9a3afa7a2e0ada1a3" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Schedule Your Discovery Call</a>
             
             <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.9;">We only work with schools where we can genuinely add value. If this isn't the right fit, we'll tell you.</p>
         </div>
@@ -1245,6 +1383,7 @@
                     <ul>
                         <li><a href="#pathways">Solutions</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#value">Value & Impact</a></li>
                         <li><a href="#why-us">Why Us</a></li>
                         <li><a href="#process">How It Works</a></li>
                         <li><a href="#faq">FAQ</a></li>
@@ -1253,7 +1392,7 @@
                 </div>
                 <div class="footer-section">
                     <h3>Contact</h3>
-                    <p>📧 kmartinphx@gmail.com</p>
+                    <p>📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="264d4b4754524f48564e5e66414b474f4a0845494b">[email&#160;protected]</a></p>
                     <p>📱 (423) 749-2123</p>
                     <p style="margin-top: 1rem; font-size: 0.9rem;">Exclusively serving Seventh-day Adventist K-12 Schools</p>
                 </div>
@@ -1264,7 +1403,7 @@
         </div>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -1286,14 +1425,4 @@
                 const isOpen = answer.style.display === 'block';
                 
                 // Close all other answers
-                document.querySelectorAll('.faq-answer').forEach(a => {
-                    a.style.display = 'none';
-                });
-                
-                // Toggle current answer
-                answer.style.display = isOpen ? 'none' : 'block';
-            });
-        });
-    </script>
-</body>
-</html>
+                document.querySelectorAll('.fa
