@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operational Excellence - Adventist Academy Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ocean-dark: #2c5f7c;
+            --ocean-medium: #4a8bad;
+            --ocean-light: #7eb3d1;
+            --ocean-pale: #b8dbe8;
+            --sand-light: #f5f7f9;
+            --sand-warm: #e8f1f5;
+            --text-dark: #2c3e50;
+            --text-medium: #546e7a;
+            --accent-coral: #ff8a65;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--sand-light);
+        }
+
+        /* Navigation */
+        nav {
+            background-color: var(--ocean-dark);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--ocean-pale);
+        }
+
+        nav a.active {
+            color: var(--accent-coral);
+            font-weight: 600;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-medium) 100%);
+            color: var(--white);
+            padding: 6rem 0 4rem;
+            text-align: center;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 0;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--ocean-dark);
+        }
+
+        section h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: var(--ocean-dark);
+        }
+
+        .section-alt {
+            background-color: var(--white);
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            font-size: 1.2rem;
+            color: var(--text-medium);
+        }
+
+        /* Pain Points Grid */
+        .pain-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .pain-point-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(44, 95, 124, 0.1);
+            border-left: 5px solid var(--accent-coral);
+        }
+
+        .pain-point-card h3 {
+            color: var(--ocean-dark);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pain-point-section {
+            margin-bottom: 1.5rem;
+        }
+
+        .pain-point-section h4 {
+            color: var(--accent-coral);
+            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pain-point-section p {
+            color: var(--text-medium);
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+        }
+
+        .pain-point-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .pain-point-section li {
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--text-medium);
+        }
+
+        .pain-point-section li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--accent-coral);
+            font-weight: bold;
+        }
+
+        .impact-box {
+            background: #fff5f5;
+            border-left: 3px solid #ff6b6b;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+        }
+
+        .solution-box {
+            background: #f0f9ff;
+            border-left: 3px solid var(--ocean-medium);
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+            border-radius: 5px;
+        }
+
+        /* Budget Reallocation Section */
+        .reallocation-framework {
+            background: linear-gradient(135deg, var(--ocean-pale) 0%, var(--sand-warm) 100%);
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .reallocation-framework h3 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .comparison-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .comparison-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .comparison-box h4 {
+            color: var(--ocean-dark);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .cost-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--sand-warm);
+        }
+
+        .cost-line.total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            border-top: 2px solid var(--ocean-medium);
+            border-bottom: none;
+            padding-top: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .benefits-box {
+            background: #e8f5e9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1.5rem;
+        }
+
+        .benefits-box h5 {
+            color: #2e7d32;
+            margin-bottom: 1rem;
+        }
+
+        .benefits-box ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .benefits-box li {
+            padding: 0.5rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+        }
+
+        .benefits-box li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        /* Scenario Box */
+        .scenario-box {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(44, 95, 124, 0.1);
+            margin: 3rem 0;
+        }
+
+        .scenario-box h3 {
+            text-align: center;
+            color: var(--ocean-dark);
+            margin-bottom: 2rem;
+        }
+
+        .scenario-steps {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .scenario-step {
+            padding: 1.5rem;
+            border-left: 4px solid var(--ocean-medium);
+            background: var(--sand-light);
+            border-radius: 5px;
+        }
+
+        .scenario-step h4 {
+            color: var(--ocean-dark);
+            margin-bottom: 1rem;
+        }
+
+        .highlight-stat {
+            background: linear-gradient(135deg, var(--ocean-medium) 0%, var(--ocean-light) 100%);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .highlight-stat .number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-stat p {
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-medium) 100%);
+            color: var(--white);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-coral);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: #ff6f47;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 138, 101, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--ocean-dark);
+            color: var(--white);
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--ocean-pale);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            padding: 0.5rem 0;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--ocean-pale);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--ocean-medium);
+            color: var(--ocean-pale);
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .pain-points-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" style="color: white; text-decoration: none;">Adventist Academy Solutions</a>
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="operational-excellence.html" class="active">Operational Excellence</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#why-us">Why Us</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>Where Professional Accounting Creates Real Value</h1>
+            <p>Beyond bookkeeping: How strategic financial management transforms operations, enables better decisions, and frees budget for mission-critical roles</p>
+        </div>
+    </section>
+
+    <!-- Introduction -->
+    <section>
+        <div class="container">
+            <p class="section-intro">
+                The difference between rushed accounting and professional financial management isn't just "books closed on time." It's the difference between surviving and thriving—between reactive crisis management and strategic planning. Here's where professional accounting really matters.
+            </p>
+        </div>
+    </section>
+
+    <!-- Critical Pain Points -->
+    <section class="section-alt">
+        <div class="container">
+            <h2>Critical Operational Pain Points</h2>
+            
+            <div class="pain-points-grid">
+                <!-- Pain Point 1: Budget Accuracy -->
+                <div class="pain-point-card">
+                    <h3>Budget & Cost Center Accuracy</h3>
+                    
+                    <div class="pain-point-section">
+                        <h4>The Problem</h4>
+                        <p>When you're rushed during month-end close, transactions get posted to "miscellaneous" accounts, wrong functions, or incorrect departments just to get books closed. Six months later, you don't know what's actually driving costs.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <strong>Real Impact:</strong> Can't identify where money is actually going. Can't make strategic cuts when needed. Can't defend budget requests with accurate data. Leadership making blind decisions.
+                    </div>
+
+                    <div class="solution-box">
+                        <strong>Our Approach:</strong> Every transaction coded correctly the first time. Monthly review ensures accuracy. Cost centers reflect reality. Board gets meaningful variance analysis, not just numbers.
+                    </div>
+                </div>
+
+                <!-- Pain Point 2: Auxiliary Operations -->
+                <div class="pain-point-card">
+                    <h3>Hidden Auxiliary Costs (Buses & Cafeteria)</h3>
+                    
+                    <div class="pain-point-section">
+                        <h4>The Problem</h4>
+                        <p><strong>Transportation:</strong> Your buses provide essential student transportation—$40,000+ annual operation. But if transfers aren't done properly between transportation fund and student accounts, you're bleeding money invisibly. General fund shows zero transportation cost while debt compounds.</p>
+                        <p><strong>Food Service:</strong> Providing free or reduced meals? That cost must be properly charged somewhere. Without proper tracking, cafeteria losses invisibly drain the operating budget.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <strong>Real Impact:</strong> These auxiliary operations have literally driven small schools to financial crisis without leadership realizing until too late. School looks profitable while auxiliary operations compound losses.
+                    </div>
+
+                    <div class="solution-box">
+                        <strong>Our Approach:</strong> Monthly transfers properly allocated. Student charges correctly applied. Operating budget shows true auxiliary costs. Board sees complete picture. Strategic decisions made with accurate data.
+                    </div>
+                </div>
+
+                <!-- Pain Point 3: Month-End Close Speed -->
+                <div class="pain-point-card">
+                    <h3>Month-End Close Timeline</h3>
+                    
+                    <div class="pain-point-section">
+                        <h4>The Problem</h4>
+                        <p>Books close 30-60+ days late instead of industry standard 10-15 business days. By the time you see October's numbers, it's mid-December. Budget corrections come too late. Problems compound.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <strong>Real Impact:</strong> Making November budget decisions based on September data. Can't course-correct until damage is done. Board operating with 60-day-old information.
+                    </div>
+
+                    <div class="solution-box">
+                        <strong>Our Approach:</strong> Books closed by 15th of following month, every month. Budget variance analysis delivered while there's still time to act. Leadership makes decisions with current reality.
+                    </div>
+                </div>
+
+                <!-- Pain Point 4: Cash Flow Forecasting -->
+                <div class="pain-point-card">
+                    <h3>Cash Flow Visibility</h3>
+                    
+                    <div class="pain-point-section">
+                        <h4>The Problem</h4>
+                        <p>You know today's bank balance but not next month's position. Will payroll clear? Can we pay this vendor invoice? Operating in constant survival mode instead of planning ahead.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <strong>Real Impact:</strong> Payroll stress every two weeks. Vendor payment delays damage relationships. Missing opportunities because can't commit to timing. Leadership exhausted from constant cash crisis management.
+                    </div>
+
+                    <div class="solution-box">
+                        <strong>Our Approach:</strong> Rolling 90-day cash flow forecast updated monthly. Know exactly when tight periods hit. Plan transfers and timing strategically. Board sees liquidity analysis, not just current balance.
+                    </div>
+                </div>
+
+                <!-- Pain Point 5: Scholarship Compliance -->
+                <div class="pain-point-card">
+                    <h3>Scholarship Tracking & Compliance</h3>
+                    
+                    <div class="pain-point-section">
+                        <h4>The Problem</h4>
+                        <p>Zirkle scholarships, VA Tax Credit, conference awards, church subsidies, private donations—each has different rules, restrictions, and reporting requirements. Easy to double-count, miss restrictions, or lose audit trail when rushed.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <strong>Real Impact:</strong> Audit findings. Lost funding eligibility. Compliance violations. Student families confused about true costs. Donor restrictions accidentally violated.
+                    </div>
+
+                    <div class="solution-box">
+                        <strong>Our Approach:</strong> Detailed scholarship tracking by source and restrictions. Proper documentation for each program. Audit-ready trail. Clear student statements showing all aid sources. Compliance maintained year-round.
+                    </div>
+                </div>
+
+                <!-- Pain Point 6: Board Reporting Quality -->
+                <div class="pain-point-card">
+                    <h3>Board Financial Reporting</h3>
+                    
+                    <div class="pain-point-section">
+                        <h4>The Problem</h4>
+                        <p>Board meetings approaching, financial packet not ready. Rush to compile reports the night before. Data exists but no time to analyze, contextualize, or present insights. Board gets raw numbers without narrative.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <strong>Real Impact:</strong> Board makes decisions without understanding what's driving variances. Can't answer basic financial questions. Governance hampered by lack of quality financial intelligence.
+                    </div>
+
+                    <div class="solution-box">
+                        <strong>Our Approach:</strong> Board packets prepared week before meetings. Analysis included: what changed, why it matters, what to watch. Variance explanations written, not just calculated. Board has time to digest and ask informed questions.
+                    </div>
+                </div>
+
+                <!-- Pain Point 7: Audit Preparation -->
+                <div class="pain-point-card">
+                    <h3>Audit Season Disruption</h3>
+                    
+                    <div class="pain-point-section">
+                        <h4>The Problem</h4>
+                        <p>Annual audit becomes weeks of scrambling. Searching for documentation. Recreating schedules. Explaining transactions from months ago. Days of staff time consumed.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <strong>Real Impact:</strong> Everything else stops during audit. Staff exhausted. Risk of findings from incomplete documentation. Audit fees higher due to inefficiency.
+                    </div>
+
+                    <div class="solution-box">
+                        <strong>Our Approach:</strong> Audit-ready systems year-round. Digital documentation organized as transactions happen. Schedules maintained monthly. Auditor requests answered same day. Audit becomes review, not investigation.
+                    </div>
+                </div>
+
+                <!-- Pain Point 8: Student Account Collections -->
+                <div class="pain-point-card">
+                    <h3>Student Account Collections</h3>
+                    
+                    <div class="pain-point-section">
+                        <h4>The Problem</h4>
+                        <p>No systematic collections approach. Follow-up inconsistent. Receivables balloon. But no time for strategic collections that balance relationship sensitivity with financial need.</p>
+                    </div>
+
+                    <div class="impact-box">
+                        <strong>Real Impact:</strong> Cash flow crisis from uncollected accounts. Families leave over miscommunication. Collection agency use damages relationships. Write-offs compound.
+                    </div>
+
+                    <div class="solution-box">
+                        <strong>Our Approach:</strong> Systematic collections process with boarding school family sensitivity. Regular communication before accounts age. Payment plans properly structured. Administration informed to coordinate support. Balance compassion with financial responsibility.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategic Budget Reallocation -->
+    <section>
+        <div class="container">
+            <h2>Strategic Budget Reallocation: The Real ROI</h2>
+            
+            <p class="section-intro">
+                The question isn't just "How much does the business office cost?" It's "Where are we investing our limited budget, and are we getting strategic value?" Many schools are spending heavily on business office operations that deliver minimal strategic capacity—while mission-critical operational roles go unfunded.
+            </p>
+
+            <div class="reallocation-framework">
+                <h3>The Budget Reallocation Framework</h3>
+                
+                <div class="comparison-container">
+                    <!-- Current Reality -->
+                    <div class="comparison-box">
+                        <h4>Current Reality (Typical)</h4>
+                        <div class="cost-line">
+                            <span>Business Manager</span>
+                            <span>$60K-70K</span>
+                        </div>
+                        <div class="cost-line">
+                            <span>Benefits (30%)</span>
+                            <span>$18K-21K</span>
+                        </div>
+                        <div class="cost-line">
+                            <span>Part-time cashier/clerk</span>
+                            <span>$12K-18K</span>
+                        </div>
+                        <div class="cost-line total">
+                            <span>Business Office Total</span>
+                            <span>$90K-109K</span>
+                        </div>
+
+                        <div style="background: #fff5f5; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem;">
+                            <h5 style="color: #c62828; margin-bottom: 1rem;">What You're Getting:</h5>
+                            <ul style="list-style: none; padding: 0;">
+                                <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0;">⚠️</span>
+                                    Books 30-45 days late
+                                </li>
+                                <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0;">⚠️</span>
+                                    BM spends 70-80% time on data entry
+                                </li>
+                                <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0;">⚠️</span>
+                                    Zero strategic capacity
+                                </li>
+                                <li style="padding: 0.4rem 0; padding-left: 1.5rem; position: relative;">
+                                    <span style="position: absolute; left: 0;">⚠️</span>
+                                    No budget for other critical roles
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Partnership Model -->
+                    <div class="comparison-box" style="border: 3px solid var(--ocean-medium);">
+                        <h4>Partnership Model (Strategic)</h4>
+                        <div class="cost-line">
+                            <span>Business Manager (strategic)</span>
+                            <span>$50K-60K</span>
+                        </div>
+                        <div class="cost-line">
+                            <span>Benefits (30%)</span>
+                            <span>$15K-18K</span>
+                        </div>
+                        <div class="cost-line">
+                            <span>Professional back-office service</span>
+                            <span>$30K-36K</span>
+                        </div>
+                        <div class="cost-line">
+                            <span>On-site assistant</span>
+                            <span>$12K-15K</span>
+                        </div>
+                        <div class="cost-line total">
+                            <span>Business Office Total</span>
+                            <span>$107K-129K</span>
+                        </div>
+
+                        <div class="benefits-box">
+                            <h5>What You're Getting:</h5>
+                            <ul>
+                                <li>Books close by 15th monthly</li>
+                                <li>BM spends 70-80% time on strategy</li>
+                                <li>Strategic capacity worth $60K+ annually</li>
+                                <li>Efficiency gains fund other critical roles</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlight-stat" style="margin-top: 3rem;">
+                    <div class="number">$20K-60K</div>
+                    <p>Annual savings identified through strategic financial management—enough to fund additional cafeteria staff, assistant maintenance director, or other mission-critical operational roles</p>
+                </div>
+            </div>
+
+            <!-- Real-World Scenario -->
+            <div class="scenario-box">
+                <h3>Real-World Impact: Valley View Academy (Fictional Example)</h3>
+                
+                <div class="scenario-steps">
+                    <div class="scenario-step">
+                        <h4>Before: The Constraint</h4>
+                        <p><strong>Business Office Cost:</strong> $105K (BM $68K + benefits $22K + cashier $15K)</p>
+                        <p><strong>Challenges:</strong></p>
+                        <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+                            <li style="padding: 0.3rem 0;">• Books 45 days late, BM working 50+ hours/week</li>
+                            <li style="padding: 0.3rem 0;">• Cafeteria understaffed: 2.5 FTE serving 400+ meals daily</li>
+                            <li style="padding: 0.3rem 0;">• Maintenance director alone managing 180,000 sq ft campus</li>
+                            <li style="padding: 0.3rem 0;">• "No budget" for additional operational staff</li>
+                        </ul>
+                    </div>
+
+                    <div class="scenario-step">
+                        <h4>After: Strategic Partnership Model</h4>
+                        <p><strong>Business Office Cost:</strong> $117.5K (BM strategic $55K + benefits $16.5K + service $33K + assistant $13K)</p>
+                        <p><strong>Net increase:</strong> $12.5K</p>
+                    </div>
+
+                    <div class="scenario-step">
+                        <h4>The Multiplier Effect</h4>
+                        <p><strong>BM Strategic Work Identifies:</strong></p>
+                        <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+                            <li style="padding: 0.3rem 0;">• Unnecessary insurance costs: <strong>$18K savings</strong></li>
+                            <li style="padding: 0.3rem 0;">• Food service contract renegotiation: <strong>$22K savings</strong></li>
+                            <li style="padding: 0.3rem 0;">• Optimized bus routes: <strong>$8K savings</strong></li>
+                            <li style="padding: 0.3rem 0; font-weight: bold; margin-top: 0.5rem;">Total savings identified: $48K annually</li>
+                        </ul>
+                    </div>
+
+                    <div class="scenario-step" style="background: #e8f5e9;">
+                        <h4>Budget Reallocation Enabled</h4>
+                        <p><strong>Newly Funded Positions:</strong></p>
+                        <ul style="list-style: none; padding: 0; margin-top: 0.5rem;">
+                            <li style="padding: 0.3rem 0;">✅ Additional cafeteria worker: $25K</li>
+                            <li style="padding: 0.3rem 0;">✅ Part-time maintenance assistant: $18K</li>
+                            <li style="padding: 0.3rem 0;">✅ Remaining for scholarship fund: $5K</li>
+                        </ul>
+                    </div>
+
+                    <div class="scenario-step">
+                        <h4>The Outcome</h4>
+                        <p>School spends $12.5K more on business office but gains $48K in efficiencies, enabling two critical operational hires. Food service quality improves. Facilities better maintained. Financial leadership finally strategic.</p>
+                        <p style="margin-top: 1rem; font-weight: 600; color: var(--ocean-dark);">This isn't just accounting—it's enabling the entire mission.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Options -->
+            <div style="margin-top: 4rem;">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Where $25K in Savings Can Be Reallocated</h3>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+                    <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">👨‍🍳</div>
+                        <h4 style="color: var(--ocean-dark); margin-bottom: 1rem;">Cafeteria Staff</h4>
+                        <p style="color: var(--text-medium);">Full-time cafeteria worker: $22K-28K</p>
+                    </div>
+
+                    <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔧</div>
+                        <h4 style="color: var(--ocean-dark); margin-bottom: 1rem;">Maintenance Support</h4>
+                        <p style="color: var(--text-medium);">Half of assistant maintenance director: $20K-25K</p>
+                    </div>
+
+                    <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🧹</div>
+                        <h4 style="color: var(--ocean-dark); margin-bottom: 1rem;">Custodial Support</h4>
+                        <p style="color: var(--text-medium);">Additional custodial support (15 hrs/week): $12K-15K</p>
+                    </div>
+
+                    <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); text-align: center;">
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">👥</div>
+                        <h4 style="color: var(--ocean-dark); margin-bottom: 1rem;">Student Life</h4>
+                        <p style="color: var(--text-medium);">Part-time student life assistant: $15K-20K</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary -->
+    <section class="section-alt">
+        <div class="container">
+            <h2>The Bottom Line</h2>
+            
+            <p class="section-intro">
+                Professional financial management isn't just about "getting books closed on time." It's about:
+            </p>
+
+            <div style="max-width: 800px; margin: 2rem auto;">
+                <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); margin-bottom: 1.5rem; border-left: 5px solid var(--ocean-medium);">
+                    <h3 style="color: var(--ocean-dark); font-size: 1.4rem; margin-bottom: 1rem;">Strategic Decision Making</h3>
+                    <p style="color: var(--text-medium); margin: 0;">Accurate cost centers, timely information, meaningful analysis. Board and leadership make decisions with current reality, not outdated estimates.</p>
+                </div>
+
+                <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); margin-bottom: 1.5rem; border-left: 5px solid var(--ocean-medium);">
+                    <h3 style="color: var(--ocean-dark); font-size: 1.4rem; margin-bottom: 1rem;">Risk Mitigation</h3>
+                    <p style="color: var(--text-medium); margin: 0;">Hidden auxiliary costs surfaced before they compound. Cash flow forecasted. Compliance maintained. Audit-ready systems year-round.</p>
+                </div>
+
+                <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); margin-bottom: 1.5rem; border-left: 5px solid var(--ocean-medium);">
+                    <h3 style="color: var(--ocean-dark); font-size: 1.4rem; margin-bottom: 1rem;">Budget Optimization</h3>
+                    <p style="color: var(--text-medium); margin: 0;">Strategic financial leadership identifies $20K-60K in annual efficiencies. Enables funding of mission-critical operational roles previously "impossible" to budget.</p>
+                </div>
+
+                <div style="background: var(--white); padding: 2rem; border-radius: 10px; box-shadow: 0 2px 15px rgba(0,0,0,0.08); border-left: 5px solid var(--ocean-medium);">
+                    <h3 style="color: var(--ocean-dark); font-size: 1.4rem; margin-bottom: 1rem;">Mission Focus</h3>
+                    <p style="color: var(--text-medium); margin: 0;">Leadership freed from financial crisis management. Principal focuses on educational mission. Board governs strategically instead of reactively.</p>
+                </div>
+            </div>
+
+            <div class="highlight-stat" style="margin-top: 3rem;">
+                <div class="number">This Is Strategic</div>
+                <p>Professional accounting isn't an expense—it's strategic infrastructure that enables everything else you're trying to accomplish.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>See How This Works For Your School</h2>
+            <p>Every school's situation is unique. Let's have a conversation about your specific challenges and see if this model makes sense for you.</p>
+            <a href="mailto:kmartinphx@gmail.com" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Schedule a Discovery Call</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Adventist Academy Solutions</h3>
+                    <p>Professional Accounting for Adventist Academies</p>
+                    <p style="margin-top: 1rem;">Helping small Adventist schools focus on their mission through professional financial management</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="operational-excellence.html">Operational Excellence</a></li>
+                        <li><a href="index.html#services">Services</a></li>
+                        <li><a href="index.html#why-us">Why Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p>📧 kmartinphx@gmail.com</p>
+                    <p>📱 (423) 749-2123</p>
+                    <p style="margin-top: 1rem; font-size: 0.9rem;">Exclusively serving Seventh-day Adventist K-12 Schools</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Adventist Academy Solutions. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
