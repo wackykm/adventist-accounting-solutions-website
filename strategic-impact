@@ -23,7 +23,7 @@
             --text-medium: #546e7a;
             --accent-coral: #ff8a65;
             --white: #ffffff;
-            --card-height: 260px;
+            --card-height: 320px;
         }
 
         body {
@@ -245,10 +245,11 @@
             height: 100%;
             backface-visibility: hidden;
             border-radius: 10px;
-            padding: 2rem;
+            padding: 1.6rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            overflow: hidden;
         }
 
         /* Front face */
@@ -259,25 +260,25 @@
         }
 
         .card-icon {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
+            font-size: 2rem;
+            margin-bottom: 0.4rem;
         }
 
         .card-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1.25rem;
+            font-size: 1.15rem;
             color: var(--ocean-dark);
             line-height: 1.3;
             flex: 1;
         }
 
         .card-hint {
-            font-size: 0.78rem;
+            font-size: 0.75rem;
             color: var(--ocean-light);
             font-weight: 600;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            margin-top: 1.2rem;
+            margin-top: 1rem;
             display: flex;
             align-items: center;
             gap: 0.4rem;
@@ -298,32 +299,35 @@
             transform: rotateY(180deg);
             color: var(--white);
             justify-content: flex-start;
-            gap: 1rem;
+            gap: 0.6rem;
         }
 
         .card-back-title {
             font-family: 'Playfair Display', serif;
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--ocean-pale);
-            margin-bottom: 0.5rem;
-            padding-bottom: 0.8rem;
+            padding-bottom: 0.6rem;
             border-bottom: 1px solid rgba(255,255,255,0.15);
+            flex-shrink: 0;
         }
 
         .card-back-text {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: rgba(255,255,255,0.88);
-            line-height: 1.7;
+            line-height: 1.6;
             flex: 1;
+            overflow: hidden;
         }
 
         .card-back-impact {
-            font-size: 0.82rem;
+            font-size: 0.78rem;
             font-weight: 600;
             color: var(--accent-coral);
-            letter-spacing: 0.04em;
-            padding-top: 0.8rem;
+            letter-spacing: 0.03em;
+            padding-top: 0.6rem;
             border-top: 1px solid rgba(255,255,255,0.15);
+            flex-shrink: 0;
+            line-height: 1.4;
         }
 
         /* ── RIPPLE SECTION ── */
@@ -1117,8 +1121,8 @@
     <div class="container">
         <h2>These Questions Deserve Answers</h2>
         <p>Let's have a conversation about what strategic financial leadership could look like at your school.</p>
-        <a href="mailto:kmartinphx@gmail.com" class="btn-primary">Schedule a Discovery Call</a>
-        <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-medium);">📧 kmartinphx@gmail.com &nbsp;·&nbsp; 📱 (423) 749-2123</p>
+        <a href="/cdn-cgi/l/email-protection#610a0c001315080f11091921060c00080d4f020e0c" class="btn-primary">Schedule a Discovery Call</a>
+        <p style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--text-medium);">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="197274786b6d7077697161597e74787075377a7674">[email&#160;protected]</a> &nbsp;·&nbsp; 📱 (423) 749-2123</p>
     </div>
 </section>
 
@@ -1142,7 +1146,7 @@
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
-                <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">📧 kmartinphx@gmail.com</p>
+                <p style="color:rgba(255,255,255,0.8); font-size:0.9rem;">📧 <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7f14121e0d0b16110f17073f18121e1613511c1012">[email&#160;protected]</a></p>
                 <p style="color:rgba(255,255,255,0.8); font-size:0.9rem; margin-top:0.5rem;">📱 (423) 749-2123</p>
                 <p style="color:rgba(255,255,255,0.5); font-size:0.82rem; margin-top:1rem;">Exclusively serving Seventh-day Adventist K-12 Schools</p>
             </div>
@@ -1153,7 +1157,7 @@
     </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     // Tab switching
     document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.addEventListener('click', function() {
@@ -1182,16 +1186,4 @@
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.querySelectorAll('.bar-fill').forEach(bar => {
-                    const width = bar.style.width;
-                    bar.style.width = '0%';
-                    setTimeout(() => { bar.style.width = width; }, 100);
-                });
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    document.querySelectorAll('.time-card').forEach(card => observer.observe(card));
-</script>
-</body>
-</html>
+       
