@@ -4,525 +4,273 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Who We Are - Adventist Academy Solutions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *{margin:0;padding:0;box-sizing:border-box}
+        :root{
+            --ocean-dark:#2c5f7c;--ocean-medium:#4a8bad;--ocean-light:#7eb3d1;
+            --ocean-pale:#b8dbe8;--sand-light:#f5f7f9;--sand-warm:#e8f1f5;
+            --text-dark:#2c3e50;--text-medium:#546e7a;--accent-coral:#ff8a65;--white:#ffffff;
         }
-
-        :root {
-            --ocean-dark: #2c5f7c;
-            --ocean-medium: #4a8bad;
-            --ocean-light: #7eb3d1;
-            --ocean-pale: #b8dbe8;
-            --sand-light: #f5f7f9;
-            --sand-warm: #e8f1f5;
-            --text-dark: #2c3e50;
-            --text-medium: #546e7a;
-            --accent-coral: #ff8a65;
-            --white: #ffffff;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background-color: var(--sand-light);
-        }
-
-        /* Navigation */
-        nav {
-            background-color: var(--ocean-dark);
-            color: var(--white);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        nav .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: var(--ocean-pale);
-        }
-
-        /* Container */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-medium) 100%);
-            color: var(--white);
-            padding: 6rem 0 4rem;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero p {
-            font-size: 1.3rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Content Section */
-        section {
-            padding: 5rem 0;
-        }
-
-        section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--ocean-dark);
-        }
-
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-            margin-bottom: 4rem;
-        }
-
-        .content-box {
-            background: var(--white);
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(44, 95, 124, 0.1);
-        }
-
-        .content-box h3 {
-            color: var(--ocean-dark);
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
-        }
-
-        .content-box p {
-            color: var(--text-medium);
-            margin-bottom: 1rem;
-            line-height: 1.8;
-        }
-
-        .highlight-box {
-            background: linear-gradient(135deg, var(--ocean-light) 0%, var(--ocean-pale) 100%);
-            padding: 2rem;
-            border-radius: 10px;
-            margin: 2rem 0;
-        }
-
-        .highlight-box h3 {
-            color: var(--ocean-dark);
-            margin-bottom: 1rem;
-        }
-
-        .highlight-box p {
-            color: var(--text-dark);
-            margin: 0;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 3rem;
-        }
-
-        .timeline:before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: var(--ocean-medium);
-        }
-
-        .timeline-item {
-            margin-bottom: 2rem;
-            position: relative;
-        }
-
-        .timeline-item:before {
-            content: '';
-            position: absolute;
-            left: -3.5rem;
-            top: 0.5rem;
-            width: 15px;
-            height: 15px;
-            border-radius: 50%;
-            background: var(--accent-coral);
-            border: 3px solid var(--white);
-            box-shadow: 0 0 0 3px var(--ocean-medium);
-        }
-
-        .timeline-item h4 {
-            color: var(--ocean-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-item p {
-            color: var(--text-medium);
-        }
-
-        ul.values-list {
-            list-style: none;
-            padding: 0;
-        }
-
-        ul.values-list li {
-            padding: 1rem 0;
-            padding-left: 2.5rem;
-            position: relative;
-            color: var(--text-dark);
-            line-height: 1.8;
-        }
-
-        ul.values-list li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: var(--accent-coral);
-            font-weight: bold;
-            font-size: 1.5rem;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-medium) 100%);
-            color: var(--white);
-            padding: 4rem 0;
-            text-align: center;
-            border-radius: 15px;
-            margin: 3rem 0;
-        }
-
-        .cta-section h2 {
-            color: var(--white);
-            margin-bottom: 1.5rem;
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-        }
-
-        .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-            font-size: 1.1rem;
-            background-color: var(--accent-coral);
-            color: var(--white);
-        }
-
-        .btn:hover {
-            background-color: #ff6f47;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 138, 101, 0.4);
-        }
-
-        /* Footer */
-        footer {
-            background-color: var(--ocean-dark);
-            color: var(--white);
-            padding: 3rem 0 1rem;
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h3 {
-            color: var(--ocean-pale);
-            margin-bottom: 1rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .footer-section li {
-            padding: 0.5rem 0;
-        }
-
-        .footer-section a {
-            color: var(--white);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        .footer-section a:hover {
-            color: var(--ocean-pale);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid var(--ocean-medium);
-            color: var(--ocean-pale);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .content-grid {
-                grid-template-columns: 1fr;
-            }
-
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            section {
-                padding: 3rem 0;
-            }
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        body{font-family:'Source Sans 3',sans-serif;line-height:1.6;color:var(--text-dark);background:var(--sand-light)}
+        nav{background:var(--ocean-dark);color:var(--white);padding:1rem 0;position:sticky;top:0;z-index:1000;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+        nav .container{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;justify-content:space-between;align-items:center}
+        nav .logo{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;letter-spacing:.02em}
+        nav ul{list-style:none;display:flex;gap:1.8rem}
+        nav a{color:var(--white);text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.03em;transition:color .3s}
+        nav a:hover{color:var(--ocean-pale)}
+        .container{max-width:1200px;margin:0 auto;padding:0 2rem}
+        .hero{background:linear-gradient(150deg,var(--ocean-dark) 0%,#1a3d52 50%,var(--ocean-medium) 100%);color:var(--white);padding:7rem 0 5rem;text-align:center;position:relative;overflow:hidden}
+        .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(74,139,173,.3) 0%,transparent 60%)}
+        .hero-label{display:inline-block;font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ocean-pale);margin-bottom:1.5rem;padding:.4rem 1.2rem;border:1px solid rgba(184,219,232,.4);border-radius:2px;position:relative}
+        .hero h1{font-family:'Playfair Display',serif;font-size:3.6rem;font-weight:700;line-height:1.1;margin-bottom:1rem;position:relative}
+        .hero h1 em{color:var(--ocean-pale);font-style:italic}
+        .hero p{font-size:1.15rem;color:rgba(255,255,255,.78);max-width:620px;margin:0 auto;font-weight:300;line-height:1.8;position:relative}
+        section{padding:5.5rem 0}
+        .section-label{display:block;font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ocean-medium);margin-bottom:.6rem}
+        .section-title{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--ocean-dark);margin-bottom:1rem;line-height:1.2}
+        .section-intro{color:var(--text-medium);font-size:1.1rem;line-height:1.8;max-width:700px}
+        .section-alt{background:var(--white)}
+        .two-col{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;margin-top:3rem}
+        .content-box{background:var(--white);padding:3rem;border-radius:12px;box-shadow:0 4px 20px rgba(44,95,124,.08)}
+        .content-box h3{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--ocean-dark);margin-bottom:1.2rem}
+        .content-box p{color:var(--text-medium);margin-bottom:1rem;line-height:1.8}
+        .check-list{list-style:none;padding:0;margin-top:1rem}
+        .check-list li{padding:.7rem 0;padding-left:2rem;position:relative;color:var(--text-dark);line-height:1.7;border-bottom:1px solid var(--sand-warm)}
+        .check-list li:last-child{border-bottom:none}
+        .check-list li::before{content:'✓';position:absolute;left:0;color:var(--ocean-medium);font-weight:700;font-size:1rem}
+        .highlight-box{background:linear-gradient(135deg,var(--ocean-dark) 0%,#1e4a62 100%);color:var(--white);padding:2.5rem 3rem;border-radius:12px;margin-top:3rem}
+        .highlight-box h3{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--ocean-pale);margin-bottom:1rem}
+        .highlight-box p{color:rgba(255,255,255,.85);line-height:1.8;font-size:1.05rem}
+        .timeline{position:relative;padding-left:2.5rem;margin-top:1.5rem}
+        .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--ocean-light)}
+        .timeline-item{margin-bottom:2.2rem;position:relative}
+        .timeline-item::before{content:'';position:absolute;left:-2.9rem;top:.4rem;width:14px;height:14px;border-radius:50%;background:var(--accent-coral);border:3px solid var(--white);box-shadow:0 0 0 2px var(--ocean-medium)}
+        .timeline-item h4{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--ocean-dark);margin-bottom:.4rem}
+        .timeline-item p{color:var(--text-medium);font-size:.95rem;line-height:1.7}
+        .values-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:1.5rem;margin-top:3rem}
+        .value-card{background:var(--white);padding:2.2rem;border-radius:12px;box-shadow:0 4px 20px rgba(44,95,124,.07);border-top:3px solid var(--ocean-medium);transition:transform .3s,box-shadow .3s}
+        .value-card:hover{transform:translateY(-4px);box-shadow:0 8px 30px rgba(44,95,124,.14)}
+        .value-icon{font-size:2rem;margin-bottom:.8rem}
+        .value-card h3{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--ocean-dark);margin-bottom:.7rem}
+        .value-card p{color:var(--text-medium);font-size:.95rem;line-height:1.7}
+        .team-box{max-width:900px;margin:3rem auto 0;background:var(--white);padding:3rem;border-radius:12px;box-shadow:0 4px 20px rgba(44,95,124,.08)}
+        .team-box h3{font-family:'Playfair Display',serif;font-size:1.7rem;color:var(--ocean-dark);margin-bottom:1.5rem}
+        .cta-band{background:linear-gradient(150deg,var(--ocean-dark) 0%,#1a3d52 50%,var(--ocean-medium) 100%);color:var(--white);padding:5rem 0;text-align:center}
+        .cta-band h2{font-family:'Playfair Display',serif;font-size:2.4rem;color:var(--white);margin-bottom:1rem}
+        .cta-band p{color:rgba(255,255,255,.75);font-size:1.1rem;margin-bottom:2rem}
+        .btn{padding:1rem 2.8rem;border-radius:4px;text-decoration:none;font-weight:600;font-size:1rem;display:inline-block;transition:all .3s;background:var(--accent-coral);color:var(--white)}
+        .btn:hover{background:#ff6f47;transform:translateY(-2px);box-shadow:0 6px 20px rgba(255,138,101,.4)}
+        footer{background:var(--ocean-dark);color:var(--white);padding:3rem 0 1rem}
+        .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:3rem;margin-bottom:2rem}
+        .footer-section h3{font-family:'Playfair Display',serif;color:var(--ocean-pale);margin-bottom:1rem;font-size:1.1rem}
+        .footer-section ul{list-style:none;padding:0}
+        .footer-section li{padding:.4rem 0}
+        .footer-section a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.92rem;transition:color .3s}
+        .footer-section a:hover{color:var(--ocean-pale)}
+        .footer-bottom{text-align:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,.1);color:var(--ocean-pale);font-size:.85rem}
+        @media(max-width:768px){.two-col{grid-template-columns:1fr}.hero h1{font-size:2.4rem}nav ul{display:none}}
+        html{scroll-behavior:smooth}
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="container">
-            <div class="logo">Adventist Academy Solutions</div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#pathways">Solutions</a></li>
-                <li><a href="operational-excellence.html">Operational Excellence</a></li>
-                <li><a href="who-we-are.html">Who We Are</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#why-us">Why Us</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Who We Are</h1>
-            <p>Not just accountants—Adventist education specialists with lived experience and proven expertise</p>
-        </div>
-    </section>
+<nav>
+    <div class="container">
+        <div class="logo">Adventist Academy Solutions</div>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#pathways">Solutions</a></li>
+            <li><a href="operational-excellence.html">Operational Excellence</a></li>
+            <li><a href="strategic-impact.html">Strategic Impact</a></li>
+            <li><a href="who-we-are.html">Who We Are</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <!-- Our Story Section -->
-    <section>
-        <div class="container">
-            <div class="content-grid">
-                <div class="content-box">
-                    <h3>Our Story</h3>
-                    <p>Adventist Academy Solutions was founded by a career school business manager who has lived inside the operational reality of small Adventist academies.</p>
-                    
-                    <p>We have closed month-end books under pressure, managed student accounts and collections, worked through audits, balanced cash flow during tight months, and sat in board meetings answering hard financial questions with incomplete data.</p>
-                    
-                    <p>We understand the tension school leaders face every day: limited budgets, increasing compliance requirements, understaffed business offices, and the constant pressure to “just make it work” without compromising the mission.</p>
+<!-- HERO -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-label">Our Story · Our Mission · Our Team</div>
+        <h1>Not Just Accountants—<br><em>Adventist Education</em> Specialists</h1>
+        <p>We have lived and breathed Adventist education—as students, as professionals, and as believers in the transformative power of Christian education.</p>
+    </div>
+</section>
 
-                    <p>This organization exists to change that dynamic.</p>
-
-                    <p>Rather than treating accounting as a clerical task, we approach it as strategic infrastructure—the system that enables leadership to make informed decisions, surface hidden risks, and steward limited resources intentionally.</p>
-                    
-                </div>
-
-                <div class="content-box">
-                    <h3>Why Exclusively Adventist Schools?</h3>
-                    <p>We serve Adventist K–12 schools exclusively because this environment is fundamentally different from public education or generic private schools. Effective financial management here requires denominational fluency, operational context, and cultural understanding that general accounting firms simply do not have.</p>
-                    
-                    <ul class="values-list">
-                        <li><strong>Boarding operations</strong> with cafeterias, dorms, and complex fund and auxiliary accounting</li>
-                        <li><strong>Multiple scholarship programs</strong> </li>
-                        <li><strong>Conference relationships</strong> and denominational reporting requirements</li>
-                        <li><strong>Student work programs</strong> (APS system, non-employee student labor)</li>
-                        <li><strong>GCAS audit standards</strong> specific to Adventist institutions</li>
-                        <li><strong>Mission-driven operations</strong> where every financial decision impacts ministry</li>
-                    </ul>
+<!-- OUR STORY -->
+<section>
+    <div class="container">
+        <div class="two-col">
+            <div>
+                <span class="section-label">Our Foundation</span>
+                <h2 class="section-title">Why We Exist</h2>
+                <p class="section-intro">Adventist Academy Solutions was founded on a simple conviction: small Adventist schools deserve professional financial management that truly understands their mission, culture, and operational realities.</p>
+                <div style="margin-top:2rem">
+                    <p style="color:var(--text-medium);line-height:1.8;margin-bottom:1rem">We are not a generic accounting firm that happens to serve schools. We are specialists who have attended Adventist boarding academies, eaten in those cafeterias, worked student jobs, and later managed the very financial systems that keep those institutions running.</p>
+                    <p style="color:var(--text-medium);line-height:1.8;margin-bottom:1rem">We understand the pressure of GCAS audits, the complexity of Zirkle and conference scholarship programs, the sensitivity required in student account collections, and the unique relationship between schools and their conferences. Because we have navigated all of it firsthand.</p>
+                    <p style="color:var(--text-medium);line-height:1.8">We chose to serve only Adventist K–12 schools because depth of specialization delivers better outcomes than breadth of clientele. Your school deserves a partner who knows your world—not one learning it on your time.</p>
                 </div>
             </div>
-
-            <div class="highlight-box">
-                <h3>Our Mission</h3>
-                <p>To equip Adventist academies with professional financial management that enables strategic decision-making, strengthens stewardship, and frees leadership to focus on educational mission rather than financial firefighting.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Leadership Section -->
-    <section style="background-color: var(--white);">
-        <div class="container">
-            <h2 style="text-align: center; margin-bottom: 3rem;">Leadership & Experience</h2>
-            
-            <div class="content-box" style="max-width: 900px; margin: 0 auto;">
-                <h3>Kevin Martin, Founder</h3>
-                
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <h4>Student Experience (17 years)</h4>
-                        <p>Attended Adventist primary, elementary, boarding academy and university. Worked student jobs, lived in dorms, ate cafeteria food. Experienced firsthand both the joys and challenges of Adventist education.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h4>Professional Experience (3+ years)</h4>
-                        <p>Served as Student Accounts Manager, Accountant and Assistant Business Manager at Shenandoah Valley Academy (172+ students). Managed complete accounting operations including AASI.NET, FACTS, APS, student accounts, scholarships, collections, and audit preparation.</p>
-                        <p>Also served as Assistant Accountant at the Union level, gaining experience with multi-entity accounting, consolidated financial reporting, and the operational expectations of senior church leadership.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h4>Systems Expertise</h4>
-                        <p>Deep expertise in AASI.NET accounting, FACTS tuition management, APS student payroll system, and conference reporting requirements. Know the challenges of month-end close, audit preparation, and managing multiple scholarship programs.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h4>Cultural Understanding</h4>
-                        <p>Understands the real-world dynamics of boarding academies: auxiliary operations, parent communication, conference relationships, compliance pressure, and the constant balance between mission and financial sustainability.</p>
-                    </div>
-                </div>
-
-                <div class="highlight-box" style="margin-top: 3rem;">
-                    <h3>Why This Matters</h3>
-                    <p>When I review your financial statements, I'm not just seeing numbers—I'm seeing the cafeteria where students eat, the dorms where they live, the scholarships that made it possible for them to attend, and the mission you're working to sustain. This isn't just accounting. It's stewardship of a sacred trust.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Values Section -->
-    <section>
-        <div class="container">
-            <h2 style="text-align: center;">Our Core Values</h2>
-            
-            <div class="content-grid">
-                <div class="content-box">
-                    <h3>Stewardship</h3>
-                    <p>We view every dollar as God's resources entrusted to Adventist education. Professional financial management isn't just about accuracy—it's about faithful stewardship of means dedicated to ministry.</p>
-                </div>
-
-                <div class="content-box">
-                    <h3>Excellence</h3>
-                    <p>Small schools deserve the same quality of financial management as large institutions. We bring professional-grade systems, processes, and expertise to schools regardless of size.</p>
-                </div>
-
-                <div class="content-box">
-                    <h3>Partnership</h3>
-                    <p>We're not here to replace your team or take control. We're here to empower your leadership with timely information, strategic guidance, and operational excellence.</p>
-                </div>
-
-                <div class="content-box">
-                    <h3>Mission Focus</h3>
-                    <p>Everything we do aims to free your leadership to focus on educational mission. Better financial management means more time for students, curriculum, spiritual growth, and community building.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Approach Section -->
-    <section style="background-color: var(--white);">
-        <div class="container">
-            <div class="content-box" style="max-width: 900px; margin: 0 auto;">
-                <h3>Our Team Approach</h3>
-                <p>Adventist Academy Solutions operates as a professional team model designed specifically for continuity, reliability, and risk reduction in small school environments. Every team member:</p>
-                
-                <ul class="values-list">
-                    <li><strong>Shares Adventist values</strong> and understands denominational culture</li>
-                    <li><strong>Specializes in education accounting</strong> with systems expertise (AASI.NET, FACTS, APS)</li>
-                    <li><strong>Maintains professional standards</strong> with continuing education and quality controls</li>
-                    <li><strong>Commits to confidentiality</strong> and professional ethics</li>
-                    <li><strong>Operates with insurance protection</strong> ($2M professional liability + cyber coverage)</li>
+            <div class="content-box">
+                <h3>Why Exclusively Adventist Schools?</h3>
+                <p>Adventist K–12 education has characteristics that generic accounting firms simply do not understand:</p>
+                <ul class="check-list">
+                    <li><strong>Boarding operations</strong> — cafeterias, dormitories, auxiliary accounting, and transfer complexity</li>
+                    <li><strong>Multiple scholarship programs</strong> — Zirkle, VA Tax Credit, conference awards, church subsidies, each with unique tracking requirements</li>
+                    <li><strong>Conference relationships</strong> — denominational reporting standards and conference treasurer expectations</li>
+                    <li><strong>Student work programs</strong> — APS system, non-employee student labor, quarterly reporting</li>
+                    <li><strong>GCAS audit standards</strong> — specific to Adventist institutions and distinct from standard audits</li>
+                    <li><strong>AASI.NET accounting system</strong> — the specialized platform most outside firms have never used</li>
+                    <li><strong>Mission-driven culture</strong> — where every financial decision carries spiritual weight</li>
                 </ul>
-
-                <div class="highlight-box" style="margin-top: 2rem;">
-                    <h3>Why Team Coverage Matters</h3>
-                    <p>Unlike a single employee, our team structure provides continuity during vacation, illness, or transitions. Systems are documented, processes are standardized, and multiple team members understand your account. You're never dependent on one person.</p>
-                </div>
             </div>
         </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section>
-        <div class="container">
-            <div class="cta-section">
-                <h2>Let's Start a Conversation</h2>
-                <p>We'd love to learn about your school and explore whether our services could help your mission.</p>
-                <a href="mailto:kmartinphx@gmail.com" class="btn">Schedule Discovery Call</a>
-                <p style="margin-top: 1.5rem; font-size: 1rem;">📧 kmartinphx@gmail.com  |  📱 (423) 749-2123</p>
+        <div class="highlight-box">
+            <h3>Our Mission</h3>
+            <p>To empower small Adventist academies with professional financial management that enables better strategic decisions, frees leadership to focus on educational mission, and ensures faithful stewardship of the resources entrusted to Adventist education.</p>
+        </div>
+    </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="section-alt">
+    <div class="container">
+        <div style="text-align:center;margin-bottom:1rem">
+            <span class="section-label">Leadership</span>
+            <h2 class="section-title" style="margin-bottom:0.5rem">Experience That Can't Be Replicated</h2>
+            <p style="color:var(--text-medium);max-width:650px;margin:0 auto;font-size:1.05rem;line-height:1.8">Seven years as a student. Six-plus years as a professional. A career spent entirely inside Adventist education.</p>
+        </div>
+
+        <div class="team-box">
+            <h3>Kevin Martin — Founder</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>Student Experience (7 Years)</h4>
+                    <p>Attended an Adventist boarding academy and Adventist university. Experienced firsthand the rhythms of campus life—cafeteria meals, dormitory culture, student work programs, chapel, and the financial realities families navigate to make Adventist education possible.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Professional Experience — Shenandoah Valley Academy (6+ Years)</h4>
+                    <p>Served as Student Accounts Manager and Accountant at a 172-student boarding academy. Managed complete accounting operations: monthly close, GCAS audit preparation, FACTS tuition management, APS student payroll, scholarship administration (Zirkle, conference, church), student collections, and board financial reporting.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Systems Mastery</h4>
+                    <p>Deep expertise in AASI.NET accounting, FACTS tuition management, APS student payroll, and conference reporting requirements. Understands the practical reality of month-end close under time pressure, audit documentation standards, and managing multiple scholarship funds simultaneously.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>Cultural Fluency</h4>
+                    <p>Understands the human side of Adventist academy operations: the sensitivity required in student account conversations with families, the importance of conference relationships, the board dynamics unique to denominational governance, and the weight of managing resources dedicated to Christian education.</p>
+                </div>
+            </div>
+            <div style="background:var(--sand-warm);padding:1.8rem 2rem;border-radius:8px;margin-top:2rem;border-left:4px solid var(--ocean-medium)">
+                <p style="color:var(--text-dark);font-size:1.05rem;line-height:1.8;font-style:italic">"When I review your financial statements, I'm not just seeing numbers. I'm seeing the cafeteria where students eat, the dorms where they live, the scholarships that made it possible for them to attend, and the mission you're working to sustain. This is stewardship of a sacred trust."</p>
+                <p style="color:var(--ocean-medium);font-weight:600;margin-top:.8rem;font-size:.9rem">— Kevin Martin, Founder</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Adventist Academy Solutions</h3>
-                    <p>Professional Accounting for Adventist Academies</p>
-                    <p style="margin-top: 1rem;">Helping small Adventist schools focus on their mission through professional financial management</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="index.html#pathways">Solutions</a></li>
-                        <li><a href="operational-excellence.html">Operational Excellence</a></li>
-                        <li><a href="who-we-are.html">Who We Are</a></li>
-                        <li><a href="index.html#services">Services</a></li>
-                        <li><a href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p>📧 kmartinphx@gmail.com</p>
-                    <p>📱 (423) 749-2123</p>
-                    <p style="margin-top: 1rem; font-size: 0.9rem;">Exclusively serving Seventh-day Adventist K-12 Schools</p>
-                </div>
+<!-- VALUES -->
+<section>
+    <div class="container">
+        <div style="text-align:center">
+            <span class="section-label">What We Stand For</span>
+            <h2 class="section-title">Our Core Values</h2>
+        </div>
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">🙏</div>
+                <h3>Stewardship</h3>
+                <p>We view every dollar as God's resources entrusted to Adventist education. Professional financial management isn't just about accuracy—it is faithful stewardship of means dedicated to ministry.</p>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Adventist Academy Solutions. All rights reserved.</p>
+            <div class="value-card">
+                <div class="value-icon">🎯</div>
+                <h3>Excellence Without Exception</h3>
+                <p>Small schools deserve the same quality of financial management as large institutions. We bring professional-grade systems, processes, and expertise regardless of enrollment size.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🤝</div>
+                <h3>Genuine Partnership</h3>
+                <p>We are not here to replace your team or assume control. We are here to empower your leadership with the information, systems, and strategic capacity they need to lead well.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">❤️</div>
+                <h3>Mission First</h3>
+                <p>Everything we do is aimed at one outcome: freeing your leadership to focus on students, curriculum, spiritual formation, and community—not data entry and late reports.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">🔒</div>
+                <h3>Trust and Transparency</h3>
+                <p>All systems remain in your school's name. You retain full access and approval authority. We operate with $2M in professional liability coverage and FERPA-compliant protocols.</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon">📐</div>
+                <h3>Precision and Consistency</h3>
+                <p>Books closed by the 15th. Reconciliations documented. Audit packages organized year-round. Professional work delivered consistently—not just when there's time.</p>
             </div>
         </div>
-    </footer>
+    </div>
+</section>
+
+<!-- TEAM APPROACH -->
+<section class="section-alt">
+    <div class="container">
+        <div class="team-box">
+            <span class="section-label">How We Work</span>
+            <h3 style="margin-top:.5rem">The Team Approach: Why It Matters</h3>
+            <p style="color:var(--text-medium);line-height:1.8;margin-bottom:1.5rem">Adventist Academy Solutions operates as a professional team exclusively serving Adventist K–12 schools—not as a solo contractor. This distinction matters for your school in practical ways:</p>
+            <ul class="check-list">
+                <li><strong>No single point of failure</strong> — systems are documented, processes are standardized, and coverage is not dependent on one person's availability</li>
+                <li><strong>Consistent delivery</strong> — your books close on schedule regardless of vacation, illness, or turnover</li>
+                <li><strong>Professional accountability</strong> — operating as a firm, not an individual, with appropriate insurance and professional standards</li>
+                <li><strong>Proper vendor classification</strong> — standard vendor procurement, not employment, eliminating Department of Labor compliance concerns for your school</li>
+                <li><strong>Shared Adventist values</strong> — every team member understands denominational culture, expectations, and the weight of the mission</li>
+            </ul>
+            <div style="background:var(--sand-light);padding:1.5rem 2rem;border-radius:8px;margin-top:2rem">
+                <p style="color:var(--text-medium);font-size:.95rem;line-height:1.7"><strong style="color:var(--ocean-dark)">Insurance & Compliance:</strong> $2M professional liability coverage · Cyber liability protection · FERPA-compliant service agreements · All systems remain in school's name and control</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-band">
+    <div class="container">
+        <h2>Let's Start a Conversation</h2>
+        <p>We'd welcome the opportunity to learn about your school and explore whether this partnership makes sense.</p>
+        <a href="mailto:kmartinphx@gmail.com" class="btn">Schedule a Discovery Call</a>
+        <p style="margin-top:1.5rem;font-size:.95rem;color:rgba(255,255,255,.6)">📧 kmartinphx@gmail.com &nbsp;·&nbsp; 📱 (423) 749-2123</p>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Adventist Academy Solutions</h3>
+                <p style="color:rgba(255,255,255,.65);font-size:.9rem;line-height:1.7">Professional accounting services exclusively for Seventh-day Adventist K–12 schools.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Pages</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="operational-excellence.html">Operational Excellence</a></li>
+                    <li><a href="strategic-impact.html">Strategic Impact</a></li>
+                    <li><a href="who-we-are.html">Who We Are</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p style="color:rgba(255,255,255,.8);font-size:.9rem">📧 kmartinphx@gmail.com</p>
+                <p style="color:rgba(255,255,255,.8);font-size:.9rem;margin-top:.5rem">📱 (423) 749-2123</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Adventist Academy Solutions. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
