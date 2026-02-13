@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventist Academy Solutions - Professional Accounting for Adventist Academies</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,13 +26,13 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Source Sans 3', sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
             background-color: var(--sand-light);
         }
 
-        /* Navigation */
+        /* ── NAV ── */
         nav {
             background-color: var(--ocean-dark);
             color: var(--white);
@@ -39,7 +40,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
         }
 
         nav .container {
@@ -52,67 +53,104 @@
         }
 
         nav .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 1.8rem;
         }
 
         nav a {
             color: var(--white);
             text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
             transition: color 0.3s;
         }
 
-        nav a:hover {
-            color: var(--ocean-pale);
-        }
+        nav a:hover { color: var(--ocean-pale); }
 
         nav a.active {
             color: var(--accent-coral);
             font-weight: 600;
         }
 
-        /* Container */
+        /* ── CONTAINER ── */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
         }
 
-        /* Hero Section */
+        /* ── HERO ── */
         .hero {
-            background: linear-gradient(135deg, var(--ocean-dark) 0%, var(--ocean-medium) 100%);
+            background: linear-gradient(150deg, var(--ocean-dark) 0%, #1a3d52 50%, var(--ocean-medium) 100%);
             color: var(--white);
             padding: 8rem 0 6rem;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(74,139,173,0.3) 0%, transparent 60%);
+        }
+
+        .hero-label {
+            display: inline-block;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--ocean-pale);
+            margin-bottom: 1.5rem;
+            padding: 0.4rem 1.2rem;
+            border: 1px solid rgba(184,219,232,0.4);
+            border-radius: 2px;
+            position: relative;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
             margin-bottom: 1rem;
-            line-height: 1.2;
+            line-height: 1.1;
+            position: relative;
+        }
+
+        .hero h1 em {
+            color: var(--ocean-pale);
+            font-style: italic;
         }
 
         .hero .subtitle {
-            font-size: 1.1rem;
-            letter-spacing: 2px;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             margin-bottom: 1rem;
             color: var(--ocean-pale);
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 2.5rem;
-            max-width: 800px;
+            max-width: 720px;
             margin-left: auto;
             margin-right: auto;
             line-height: 1.8;
+            color: rgba(255,255,255,0.82);
+            font-weight: 300;
+            position: relative;
         }
 
         .cta-buttons {
@@ -158,14 +196,36 @@
 
         /* Section Styles */
         section {
-            padding: 5rem 0;
+            padding: 5.5rem 0;
         }
 
         section h2 {
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            margin-bottom: 1rem;
             text-align: center;
             color: var(--ocean-dark);
+            line-height: 1.2;
+        }
+
+        .section-label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--ocean-medium);
+            margin-bottom: 0.6rem;
+            text-align: center;
+        }
+
+        .section-intro {
+            text-align: center;
+            max-width: 720px;
+            margin: 0 auto 3rem;
+            color: var(--text-medium);
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
         .section-alt {
@@ -708,8 +768,10 @@
         }
 
         .footer-section h3 {
+            font-family: 'Playfair Display', serif;
             color: var(--ocean-pale);
             margin-bottom: 1rem;
+            font-size: 1.1rem;
         }
 
         .footer-section ul {
@@ -718,24 +780,24 @@
         }
 
         .footer-section li {
-            padding: 0.5rem 0;
+            padding: 0.4rem 0;
         }
 
         .footer-section a {
-            color: var(--white);
+            color: rgba(255,255,255,0.8);
             text-decoration: none;
+            font-size: 0.92rem;
             transition: color 0.3s;
         }
 
-        .footer-section a:hover {
-            color: var(--ocean-pale);
-        }
+        .footer-section a:hover { color: var(--ocean-pale); }
 
         .footer-bottom {
             text-align: center;
             padding-top: 2rem;
-            border-top: 1px solid var(--ocean-medium);
+            border-top: 1px solid rgba(255,255,255,0.1);
             color: var(--ocean-pale);
+            font-size: 0.85rem;
         }
 
         /* Responsive */
@@ -799,9 +861,9 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <p class="subtitle">Professional Accounting for Small Adventist Academies</p>
-            <h1>Adventist Academy Solutions</h1>
-            <p>Empower your leadership to focus on strategic decisions, not data entry—with professional back-office accounting tailored to your school's needs</p>
+            <div class="hero-label">Professional Accounting · Seventh-day Adventist K–12</div>
+            <h1>Adventist Academy<br><em>Solutions</em></h1>
+            <p>Empower your leadership to focus on strategic decisions, not data entry—professional back-office accounting tailored to the unique needs of Adventist education.</p>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary">Schedule Discovery Call</a>
                 <a href="#pathways" class="btn btn-secondary">Explore Solutions</a>
@@ -809,12 +871,13 @@
         </div>
     </section>
 
-    <!-- Pathways Section - NEW -->
+    <!-- Pathways Section -->
     <section id="pathways">
         <div class="container">
+            <span class="section-label">Our Service Models</span>
             <h2>Two Pathways to Financial Excellence</h2>
-            <p class="pathways-intro">Every school's situation is different. Whether you have a business manager who needs support or you're managing without one, we provide the professional accounting foundation you need.</p>
-            
+            <p class="section-intro">Every school's situation is different. Whether you have a business manager who needs support or you're managing without one, we provide the professional accounting foundation you need.</p>
+
             <div class="pathways-grid">
                 <!-- Pathway 1: Partnership -->
                 <div class="pathway-card">
