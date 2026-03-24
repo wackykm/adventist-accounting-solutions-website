@@ -24,6 +24,73 @@
       --white:     #fafaf8;
     }
 
+    /* ─── LIGHT MODE ──────────────────────────────── */
+    html.light {
+      --ink:       #f5f2ec;
+      --charcoal:  #eae7e0;
+      --mid:       #c8c5be;
+      --muted:     #7a7470;
+      --border:    #d8d4cc;
+      --gold:      #9e6e2e;
+      --gold-dim:  #b8842e;
+      --cream:     #2c2a27;
+      --white:     #111110;
+    }
+
+    html.light nav {
+      background: rgba(245,242,236,0.92);
+    }
+
+    html.light .mobile-menu { background: var(--ink); }
+
+    html.light .hero::before {
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 20%, rgba(158,110,46,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 10% 80%, rgba(158,110,46,0.05) 0%, transparent 50%);
+    }
+
+    html.light .form-group input,
+    html.light .form-group textarea,
+    html.light .form-group select {
+      background: var(--charcoal);
+      color: var(--cream);
+    }
+
+    /* ─── THEME TOGGLE ────────────────────────────── */
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--muted);
+      transition: color 0.2s, border-color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .theme-toggle:hover {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+    }
+
+    .theme-toggle svg { width: 15px; height: 15px; fill: currentColor; }
+
+    .icon-moon { display: block; }
+    .icon-sun  { display: none; }
+    html.light .icon-moon { display: none; }
+    html.light .icon-sun  { display: block; }
+
+    /* smooth theme transition */
+    body, nav, footer, .intro-strip, .verse-strip,
+    .service-card, .pathway-card, .faq-question,
+    .form-group input, .form-group textarea, .form-group select {
+      transition: background 0.35s ease, color 0.35s ease, border-color 0.35s ease;
+    }
+
     html { scroll-behavior: smooth; font-size: 16px; }
 
     body {
@@ -189,7 +256,8 @@
     }
 
     @media (max-width: 768px) {
-      .nav-links, .nav-cta { display: none; }
+      .nav-links { display: none; }
+      .nav-cta { display: none; }
       .hamburger { display: flex; }
     }
 
@@ -772,7 +840,13 @@
     <li><a href="#pathways">Pathways</a></li>
     <li><a href="#faq">FAQ</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Get in Touch</a>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M21 12.79A9 9 0 1 1 11.21 3a7 7 0 0 0 9.79 9.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5" fill="currentColor"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+  </div>
   <div class="hamburger" id="hamburger" aria-label="Open menu">
     <span></span><span></span><span></span>
   </div>
@@ -1050,7 +1124,7 @@
         <div class="contact-detail">
           <div>
             <span class="label">Email</span>
-            <a href="mailto:kevin@storeup.com">kevin@storeup.com</a>
+            <a href="/cdn-cgi/l/email-protection#c5aea0b3acab85b6b1aab7a0b0b5eba6aaa8"><span class="__cf_email__" data-cfemail="79121c0f1017390a0d160b1c0c09571a1614">[email&#160;protected]</span></a>
           </div>
           <div>
             <span class="label">Schedule</span>
@@ -1122,7 +1196,19 @@
 </footer>
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // ── Theme Toggle
+  const themeToggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  // Restore saved preference
+  if (localStorage.getItem('theme') === 'light') html.classList.add('light');
+
+  themeToggle.addEventListener('click', () => {
+    html.classList.toggle('light');
+    localStorage.setItem('theme', html.classList.contains('light') ? 'light' : 'dark');
+  });
+
   // ── Hamburger / Mobile Menu
   const hamburger = document.getElementById('hamburger');
   const mobileMenu = document.getElementById('mobileMenu');
@@ -1159,14 +1245,4 @@
   // ── Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-</script>
-</body>
-</html>
+      if (entry.isIntersectin
