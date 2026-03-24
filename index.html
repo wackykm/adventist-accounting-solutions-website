@@ -1124,7 +1124,7 @@
         <div class="contact-detail">
           <div>
             <span class="label">Email</span>
-            <a href="/cdn-cgi/l/email-protection#c5aea0b3acab85b6b1aab7a0b0b5eba6aaa8"><span class="__cf_email__" data-cfemail="79121c0f1017390a0d160b1c0c09571a1614">[email&#160;protected]</span></a>
+            <a href="mailto:kevin@storeupfinancials.com">kevin@storeupfinancials.com</a>
           </div>
           <div>
             <span class="label">Schedule</span>
@@ -1196,7 +1196,7 @@
 </footer>
 
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // ── Theme Toggle
   const themeToggle = document.getElementById('themeToggle');
   const html = document.documentElement;
@@ -1245,4 +1245,15 @@
   // ── Scroll reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersectin
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+</script>
+</body>
+</html>
