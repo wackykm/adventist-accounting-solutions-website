@@ -3,1809 +3,396 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StoreUp Financials — Specialized Accounting for Adventist Schools</title>
-  <meta name="description" content="StoreUp Financials provides specialized accounting services exclusively for Seventh-day Adventist K-12 schools." />
+  <title>StoreUp Financials | Accounting for Adventist K–12 Schools</title>
+  <meta name="description" content="StoreUp Financials runs the accounting for Seventh-day Adventist K–12 schools, for one flat monthly fee." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet" />
-
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
-      --ink:        #0b0b0a;
-      --charcoal:   #141412;
-      --surface:    #1a1a18;
-      --mid:        #2e2e2c;
-      --muted:      #6a6a66;
-      --border:     #252523;
-      --border-hi:  #3a3a38;
-      --gold:       #c9a96e;
-      --gold-dim:   #9e7e4e;
-      --gold-glow:  rgba(201,169,110,0.15);
-      --cream:      #f0ece4;
-      --white:      #fafaf8;
+      --ground: #E8EBE7;
+      --pine: #1E3A32;
+      --pine-soft: #3E6B5D;
+      --wheat: #D9B866;
+      --wheat-bar: #CFA651;
+      --ink: #1E2A26;
+      --muted: #46504C;
+      --rule: #B9C2BC;
+      --on-pine: #EEF0EB;
+      --on-pine-muted: #C6CEC8;
+      --serif: 'Newsreader', Georgia, serif;
+      --sans: 'Instrument Sans', system-ui, sans-serif;
+      --gutter: clamp(16px, 4vw, 48px);
+      --section: clamp(64px, 9vw, 112px);
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
     body {
-      background: var(--ink);
-      color: var(--cream);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 300;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 300;
-      line-height: 1.12;
-      letter-spacing: -0.01em;
-    }
-
-    .section-label {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.62rem;
-      font-weight: 500;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold);
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .section-label::before {
-      content: '';
-      display: block;
-      width: 28px;
-      height: 1px;
-      background: var(--gold-dim);
-      flex-shrink: 0;
-    }
-
-    .wrap { max-width: 1140px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
-    section { padding: clamp(5rem, 11vw, 9rem) 0; }
-    hr.rule { border: none; border-top: 1px solid var(--border); margin: 0; }
-
-    /* ─── CANVAS PARTICLES ──────── */
-    #particles-canvas {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.45;
-    }
-
-    /* ─── NAV ─────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 1.1rem clamp(1.5rem, 5vw, 4rem);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(11,11,10,0.82);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
-      transition: padding 0.3s, background 0.3s;
-    }
-
-    nav.scrolled {
-      padding: 0.8rem clamp(1.5rem, 5vw, 4rem);
-      background: rgba(11,11,10,0.97);
-    }
-
-    .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      font-weight: 400;
-      letter-spacing: 0.05em;
-      color: var(--cream);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .nav-logo-mark {
-      width: 26px;
-      height: 26px;
-      border: 1px solid var(--gold-dim);
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.75rem;
-      color: var(--gold);
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
-      letter-spacing: 0;
-    }
-
-    .nav-logo span { color: var(--gold); }
-
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
-    .nav-links a {
-      font-size: 0.75rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-      position: relative;
-    }
-
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -3px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: var(--gold);
-      transition: width 0.3s;
-    }
-
-    .nav-links a:hover { color: var(--cream); }
-    .nav-links a:hover::after { width: 100%; }
-
-    .nav-cta {
-      font-size: 0.72rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      margin: 0;
+      background: var(--ground);
       color: var(--ink);
-      text-decoration: none;
-      background: var(--gold);
-      padding: 0.55rem 1.4rem;
-      border-radius: 2px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
-
-    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
-    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--cream); transition: all 0.3s; }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: var(--ink);
-      z-index: 99;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2.5rem;
-    }
-
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 300;
-      color: var(--cream);
-      text-decoration: none;
-      letter-spacing: 0.02em;
-      transition: color 0.2s;
-    }
-    .mobile-menu a:hover { color: var(--gold); }
-    .mobile-close { position: absolute; top: 1.5rem; right: clamp(1.5rem, 5vw, 4rem); font-size: 1.5rem; color: var(--muted); cursor: pointer; background: none; border: none; }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      .nav-cta { display: none; }
-      .hamburger { display: flex; }
-    }
-
-    /* ─── HERO ─────────────────── */
-    .hero {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding-top: 5rem;
-      padding-bottom: clamp(4rem, 9vw, 7rem);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-    }
-
-    .hero-glow-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-    }
-
-    .orb-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(201,169,110,0.07) 0%, transparent 70%);
-      top: -100px; right: -100px;
-      animation: driftA 18s ease-in-out infinite alternate;
-    }
-
-    .orb-2 {
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(201,169,110,0.04) 0%, transparent 70%);
-      bottom: 0; left: -150px;
-      animation: driftB 22s ease-in-out infinite alternate;
-    }
-
-    @keyframes driftA {
-      0% { transform: translate(0,0) scale(1); }
-      100% { transform: translate(-60px, 80px) scale(1.15); }
-    }
-    @keyframes driftB {
-      0% { transform: translate(0,0) scale(1); }
-      100% { transform: translate(80px, -50px) scale(1.1); }
-    }
-
-    /* Animated grid lines */
-    .hero-grid {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      overflow: hidden;
-    }
-
-    .hero-grid::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-      background-size: 80px 80px;
-      opacity: 0.35;
-      animation: gridPan 40s linear infinite;
-    }
-
-    @keyframes gridPan {
-      0% { background-position: 0 0; }
-      100% { background-position: 80px 80px; }
-    }
-
-    .hero-grid::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 100% 100% at 50% 50%, transparent 40%, var(--ink) 100%);
-    }
-
-    /* Number ticker background */
-    .hero-ticker {
-      position: absolute;
-      right: clamp(1.5rem, 8vw, 8rem);
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      pointer-events: none;
-      opacity: 0.12;
-    }
-
-    .ticker-col {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 0.4rem;
-    }
-
-    .ticker-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem;
-      color: var(--gold);
-      font-weight: 300;
-      animation: tickerScroll 3s linear infinite;
-    }
-
-    .ticker-num:nth-child(2) { animation-delay: 0.2s; }
-    .ticker-num:nth-child(3) { animation-delay: 0.4s; }
-    .ticker-num:nth-child(4) { animation-delay: 0.6s; }
-    .ticker-num:nth-child(5) { animation-delay: 0.8s; }
-
-    @keyframes tickerScroll {
-      0% { opacity: 0.3; }
-      50% { opacity: 1; }
-      100% { opacity: 0.3; }
-    }
-
-    .hero-content { position: relative; z-index: 2; }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .hero h1 {
-      font-size: clamp(3.2rem, 9vw, 6.5rem);
-      line-height: 1.02;
-      font-weight: 300;
-      color: var(--white);
-    }
-
-    .hero h1 em {
-      font-style: italic;
-      color: var(--gold);
-      position: relative;
-    }
-
-    .hero h1 em::after {
-      content: '';
-      position: absolute;
-      bottom: 4px;
-      left: 0;
-      right: 0;
-      height: 1px;
-      background: var(--gold-dim);
-      opacity: 0.4;
-    }
-
-    .hero-sub {
-      margin-top: 2.25rem;
-      font-size: clamp(0.9rem, 2vw, 1.05rem);
-      color: var(--muted);
-      max-width: 500px;
-      line-height: 1.85;
-    }
-
-    .hero-actions {
-      margin-top: 3.5rem;
-      display: flex;
-      gap: 1.25rem;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.9rem 2.2rem;
-      background: var(--gold);
-      color: var(--ink);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: opacity 0.2s, transform 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
-    }
-
-    .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.9rem 2rem;
-      border: 1px solid var(--border-hi);
-      color: var(--muted);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 2px;
-      transition: border-color 0.2s, color 0.2s, transform 0.2s;
-    }
-
-    .btn-ghost:hover { border-color: var(--muted); color: var(--cream); transform: translateY(-2px); }
-
-    /* Hero scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 2;
-    }
-
-    .scroll-line {
-      width: 1px;
-      height: 60px;
-      background: linear-gradient(to bottom, var(--gold-dim), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(0.6); transform-origin: top; }
-      50% { opacity: 0.9; transform: scaleY(1); }
-    }
-
-    .scroll-label {
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--muted);
-      transform: rotate(90deg);
-      transform-origin: center;
-      margin-top: 1rem;
-    }
-
-    /* ─── MARQUEE ─────────────── */
-    .marquee-wrap {
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      padding: 1.25rem 0;
-      background: var(--charcoal);
-      position: relative;
-      z-index: 2;
-    }
-
-    .marquee-track {
-      display: flex;
-      gap: 0;
-      white-space: nowrap;
-      animation: marqueeScroll 28s linear infinite;
-      width: max-content;
-    }
-
-    .marquee-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 1.5rem;
-      padding: 0 2.5rem;
-      font-size: 0.68rem;
-      font-weight: 400;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .marquee-item span {
-      display: inline-block;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--gold-dim);
-    }
-
-    @keyframes marqueeScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* ─── INTRO STRIP ─────────── */
-    .intro-strip {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: clamp(3rem, 7vw, 5.5rem) 0;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .intro-strip::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: linear-gradient(to bottom, transparent, var(--gold-dim), transparent);
-    }
-
-    .intro-strip p {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.45rem, 3.8vw, 2.2rem);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--cream);
+      font-family: var(--sans);
+      font-size: 17px;
       line-height: 1.55;
-      max-width: 860px;
+      -webkit-font-smoothing: antialiased;
     }
 
-    .intro-strip p strong {
-      font-style: normal;
-      font-weight: 600;
-      color: var(--gold);
-    }
+    a { color: var(--pine); }
+    a:hover { color: var(--pine-soft); }
+    a:focus-visible, summary:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
+    .on-pine a:focus-visible { outline-color: var(--wheat); }
 
-    /* ─── SERVICES ────────────── */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      margin-top: 3.5rem;
-    }
+    .wrap { max-width: 1280px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
 
-    @media (max-width: 900px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-    }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 300; margin: 0; color: var(--pine); }
+    .h2 { font-size: clamp(36px, 4.4vw, 60px); line-height: 1.05; letter-spacing: -0.015em; }
+    .lede { margin: 18px 0 0; color: var(--muted); max-width: 52ch; }
 
-    @media (max-width: 560px) {
-      .services-grid { grid-template-columns: 1fr; }
-    }
-
-    .service-card {
-      background: var(--charcoal);
-      padding: 2.75rem 2.25rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--gold-glow) 0%, transparent 50%);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    .service-card:hover { background: var(--surface); }
-    .service-card:hover::before { opacity: 1; }
-
-    .service-card:hover .service-number {
-      color: var(--gold);
-    }
-
-    .service-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      color: var(--mid);
-      margin-bottom: 1.5rem;
-      font-weight: 300;
-      line-height: 1;
-      transition: color 0.3s;
-    }
-
-    .service-card h3 {
-      font-size: 1.25rem;
-      color: var(--white);
-      margin-bottom: 0.9rem;
-    }
-
-    .service-card p {
-      font-size: 0.87rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .service-card-line {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s;
-    }
-
-    .service-card:hover .service-card-line { transform: scaleX(1); }
-
-    /* ─── STATS ROW ───────────── */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      margin-top: 4rem;
-      overflow: hidden;
-    }
-
-    @media (max-width: 680px) {
-      .stats-row { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .stat-item {
-      background: var(--surface);
-      padding: 2.5rem 2rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .stat-item::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 30px;
-      height: 1px;
-      background: var(--gold-dim);
-    }
-
-    .stat-number {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      font-weight: 300;
-      color: var(--white);
-      line-height: 1;
-      display: block;
-    }
-
-    .stat-number em {
-      font-style: normal;
-      color: var(--gold);
-    }
-
-    .stat-label {
-      display: block;
-      margin-top: 0.6rem;
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    /* ─── WHY US ──────────────── */
-    .why-grid {
-      display: grid;
-      grid-template-columns: 5fr 7fr;
-      gap: 5rem;
-      align-items: start;
-      margin-top: 3rem;
-    }
-
-    @media (max-width: 760px) {
-      .why-grid { grid-template-columns: 1fr; gap: 3rem; }
-    }
-
-    .why-left h2 {
-      font-size: clamp(2.2rem, 5vw, 3.4rem);
-      color: var(--white);
-      margin-top: 1rem;
-    }
-
-    .why-left p {
-      margin-top: 1.75rem;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.9;
-    }
-
-    .credential-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
-
-    .credential-item {
-      padding: 1.75rem 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      gap: 1.25rem;
-      align-items: flex-start;
-      position: relative;
-      transition: background 0.2s;
-    }
-
-    .credential-item:first-child { border-top: 1px solid var(--border); }
-
-    .credential-item:hover { padding-left: 0.5rem; }
-    .credential-item:hover .credential-dot { background: var(--gold); transform: scale(1.4); }
-
-    .credential-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold-dim);
-      flex-shrink: 0;
-      margin-top: 0.55rem;
-      transition: background 0.2s, transform 0.2s;
-    }
-
-    .credential-title {
-      display: block;
-      color: var(--cream);
-      font-weight: 500;
-      font-size: 0.95rem;
-      margin-bottom: 0.35rem;
-    }
-
-    .credential-desc {
-      font-size: 0.87rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ─── PATHWAYS ────────────── */
-    .pathways-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-    }
-
-    @media (max-width: 680px) {
-      .pathways-grid { grid-template-columns: 1fr; }
-    }
-
-    .pathway-card {
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      padding: 3rem 2.75rem;
-      background: var(--charcoal);
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s, transform 0.3s;
-    }
-
-    .pathway-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, var(--gold-glow) 0%, transparent 55%);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-
-    .pathway-card:hover { border-color: var(--gold-dim); transform: translateY(-4px); }
-    .pathway-card:hover::before { opacity: 1; }
-
-    .pathway-card.featured {
-      border-color: var(--gold-dim);
-      background: linear-gradient(160deg, #1c1a15 0%, var(--charcoal) 100%);
-    }
-
-    .pathway-card.featured::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-
-    .pathway-badge {
+    .btn {
       display: inline-block;
-      font-size: 0.6rem;
+      padding: 14px 26px;
+      font-size: 15px;
       font-weight: 500;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--gold);
-      border: 1px solid var(--gold-dim);
-      padding: 0.28rem 0.8rem;
-      border-radius: 1px;
-      margin-bottom: 2rem;
-    }
-
-    .pathway-card h3 {
-      font-size: 1.75rem;
-      color: var(--white);
-      margin-bottom: 0.6rem;
-    }
-
-    .pathway-card .tagline {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: var(--muted);
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .pathway-features { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
-
-    .pathway-features li {
-      font-size: 0.87rem;
-      color: var(--muted);
-      padding-left: 1.5rem;
-      position: relative;
-      transition: color 0.2s;
-    }
-
-    .pathway-features li:hover { color: var(--cream); }
-
-    .pathway-features li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0.6em;
-      width: 8px;
-      height: 1px;
-      background: var(--gold-dim);
-    }
-
-    /* ─── SYSTEMS SECTION ─────── */
-    .systems-section {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: clamp(3rem, 7vw, 5.5rem) 0;
-    }
-
-    .systems-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-
-    @media (max-width: 680px) {
-      .systems-grid { grid-template-columns: 1fr; }
-    }
-
-    .system-item {
-      border: 1px solid var(--border);
-      border-radius: 3px;
-      padding: 2rem 1.75rem;
-      background: var(--charcoal);
-      position: relative;
-      overflow: hidden;
-      transition: border-color 0.3s;
-    }
-
-    .system-item:hover { border-color: var(--gold-dim); }
-
-    .system-name {
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.6rem;
-    }
-
-    .system-desc {
-      font-size: 0.87rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
-
-    /* ─── FAQ ─────────────────── */
-    .faq-list { margin-top: 3.5rem; border-top: 1px solid var(--border); }
-
-    .faq-item { border-bottom: 1px solid var(--border); }
-
-    .faq-question {
-      width: 100%;
-      background: none;
-      border: none;
-      text-align: left;
-      padding: 1.75rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1.5rem;
-      cursor: pointer;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 400;
-      color: var(--cream);
-      transition: color 0.2s;
-    }
-
-    .faq-question:hover { color: var(--white); }
-
-    .faq-icon {
-      flex-shrink: 0;
-      width: 28px;
-      height: 28px;
-      border: 1px solid var(--border);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      color: var(--gold);
-      line-height: 1;
-      transition: transform 0.35s, border-color 0.2s, background 0.2s;
-    }
-
-    .faq-item.open .faq-icon {
-      transform: rotate(45deg);
-      border-color: var(--gold-dim);
-      background: rgba(201,169,110,0.1);
-    }
-
-    .faq-answer { overflow: hidden; max-height: 0; transition: max-height 0.45s ease; }
-    .faq-answer-inner {
-      padding-bottom: 1.75rem;
-      font-size: 0.9rem;
-      color: var(--muted);
-      line-height: 1.9;
-      max-width: 680px;
-    }
-
-    /* ─── CONTACT ─────────────── */
-    .contact-inner {
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 6rem;
-      align-items: start;
-    }
-
-    @media (max-width: 760px) {
-      .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
-    }
-
-    .contact-left h2 {
-      font-size: clamp(2.2rem, 5vw, 3.2rem);
-      color: var(--white);
-      margin-top: 0.75rem;
-    }
-
-    .contact-left p {
-      margin-top: 1.5rem;
-      font-size: 0.92rem;
-      color: var(--muted);
-      line-height: 1.9;
-    }
-
-    .contact-detail {
-      margin-top: 2.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-    }
-
-    .contact-detail .label {
-      display: block;
-      font-size: 0.62rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 0.25rem;
-    }
-
-    .contact-detail a {
-      font-size: 0.9rem;
-      color: var(--cream);
       text-decoration: none;
-      transition: color 0.2s;
+      border: 1px solid var(--pine);
     }
+    .btn-solid { background: var(--pine); color: var(--on-pine); }
+    .btn-solid:hover { background: var(--pine-soft); color: var(--on-pine); border-color: var(--pine-soft); }
+    .btn-line { color: var(--pine); }
+    .btn-line:hover { background: var(--pine); color: var(--on-pine); }
+    .btn-wheat { background: var(--wheat); color: var(--ink); border-color: var(--wheat); }
+    .btn-wheat:hover { background: #E5C981; color: var(--ink); }
 
-    .contact-detail a:hover { color: var(--gold); }
-
-    .contact-form { display: flex; flex-direction: column; gap: 1.25rem; }
-
-    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-
-    .form-group label {
-      font-size: 0.68rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--muted);
+    /* Header */
+    .site-header { border-bottom: 1px solid var(--pine); }
+    .site-header .wrap {
+      display: flex; flex-wrap: wrap; gap: 16px 32px;
+      align-items: center; justify-content: space-between;
+      padding-top: 24px; padding-bottom: 24px;
     }
+    .brand { font-family: var(--serif); font-size: 24px; text-decoration: none; color: var(--pine); }
+    .site-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 15px; }
+    .site-nav a { text-decoration: none; }
+    .site-nav .nav-cta { font-weight: 500; }
 
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--cream);
-      padding: 0.85rem 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 300;
-      border-radius: 2px;
-      outline: none;
-      transition: border-color 0.2s;
-      appearance: none;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: var(--gold-dim);
-    }
-
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: var(--mid);
-    }
-
-    .form-group textarea { resize: vertical; min-height: 100px; }
-
-    /* ─── VERSE ───────────────── */
-    .verse-strip {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: clamp(3rem, 7vw, 5rem) 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .verse-strip::before {
-      content: '"';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 20rem;
-      color: var(--mid);
-      opacity: 0.12;
+    /* Hero */
+    .hero { text-align: center; padding-top: clamp(72px, 11vw, 150px); }
+    .hero h1 {
+      font-size: clamp(54px, 8vw, 112px);
       line-height: 1;
-      pointer-events: none;
-      user-select: none;
-    }
-
-    .verse {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.4rem, 3.2vw, 2rem);
-      font-weight: 300;
-      font-style: italic;
-      color: var(--cream);
-      line-height: 1.5;
-      max-width: 640px;
+      letter-spacing: -0.02em;
+      max-width: 12ch;
       margin: 0 auto;
-      position: relative;
     }
+    .hero .lede { margin: 32px auto 0; font-size: 19px; max-width: 50ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 36px; }
+    .bars {
+      display: flex; align-items: flex-end; gap: 6px;
+      height: clamp(140px, 20vw, 260px);
+      margin-top: clamp(64px, 9vw, 112px);
+    }
+    .bars span { flex: 1 1 0; background: var(--wheat-bar); }
+    .bars .bar-dark { background: var(--pine); }
 
-    .verse cite {
-      display: block;
-      margin-top: 1rem;
-      font-family: 'DM Sans', sans-serif;
-      font-style: normal;
-      font-size: 0.62rem;
+    /* Work band */
+    .band { background: var(--pine); color: var(--on-pine); }
+    .band .wrap { padding-top: var(--section); padding-bottom: var(--section); }
+    .band h2, .band h3 { color: var(--on-pine); }
+    .intro {
+      margin: 0 0 var(--section);
+      padding-bottom: var(--section);
+      border-bottom: 1px solid var(--pine-soft);
+      font-family: var(--serif);
+      font-weight: 300;
+      font-size: clamp(28px, 3.2vw, 42px);
+      line-height: 1.3;
+      max-width: 34ch;
+    }
+    .intro strong { font-weight: 400; color: var(--wheat); }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 48px 56px;
+      margin-top: 56px;
+    }
+    .services h3 { font-weight: 400; font-size: 26px; color: var(--wheat); }
+    .services p { margin: 10px 0 0; color: var(--on-pine-muted); }
+
+    /* Pathways */
+    .pathways { padding-top: var(--section); }
+    .paths {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .path { border: 1px solid var(--pine); padding: 36px 32px 40px; }
+    .path-featured { background: var(--pine); color: var(--on-pine); border-top: 6px solid var(--wheat); }
+    .path-kind { margin: 0; font-size: 15px; color: var(--muted); }
+    .path-featured .path-kind { color: var(--on-pine-muted); }
+    .path h3 { margin-top: 8px; font-weight: 400; font-size: 36px; }
+    .path-featured h3 { color: var(--on-pine); }
+    .path-tagline { margin: 6px 0 0; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--muted); }
+    .path-featured .path-tagline { color: var(--wheat); }
+    .path ul {
+      margin: 28px 0 0;
+      padding: 24px 0 0 1.1em;
+      border-top: 1px solid var(--rule);
+      display: flex; flex-direction: column; gap: 10px;
+      line-height: 1.45;
+    }
+    .path-featured ul { border-top-color: var(--pine-soft); }
+    .pricing-note { margin: 28px 0 0; font-size: 16px; color: var(--muted); }
+
+    /* Steps */
+    .split { display: flex; flex-wrap: wrap; gap: 48px; padding-top: var(--section); padding-bottom: var(--section); }
+    .split > :first-child { flex: 1 1 300px; }
+    .split > :last-child { flex: 2 1 520px; }
+    .steps { margin: 0; padding: 0 0 0 1.4em; font-family: var(--serif); font-size: 26px; color: var(--pine); }
+    .steps li { padding: 24px 0 24px 12px; border-bottom: 1px solid var(--rule); }
+    .steps li:first-child { padding-top: 0; }
+    .steps li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .steps span { font-family: var(--sans); font-size: 19px; line-height: 1.5; color: var(--ink); }
+
+    /* FAQ */
+    .faq { border-top: 1px solid var(--pine); }
+    .faq-list { margin-top: 0; border-top: 1px solid var(--rule); }
+    .faq details { border-bottom: 1px solid var(--rule); }
+    .faq summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      padding: 24px 0;
+      font-size: 19px;
       font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--gold);
+      min-height: 44px;
     }
-
-    /* ─── FOOTER ──────────────── */
-    footer {
-      padding: clamp(2rem, 5vw, 3.5rem) 0;
-      border-top: 1px solid var(--border);
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: '+';
+      flex: none;
+      font-family: var(--serif);
+      font-size: 32px;
+      line-height: 1;
+      color: var(--pine);
     }
+    .faq details[open] summary::after { content: '–'; }
+    .faq details p { margin: 0 0 28px; max-width: 64ch; color: var(--muted); }
 
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
+    /* About */
+    .about { border-top: 1px solid var(--pine); }
+    .verse {
+      margin: 0;
+      font-family: var(--serif);
       font-weight: 300;
-      color: var(--cream);
-      letter-spacing: 0.04em;
+      font-size: clamp(34px, 3.8vw, 52px);
+      line-height: 1.15;
+      color: var(--pine);
     }
+    .verse footer { margin-top: 20px; font-family: var(--sans); font-size: 15px; color: var(--muted); }
+    .about h2 { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--muted); }
+    .about-text { margin: 14px 0 0; font-size: 19px; line-height: 1.6; max-width: 48ch; }
 
-    .footer-brand span { color: var(--gold); }
-
-    .footer-links { display: flex; gap: 2rem; list-style: none; }
-    .footer-links a { font-size: 0.75rem; color: var(--mid); text-decoration: none; letter-spacing: 0.08em; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--muted); }
-    .footer-copy { font-size: 0.72rem; color: var(--mid); }
-
-    /* ─── ANIMATIONS ──────────── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Footer */
+    .site-footer { background: var(--pine); color: var(--on-pine); }
+    .footer-top {
+      display: flex; flex-wrap: wrap; gap: 32px;
+      align-items: center; justify-content: space-between;
+      padding-top: 56px; padding-bottom: 40px;
     }
-
-    .fade-up.visible { opacity: 1; transform: none; }
-
-    .fade-in {
-      opacity: 0;
-      transition: opacity 0.8s ease;
-    }
-    .fade-in.visible { opacity: 1; }
-
-    /* Stagger */
-    .stagger > *:nth-child(1) { transition-delay: 0s; }
-    .stagger > *:nth-child(2) { transition-delay: 0.08s; }
-    .stagger > *:nth-child(3) { transition-delay: 0.16s; }
-    .stagger > *:nth-child(4) { transition-delay: 0.24s; }
-    .stagger > *:nth-child(5) { transition-delay: 0.32s; }
-    .stagger > *:nth-child(6) { transition-delay: 0.4s; }
-
-    .mt-sm { margin-top: 0.75rem; }
-    .mt-md { margin-top: 1.5rem; }
-    .mt-lg { margin-top: 3rem; }
-
-    /* ─── ANIMATED COUNTER ────── */
-    .count-up { font-variant-numeric: tabular-nums; }
-
-    /* ─── HORIZONTAL RULE ─────── */
-    .divider {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      padding: 0 clamp(1.5rem, 5vw, 4rem);
-      max-width: 1140px;
-      margin: 0 auto;
-    }
-
-    .divider::before,
-    .divider::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: var(--border);
-    }
-
-    .divider-mark {
-      width: 6px;
-      height: 6px;
-      border: 1px solid var(--gold-dim);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
+    .footer-top p { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 3vw, 40px); }
+    .footer-contact { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .footer-contact a.email { color: var(--on-pine); font-size: 15px; }
+    .footer-contact a.email:hover { color: var(--wheat); }
+    .legal { margin: 0; padding-bottom: 32px; font-size: 14px; color: #A9B6AF; }
   </style>
 </head>
 <body>
 
-<!-- PARTICLES CANVAS -->
-<canvas id="particles-canvas"></canvas>
-
-<!-- NAV -->
-<nav id="main-nav">
-  <a href="#" class="nav-logo">
-    <div class="nav-logo-mark">S</div>
-    StoreUp <span>Financials</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#why-us">Why Us</a></li>
-    <li><a href="#pathways">Pathways</a></li>
-    <li><a href="#faq">FAQ</a></li>
-  </ul>
-  <div style="display:flex;align-items:center;gap:0.75rem;">
-    <a href="#contact" class="nav-cta">Get in Touch</a>
-  </div>
-  <div class="hamburger" id="hamburger" aria-label="Open menu">
-    <span></span><span></span><span></span>
-  </div>
-</nav>
-
-<!-- MOBILE MENU -->
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mobile-close" id="mobileClose" aria-label="Close menu">&times;</button>
-  <a href="#services" class="mobile-link">Services</a>
-  <a href="#why-us" class="mobile-link">Why Us</a>
-  <a href="#pathways" class="mobile-link">Pathways</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="#contact" class="mobile-link">Contact</a>
-</div>
-
-<!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow">
-    <div class="hero-glow-orb orb-1"></div>
-    <div class="hero-glow-orb orb-2"></div>
-  </div>
-
-  <!-- Decorative number ticker -->
-  <div class="hero-ticker" aria-hidden="true">
-    <div class="ticker-col">
-      <div class="ticker-num">AASI.NET</div>
-      <div class="ticker-num">APS.EDU</div>
-      <div class="ticker-num">FACTS</div>
-      <div class="ticker-num">GCAS</div>
-      <div class="ticker-num">RAMP</div>
-    </div>
-  </div>
-
-  <div class="wrap hero-content">
-    <div class="hero-eyebrow fade-up">
-      <span class="section-label">Adventist K–12 Accounting</span>
-    </div>
-    <h1 class="fade-up">
-      Financial clarity<br>for <em>mission-driven</em><br>schools.
-    </h1>
-    <p class="hero-sub fade-up">
-      StoreUp Financials provides specialized accounting services built exclusively for Seventh-day Adventist K–12 schools. We understand your systems, your culture, and your mission.
-    </p>
-    <div class="hero-actions fade-up">
-      <a href="#contact" class="btn-primary">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-        Schedule a Call
-      </a>
-      <a href="#services" class="btn-ghost">
-        Explore Services
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-    </div>
-  </div>
-
-  <div class="scroll-indicator" aria-hidden="true">
-    <div class="scroll-line"></div>
-  </div>
-</section>
-
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-  <div class="marquee-track">
-    <div class="marquee-item">General Accounting <span></span></div>
-    <div class="marquee-item">Student Accounts <span></span></div>
-    <div class="marquee-item">Student Payroll <span></span></div>
-    <div class="marquee-item">Accounts Payable <span></span></div>
-    <div class="marquee-item">GCAS Audit Support <span></span></div>
-    <div class="marquee-item">Financial Reporting <span></span></div>
-    <div class="marquee-item">AASI.NET <span></span></div>
-    <div class="marquee-item">FACTS Management <span></span></div>
-    <div class="marquee-item">APS Payroll <span></span></div>
-    <div class="marquee-item">Ramp AP Automation <span></span></div>
-    <div class="marquee-item">Board Reports <span></span></div>
-    <div class="marquee-item">Monthly Close <span></span></div>
-    <!-- Duplicate for seamless loop -->
-    <div class="marquee-item">General Accounting <span></span></div>
-    <div class="marquee-item">Student Accounts <span></span></div>
-    <div class="marquee-item">Student Payroll <span></span></div>
-    <div class="marquee-item">Accounts Payable <span></span></div>
-    <div class="marquee-item">GCAS Audit Support <span></span></div>
-    <div class="marquee-item">Financial Reporting <span></span></div>
-    <div class="marquee-item">AASI.NET <span></span></div>
-    <div class="marquee-item">FACTS Management <span></span></div>
-    <div class="marquee-item">APS Payroll <span></span></div>
-    <div class="marquee-item">Ramp AP Automation <span></span></div>
-    <div class="marquee-item">Board Reports <span></span></div>
-    <div class="marquee-item">Monthly Close <span></span></div>
-  </div>
-</div>
-
-<!-- INTRO STRIP -->
-<div class="intro-strip">
+<header class="site-header">
   <div class="wrap">
-    <p class="fade-up">
-      Most schools can't afford a full-time business manager — or can't find one who truly understands Adventist education. <strong>We do.</strong> From student accounts to monthly close, we handle the entire financial back-office so your leadership can focus on the school.
-    </p>
+    <a href="#top" class="brand">StoreUp Financials</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#work">What we handle</a>
+      <a href="#pathways">Pathways</a>
+      <a href="#start">How it starts</a>
+      <a href="#faq">FAQ</a>
+      <a href="#about">About</a>
+      <a href="https://calendly.com/storeupfinancials" class="nav-cta">Book a call</a>
+    </nav>
   </div>
-</div>
+</header>
 
-<!-- SERVICES -->
-<section id="services">
-  <div class="wrap">
-    <span class="section-label fade-up">What We Do</span>
-    <h2 class="mt-sm fade-up" style="font-size: clamp(2rem, 4.5vw, 3rem); color: var(--white); margin-top: 0.85rem;">
-      A complete financial back-office,<br>built for your school.
-    </h2>
-    <div class="services-grid stagger fade-up mt-lg">
-      <div class="service-card">
-        <div class="service-card-line"></div>
-        <p class="service-number">01</p>
-        <h3>General Accounting</h3>
-        <p>Monthly close, reconciliations, financial statements, and board-ready reports delivered by the 15th of each month.</p>
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1>Your school’s books, kept faithfully.</h1>
+      <p class="lede">We run the accounting for Seventh-day Adventist K–12 schools, for one flat monthly fee, so your staff can spend their time with families and students.</p>
+      <div class="hero-actions">
+        <a href="https://calendly.com/storeupfinancials" class="btn btn-solid">Book a call</a>
+        <a href="#work" class="btn btn-line">See what we handle</a>
       </div>
-      <div class="service-card">
-        <div class="service-card-line"></div>
-        <p class="service-number">02</p>
-        <h3>Student Accounts</h3>
-        <p>FACTS tuition management, scholarship tracking, billing, collections, and student account communication.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-card-line"></div>
-        <p class="service-number">03</p>
-        <h3>Student Payroll</h3>
-        <p>Full APS student payroll processing, quarterly reporting, and 1099 preparation — handled with precision.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-card-line"></div>
-        <p class="service-number">04</p>
-        <h3>Accounts Payable</h3>
-        <p>Vendor invoice processing, check runs or digital payments via Ramp, and accurate expense coding.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-card-line"></div>
-        <p class="service-number">05</p>
-        <h3>Audit Support</h3>
-        <p>Year-round documentation practices that make GCAS audit preparation straightforward and low-stress.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-card-line"></div>
-        <p class="service-number">06</p>
-        <h3>Financial Reporting</h3>
-        <p>Budget vs. actual analysis, cash flow monitoring, and custom reports your administration and board can act on.</p>
+      <div class="bars" aria-hidden="true">
+        <span class="bar" style="height:14.0%"></span>
+        <span class="bar" style="height:22.5%"></span>
+        <span class="bar" style="height:17.6%"></span>
+        <span class="bar" style="height:16.2%"></span>
+        <span class="bar-dark" style="height:27.3%"></span>
+        <span class="bar" style="height:31.7%"></span>
+        <span class="bar" style="height:25.3%"></span>
+        <span class="bar" style="height:28.4%"></span>
+        <span class="bar" style="height:39.8%"></span>
+        <span class="bar-dark" style="height:39.6%"></span>
+        <span class="bar" style="height:34.0%"></span>
+        <span class="bar" style="height:41.5%"></span>
+        <span class="bar" style="height:51.0%"></span>
+        <span class="bar" style="height:46.9%"></span>
+        <span class="bar-dark" style="height:44.3%"></span>
+        <span class="bar" style="height:54.9%"></span>
+        <span class="bar" style="height:60.6%"></span>
+        <span class="bar" style="height:54.4%"></span>
+        <span class="bar" style="height:56.1%"></span>
+        <span class="bar-dark" style="height:67.7%"></span>
+        <span class="bar" style="height:68.8%"></span>
+        <span class="bar" style="height:62.7%"></span>
+        <span class="bar" style="height:69.0%"></span>
+        <span class="bar" style="height:79.3%"></span>
+        <span class="bar-dark" style="height:76.2%"></span>
+        <span class="bar" style="height:72.5%"></span>
+        <span class="bar" style="height:82.4%"></span>
+        <span class="bar" style="height:89.3%"></span>
+        <span class="bar" style="height:83.5%"></span>
+        <span class="bar-dark" style="height:83.9%"></span>
+        <span class="bar" style="height:95.4%"></span>
+        <span class="bar" style="height:97.9%"></span>
       </div>
     </div>
+  </section>
 
-    <!-- Stats row -->
-    <div class="stats-row stagger fade-up">
-      <div class="stat-item">
-        <span class="stat-number"><span class="count-up" data-target="15">0</span><em>th</em></span>
-        <span class="stat-label">Reports delivered by</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number"><span class="count-up" data-target="3">0</span><em>+</em></span>
-        <span class="stat-label">Core systems mastered</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number"><span class="count-up" data-target="2">0</span><em>+</em></span>
-        <span class="stat-label">Years inside SVA</span>
-      </div>
-      <div class="stat-item">
-        <span class="stat-number"><em>6</em></span>
-        <span class="stat-label">Years as a boarding student</span>
+  <section id="work" class="band on-pine" aria-labelledby="work-h">
+    <div class="wrap">
+      <p class="intro">Most schools can’t afford a full-time business manager, or can’t find one who truly understands Adventist education. <strong>We do.</strong> From student accounts to monthly close, we handle the entire financial back-office so your leadership can focus on the school.</p>
+      <h2 id="work-h" class="h2">What comes off your plate</h2>
+      <div class="services">
+        <div><h3>Monthly close</h3><p>Reconciliations, accruals and a board-ready packet every month.</p></div>
+        <div><h3>Student accounts</h3><p>Payments recorded in AASI and kept in step with FACTS.</p></div>
+        <div><h3>Accounts payable</h3><p>Bills and cards run through Ramp, approved by your managers, coded to the right function.</p></div>
+        <div><h3>Deposits and receipts</h3><p>Every gift and payment posted, with a second check against FACTS.</p></div>
+        <div><h3>Audit readiness</h3><p>Documentation kept the way GCAS auditors expect, all year.</p></div>
+        <div><h3>Budget support</h3><p>Budget against actual each month, and help building next year’s.</p></div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="rule" />
-
-<!-- WHY US -->
-<section id="why-us">
-  <div class="wrap">
-    <div class="why-grid">
-      <div class="why-left fade-up">
-        <span class="section-label">Why StoreUp</span>
-        <h2>Insider knowledge.<br>Professional standards.</h2>
-        <p>
-          We are not generalists who happened to land an Adventist school client. This niche is our entire focus — built on years of working inside these institutions and understanding every nuance of the mission.
-        </p>
-        <a href="#contact" class="btn-primary" style="display: inline-flex; margin-top: 2.5rem;">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          Talk to Us
-        </a>
-      </div>
-      <div class="fade-up">
-        <ul class="credential-list">
-          <li class="credential-item">
-            <div class="credential-dot"></div>
-            <div>
-              <span class="credential-title">2+ years at SVA</span>
-              <span class="credential-desc">Hands-on experience as a Student Accounts Manager and Accountant at a boarding academy gives us an understanding no outside firm can replicate.</span>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="credential-dot"></div>
-            <div>
-              <span class="credential-title">System fluency</span>
-              <span class="credential-desc">We work natively in AASI.NET, APS, and FACTS — the exact platforms your school already uses. No onboarding curve.</span>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="credential-dot"></div>
-            <div>
-              <span class="credential-title">Conference relationships</span>
-              <span class="credential-desc">We understand how conference treasurers and GCAS auditors operate, and we document accordingly throughout the year.</span>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="credential-dot"></div>
-            <div>
-              <span class="credential-title">Culture fit</span>
-              <span class="credential-desc">Six years as a boarding academy student means we know the rhythms of campus life and the pressures on school leadership.</span>
-            </div>
-          </li>
-          <li class="credential-item">
-            <div class="credential-dot"></div>
-            <div>
-              <span class="credential-title">Functional team model</span>
-              <span class="credential-desc">Specialized staff handle dedicated functions — not one generalist stretched thin across your entire account.</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SYSTEMS -->
-<div class="systems-section">
-  <div class="wrap">
-    <span class="section-label fade-up">Platform Expertise</span>
-    <h2 class="mt-sm fade-up" style="font-size: clamp(1.6rem, 3.5vw, 2.4rem); color: var(--white); margin-top: 0.75rem;">
-      Your systems. Our native language.
-    </h2>
-    <div class="systems-grid stagger fade-up">
-      <div class="system-item">
-        <div class="system-name">AASI.NET</div>
-        <div class="system-desc">Adventist accounting and institutional system — our primary GL environment.</div>
-      </div>
-      <div class="system-item">
-        <div class="system-name">FACTS</div>
-        <div class="system-desc">Tuition management, payment plans, scholarship tracking, and family billing.</div>
-      </div>
-      <div class="system-item">
-        <div class="system-name">APS Student Payroll</div>
-        <div class="system-desc">Full student payroll processing, quarterly reporting, and 1099 preparation.</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<hr class="rule" />
-
-<!-- PATHWAYS -->
-<section id="pathways">
-  <div class="wrap">
-    <span class="section-label fade-up">Service Pathways</span>
-    <h2 class="mt-sm fade-up" style="font-size: clamp(2rem, 4.5vw, 3rem); color: var(--white); margin-top: 0.85rem;">
-      Two models. One clear outcome.
-    </h2>
-    <p class="fade-up" style="margin-top: 1rem; color: var(--muted); max-width: 560px; font-size: 0.95rem; line-height: 1.85;">
-      Every school's situation is different. We offer two engagement models so you can start where you are.
-    </p>
-    <div class="pathways-grid">
-      <div class="pathway-card fade-up">
-        <span class="pathway-badge">Strategic Partnership</span>
-        <h3>Accounting Support</h3>
-        <p class="tagline">Strengthen the team you already have.</p>
-        <ul class="pathway-features">
-          <li>Monthly close and reconciliations</li>
-          <li>Financial statements and board reports</li>
-          <li>Student accounts oversight</li>
-          <li>APS payroll processing</li>
-          <li>Audit preparation support</li>
-          <li>Works alongside your on-site staff</li>
-        </ul>
-      </div>
-      <div class="pathway-card featured fade-up">
-        <span class="pathway-badge">Complete Service</span>
-        <h3>Full Back-Office</h3>
-        <p class="tagline">We become your financial department.</p>
-        <ul class="pathway-features">
-          <li>Everything in Accounting Support</li>
-          <li>Full accounts payable management</li>
-          <li>Ramp AP automation (optional)</li>
-          <li>Daily operational coverage</li>
-          <li>Board and conference ready PowerPoint reports</li>
-          <li>Designed for schools without on-site staff</li>
-        </ul>
-      </div>
-    </div>
-    <p class="fade-up" style="margin-top: 2rem; font-size: 0.85rem; color: var(--muted);">
-      Pricing is tailored to your school's size and scope. <a href="#contact" style="color: var(--gold); text-decoration: none;">Contact us</a> for a proposal.
-    </p>
-  </div>
-</section>
-
-<hr class="rule" />
-
-<!-- FAQ -->
-<section id="faq">
-  <div class="wrap">
-    <span class="section-label fade-up">Common Questions</span>
-    <h2 class="mt-sm fade-up" style="font-size: clamp(1.8rem, 4vw, 2.6rem); color: var(--white); margin-top: 0.75rem;">
-      Straightforward answers.
-    </h2>
-    <div class="faq-list fade-up mt-lg">
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Is it appropriate for a school to contract with an outside LLC?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Yes. Schools regularly contract with external service providers — auditors, legal counsel, IT firms — and this is no different. Our engagement is a standard vendor relationship, not an employment arrangement. Schools should confirm alignment with their conference treasurer, which we are happy to support.
-          </div>
+  <section id="pathways" class="pathways" aria-labelledby="paths-h">
+    <div class="wrap">
+      <h2 id="paths-h" class="h2">Two models. One clear outcome.</h2>
+      <p class="lede">Every school’s situation is different. We offer two engagement models so you can start where you are.</p>
+      <div class="paths">
+        <div class="path">
+          <p class="path-kind">Strategic partnership</p>
+          <h3>Accounting Support</h3>
+          <p class="path-tagline">Strengthen the team you already have.</p>
+          <ul>
+            <li>Monthly close and reconciliations</li>
+            <li>Financial statements and board reports</li>
+            <li>Student accounts oversight</li>
+            <li>Audit preparation support</li>
+            <li>Works alongside your on-site staff</li>
+          </ul>
+        </div>
+        <div class="path path-featured on-pine">
+          <p class="path-kind">Complete service</p>
+          <h3>Full Back-Office</h3>
+          <p class="path-tagline">We become your financial department.</p>
+          <ul>
+            <li>Everything in Accounting Support</li>
+            <li>Full accounts payable management</li>
+            <li>Ramp AP automation (optional)</li>
+            <li>Daily operational coverage</li>
+            <li>Board- and conference-ready reports</li>
+            <li>Designed for schools without on-site staff</li>
+          </ul>
         </div>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          How is sensitive student and financial data protected?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            We take data security seriously. Our processes include secure file transfer protocols, access controls, and FERPA-conscious data handling. We operate within the same systems your school already uses, limiting data exposure. We are also happy to sign a data processing or confidentiality agreement.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Will GCAS auditors be comfortable with this arrangement?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Our documentation practices are designed with GCAS audit readiness in mind. We maintain clean, organized records throughout the year rather than scrambling at audit time. We understand what auditors look for and how to present financials clearly.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          What systems do you work in?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            We work natively in AASI.NET, APS student payroll, and FACTS tuition management — the core platforms used across Adventist K–12 schools. If your school uses additional tools, we adapt.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Can you work with our existing on-site staff?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Absolutely. Our Strategic Partnership pathway is designed precisely for schools that have a part-time bookkeeper or office manager on site. We handle the complex work — reconciliations, close, reporting — while coordinating smoothly with your team.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          Do you handle employee payroll?
-          <span class="faq-icon">+</span>
-        </button>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Faculty and staff payroll is typically managed through the conference, and we do not seek to change that arrangement. We do handle student payroll processing through APS, which is a distinct function.
-          </div>
-        </div>
-      </div>
-
+      <p class="pricing-note">Pricing is tailored to your school’s size and scope. <a href="https://calendly.com/storeupfinancials">Contact us for a proposal.</a></p>
     </div>
-  </div>
-</section>
+  </section>
 
-<hr class="rule" />
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="contact-inner">
-      <div class="contact-left fade-up">
-        <span class="section-label">Get in Touch</span>
-        <h2>Let's talk about your school.</h2>
-        <p>
-          Whether you are evaluating options or ready to move forward, we are happy to have a straightforward conversation about your school's needs.
-        </p>
-        <div class="contact-detail">
-          <div>
-            <span class="label">Email</span>
-            <a href="mailto:kevin@storeupfinancials.com">kevin@storeupfinancials.com</a>
-          </div>
-          <div>
-            <span class="label">Schedule</span>
-            <a href="https://calendly.com/storeupfinancials" target="_blank" rel="noopener">Book a discovery call →</a>
-          </div>
-        </div>
+  <section id="start" aria-labelledby="start-h">
+    <div class="wrap split">
+      <div>
+        <h2 id="start-h" class="h2">How it starts</h2>
+        <p class="lede">A flat monthly fee, priced from your own ledger. No hourly billing.</p>
       </div>
-      <div class="fade-up">
-        <form class="contact-form" name="contact" netlify>
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="name" placeholder="Kevin Martin" required />
-          </div>
-          <div class="form-group">
-            <label for="school">School Name</label>
-            <input type="text" id="school" name="school" placeholder="Shenandoah Valley Academy" required />
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="principal@yourschool.edu" required />
-          </div>
-          <div class="form-group">
-            <label for="interest">Area of Interest</label>
-            <select id="interest" name="interest">
-              <option value="">Select one...</option>
-              <option>Accounting Support (Strategic Partnership)</option>
-              <option>Full Back-Office (Complete Service)</option>
-              <option>Not sure yet — just exploring</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="message">Anything else we should know?</label>
-            <textarea id="message" name="message" placeholder="Tell us a bit about your school's current situation..."></textarea>
-          </div>
-          <div>
-            <button type="submit" class="btn-primary" style="border: none; cursor: pointer; width: 100%; justify-content: center; padding: 1rem;">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              Send Message
-            </button>
-          </div>
-        </form>
+      <ol class="steps">
+        <li><span>Send last year’s general ledger and a few sample journals.</span></li>
+        <li><span>We review how your books run today and send you a fixed monthly price.</span></li>
+        <li><span>We take over the work, starting with your next month-end close.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="faq" class="faq" aria-labelledby="faq-h">
+    <div class="wrap split">
+      <div>
+        <h2 id="faq-h" class="h2">Straightforward answers</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Is it appropriate for a school to contract with an outside LLC?</summary>
+          <p>Yes. Schools regularly contract with outside providers such as auditors, legal counsel and IT firms, and this is no different. Our engagement is a standard vendor relationship, not an employment arrangement. Schools should confirm alignment with their conference treasurer, which we are happy to support.</p>
+        </details>
+        <details>
+          <summary>How is sensitive student and financial data protected?</summary>
+          <p>We use secure file transfer, access controls and FERPA-conscious data handling. We work inside the same systems your school already uses, which limits data exposure, and we are happy to sign a data processing or confidentiality agreement.</p>
+        </details>
+        <details>
+          <summary>Will GCAS auditors be comfortable with this arrangement?</summary>
+          <p>Our documentation practices are designed with GCAS audit readiness in mind. We keep clean, organized records throughout the year rather than scrambling at audit time, and we know what auditors look for.</p>
+        </details>
+        <details>
+          <summary>What systems do you work in?</summary>
+          <p>We work natively in AASI.NET and FACTS, the core platforms used across Adventist K–12 schools, and we run payables through Ramp. If your school uses additional tools, we adapt.</p>
+        </details>
+        <details>
+          <summary>Can you work with our existing on-site staff?</summary>
+          <p>Absolutely. Accounting Support is designed for schools that have a part-time bookkeeper or office manager on site. We handle the complex work, such as reconciliations, close and reporting, while coordinating with your team.</p>
+        </details>
+        <details>
+          <summary>Do you handle payroll?</summary>
+          <p>No. Faculty and staff payroll is typically managed through the conference, and student payroll stays with your school. We keep the books those payrolls post to.</p>
+        </details>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- VERSE -->
-<div class="verse-strip">
-  <div class="wrap">
-    <blockquote class="verse fade-up">
-      "Store up for yourselves treasures in heaven."
-      <cite>Matthew 6:20</cite>
-    </blockquote>
-  </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="wrap">
-    <div class="footer-inner">
-      <div class="footer-brand">StoreUp <span>Financials</span></div>
-      <ul class="footer-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why-us">Why Us</a></li>
-        <li><a href="#pathways">Pathways</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <p class="footer-copy">&copy; 2026 StoreUp Financials LLC. All rights reserved.</p>
+  <section id="about" class="about" aria-labelledby="about-h">
+    <div class="wrap split">
+      <blockquote class="verse">Store up for yourselves treasures in heaven.<footer>Matthew 6:20, where our name comes from</footer></blockquote>
+      <div>
+        <h2 id="about-h">Who does the work</h2>
+        <p class="about-text">Kevin Martin has more than four years of experience working inside the Adventist school system, and seven years as a boarding academy student before that. He works natively in AASI.NET and FACTS, knows how GCAS auditors review a school’s books, and understands the rhythms of campus life and the pressures on school leadership.</p>
+      </div>
     </div>
+  </section>
+</main>
+
+<footer class="site-footer on-pine">
+  <div class="wrap footer-top">
+    <p>Talk through your school’s books.</p>
+    <div class="footer-contact">
+      <a href="mailto:kevinm@storeupfinancials.com" class="email">kevinm@storeupfinancials.com</a>
+      <a href="https://calendly.com/storeupfinancials" class="btn btn-wheat">Book a call</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="legal">© 2026 StoreUp Financials, LLC. New Market, Virginia</p>
   </div>
 </footer>
 
-<script>
-  // ── Particle Canvas
-  const canvas = document.getElementById('particles-canvas');
-  const ctx = canvas.getContext('2d');
-
-  let W, H, particles = [];
-
-  function resize() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-
-  resize();
-  window.addEventListener('resize', resize);
-
-  function createParticles(count) {
-    particles = [];
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * W,
-        y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.25,
-        vy: (Math.random() - 0.5) * 0.25,
-        r: Math.random() * 1.2 + 0.2,
-        alpha: Math.random() * 0.4 + 0.05,
-        pulse: Math.random() * Math.PI * 2
-      });
-    }
-  }
-
-  createParticles(90);
-
-  function drawParticles() {
-    ctx.clearRect(0, 0, W, H);
-    const t = Date.now() * 0.001;
-
-    // Draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(201,169,110,${0.04 * (1 - dist / 120)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-
-    // Draw particles
-    for (const p of particles) {
-      p.pulse += 0.012;
-      const alpha = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(201,169,110,${alpha})`;
-      ctx.fill();
-      p.x += p.vx;
-      p.y += p.vy;
-      if (p.x < -10) p.x = W + 10;
-      if (p.x > W + 10) p.x = -10;
-      if (p.y < -10) p.y = H + 10;
-      if (p.y > H + 10) p.y = -10;
-    }
-
-    requestAnimationFrame(drawParticles);
-  }
-
-  drawParticles();
-
-  // ── Nav scroll effect
-  const nav = document.getElementById('main-nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  // ── Hamburger / Mobile Menu
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileClose = document.getElementById('mobileClose');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
-
-  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
-  mobileLinks.forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('open')));
-
-  // ── FAQ Accordion
-  document.querySelectorAll('.faq-question').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.closest('.faq-item');
-      const answer = item.querySelector('.faq-answer');
-      const isOpen = item.classList.contains('open');
-
-      document.querySelectorAll('.faq-item').forEach(i => {
-        i.classList.remove('open');
-        i.querySelector('.faq-answer').style.maxHeight = '0';
-      });
-
-      if (!isOpen) {
-        item.classList.add('open');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    });
-  });
-
-  // ── Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-
-  document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
-
-  // ── Count-up animation
-  function animateCount(el) {
-    const target = parseInt(el.dataset.target);
-    const duration = 1800;
-    const start = performance.now();
-    function update(now) {
-      const elapsed = now - start;
-      const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = Math.round(eased * target);
-      if (progress < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  }
-
-  const countObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCount(entry.target);
-        countObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.5 });
-
-  document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
-</script>
 </body>
 </html>
