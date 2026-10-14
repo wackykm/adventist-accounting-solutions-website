@@ -94,8 +94,22 @@
       height: clamp(140px, 20vw, 260px);
       margin-top: clamp(64px, 9vw, 112px);
     }
-    .bars span { flex: 1 1 0; background: var(--wheat-bar); }
+    .bars span {
+      flex: 1 1 0;
+      background: var(--wheat-bar);
+      transform-origin: bottom;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
     .bars .bar-dark { background: var(--pine); }
+    /* Hover ripple: hovered bar rises most, neighbors less */
+    .bars span:hover { transform: scaleY(1.18); }
+    .bars span:has(+ span:hover),
+    .bars span:hover + span { transform: scaleY(1.1); }
+    .bars span:has(+ span + span:hover),
+    .bars span:hover + span + span { transform: scaleY(1.04); }
+    @media (prefers-reduced-motion: reduce) {
+      .bars span { transition: none; transform: none !important; }
+    }
 
     /* Work band */
     .band { background: var(--pine); color: var(--on-pine); }
