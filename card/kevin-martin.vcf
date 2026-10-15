@@ -1,0 +1,11 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Martin;Kevin;;;
+FN:Kevin Martin
+ORG:StoreUp Financials
+TITLE:Founder
+EMAIL;TYPE=WORK,INTERNET:kevinm@storeupfinancials.com
+URL:https://storeupfinancials.com
+URL;TYPE=Booking:https://calendly.com/kevinm-storeupfinancials
+NOTE:Accounting and business-office systems for Adventist schools.
+END:VCARD
