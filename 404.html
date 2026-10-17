@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found | StoreUp Financials</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#1E3A32" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root { --ground: #E8EBE7; --pine: #1E3A32; --pine-soft: #3E6B5D; --wheat-bar: #CFA651; --muted: #46504C; --on-pine: #EEF0EB; }
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100svh; display: flex; flex-direction: column;
+      background: var(--ground); color: #1E2A26;
+      font: 17px/1.55 'Instrument Sans', system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
+    header { border-bottom: 1px solid var(--pine); padding: 24px clamp(16px, 4vw, 48px); }
+    .brand { font-family: 'Newsreader', Georgia, serif; font-size: 24px; color: var(--pine); text-decoration: none; }
+    main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 64px clamp(16px, 4vw, 48px); }
+    h1 { margin: 0; font-family: 'Newsreader', Georgia, serif; font-weight: 300; font-size: clamp(48px, 7vw, 88px); line-height: 1.02; letter-spacing: -0.02em; color: var(--pine); max-width: 12ch; }
+    p { margin: 24px 0 0; color: var(--muted); max-width: 44ch; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
+    .btn { display: inline-block; padding: 14px 26px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid var(--pine); color: var(--pine); }
+    .btn:hover { background: var(--pine); color: var(--on-pine); }
+    .btn-solid { background: var(--pine); color: var(--on-pine); }
+    .btn-solid:hover { background: var(--pine-soft); border-color: var(--pine-soft); }
+    .bars { display: flex; align-items: flex-end; gap: 6px; height: 96px; padding: 0 clamp(16px, 4vw, 48px); }
+    .bars span { flex: 1 1 0; background: var(--wheat-bar); }
+    .bars .gap { background: transparent; border-top: 2px dashed var(--pine-soft); }
+  </style>
+  <script data-goatcounter="https://storeupfinancials.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+  <header><a href="/" class="brand">StoreUp Financials</a></header>
+  <main>
+    <h1>This page didn’t balance.</h1>
+    <p>We couldn’t find what you were looking for. The link may be old or mistyped.</p>
+    <div class="actions">
+      <a href="/" class="btn btn-solid">Go to the homepage</a>
+      <a href="https://calendly.com/kevinm-storeupfinancials" class="btn" data-goatcounter-click="book-call-404">Book a call</a>
+    </div>
+  </main>
+  <div class="bars" aria-hidden="true">
+    <span style="height:22%"></span><span style="height:30%"></span><span style="height:27%"></span><span style="height:38%"></span>
+    <span style="height:44%"></span><span style="height:41%"></span><span style="height:52%"></span><span class="gap" style="height:58%"></span>
+    <span style="height:63%"></span><span style="height:70%"></span><span style="height:68%"></span><span style="height:80%"></span>
+    <span style="height:86%"></span><span style="height:83%"></span><span style="height:94%"></span><span style="height:100%"></span>
+  </div>
+</body>
+</html>

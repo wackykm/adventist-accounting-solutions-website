@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://storeupfinancials.com/sitemap.xml
