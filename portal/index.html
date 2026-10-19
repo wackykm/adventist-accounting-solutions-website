@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ledge · StoreUp Financials</title>
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#1E3A32">
+<link rel="icon" href="logo.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="gate" class="gate"><div class="card"><svg class="mark big" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ledge by StoreUp">
+  <defs>
+    <linearGradient id="lg-tile2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A4D43"/>
+      <stop offset="1" stop-color="#1A332C"/>
+    </linearGradient>
+    <linearGradient id="lg-bar2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E6C77E"/>
+      <stop offset="1" stop-color="#CFA651"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#lg-tile2)"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="14.5" fill="none" stroke="#fff" stroke-opacity=".08"/>
+  <rect x="14" y="33" width="9" height="14" rx="2.5" fill="url(#lg-bar2)"/>
+  <rect x="27.5" y="24" width="9" height="23" rx="2.5" fill="url(#lg-bar2)"/>
+  <rect x="41" y="14" width="9" height="33" rx="2.5" fill="url(#lg-bar2)"/>
+  <rect x="11" y="49.5" width="42" height="2.5" rx="1.25" fill="#D9B866" fill-opacity=".55"/>
+</svg>
+<div class="brand">Ledge</div><p class="sub" id="gate-msg">Signing you in…</p></div></div>
+<div class="app" id="app" hidden>
+  <aside class="rail">
+    <div class="brand"><svg class="mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Ledge by StoreUp">
+  <defs>
+    <linearGradient id="lg-tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2A4D43"/>
+      <stop offset="1" stop-color="#1A332C"/>
+    </linearGradient>
+    <linearGradient id="lg-bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E6C77E"/>
+      <stop offset="1" stop-color="#CFA651"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="15" fill="url(#lg-tile)"/>
+  <rect x="0.5" y="0.5" width="63" height="63" rx="14.5" fill="none" stroke="#fff" stroke-opacity=".08"/>
+  <rect x="14" y="33" width="9" height="14" rx="2.5" fill="url(#lg-bar)"/>
+  <rect x="27.5" y="24" width="9" height="23" rx="2.5" fill="url(#lg-bar)"/>
+  <rect x="41" y="14" width="9" height="33" rx="2.5" fill="url(#lg-bar)"/>
+  <rect x="11" y="49.5" width="42" height="2.5" rx="1.25" fill="#D9B866" fill-opacity=".55"/>
+</svg>
+<span>Ledge<small>by StoreUp Financials</small></span></div>
+    <div class="school" id="school"></div>
+    <nav id="nav"></nav>
+    <div class="me" id="me"></div>
+  </aside>
+  <main><div class="wrap" id="view"></div></main>
+</div>
+<div id="drawer-host"></div>
+<div id="toast" class="toast" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
+<script src="config.js"></script>
+<script type="module" src="app.js"></script>
+</body>
+</html>

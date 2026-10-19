@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /portal/
 
 Sitemap: https://storeupfinancials.com/sitemap.xml
