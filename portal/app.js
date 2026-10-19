@@ -22,7 +22,7 @@ const S = { schools: [], school: null, data: { Coding: [] }, tab: 'home', filter
 const su = () => store.me.isStoreUp;
 if (store.demo) window.__ledge = S;
 
-const statusChip = { 'Submitted': 'c-info', 'Needs info': 'c-bad', 'Ready': 'c-warn', 'Posted': 'c-good', 'Change requested': 'c-warn',
+const statusChip = { 'Needs coding': 'c-warn', 'Submitted': 'c-info', 'Needs info': 'c-bad', 'Ready': 'c-warn', 'Posted': 'c-good', 'Change requested': 'c-warn',
   'Open': 'c-info', 'Closed': 'c-warn', 'Verified': 'c-warn', 'Deposited': 'c-good', 'Reconciled': 'c-mute', 'Answered': 'c-good' };
 const chip = s => `<span class="chip ${statusChip[s] || 'c-mute'}">${esc(s)}</span>`;
 const BIN_STEPS = ['Open', 'Closed', 'Posted', 'Verified', 'Deposited', 'Reconciled'];
@@ -63,7 +63,7 @@ const say = (Ref, Body) => store.create('Messages', { Title: Ref, Ref, Body, Who
 const TABS = () => [['home', 'Home'], ...(su() ? [] : [['submit', 'Submit']]), ['history', 'History'], ['bins', 'Bins'], ['req', 'Requests'], ['msg', 'Messages'], ...(su() ? [['setup', 'Setup']] : [])];
 function counts() {
   return {
-    home: S.data.Requests.filter(r => r.Status === 'Open' && (su() ? r.Kind === 'Change request' : r.Kind !== 'Change request')).length + S.data.Submissions.filter(s => s.Status === (su() ? 'Submitted' : 'Needs info')).length,
+    home: S.data.Requests.filter(r => r.Status === 'Open' && (su() ? r.Kind === 'Change request' : r.Kind !== 'Change request')).length + S.data.Submissions.filter(s => s.Status === 'Needs coding' || s.Status === (su() ? 'Submitted' : 'Needs info')).length,
     bins: S.data.Bins.filter(b => (su() ? ['Closed', 'Deposited'] : ['Posted', 'Verified']).includes(b.Status)).length,
     req: S.data.Requests.filter(r => r.Status === 'Open').length
   };
@@ -93,10 +93,12 @@ function render() {
 function vHome() {
   const ob = openBin();
   const needs = su()
-    ? [...S.data.Submissions.filter(s => ['Submitted', 'Ready'].includes(s.Status) && !s.BinId).map(s => ({ k: s.Ref, t: `${s.Kind} from ${s.Title}`, m: `${fmt(s.Amount)} · post it`, tag: s.Status })),
+    ? [...S.data.Submissions.filter(s => s.Status === 'Needs coding').map(s => ({ k: s.Ref, t: `Email from ${s.Title}`, m: (s.Note || '').split(' · ')[0], tag: 'Needs coding' })),
+       ...S.data.Submissions.filter(s => ['Submitted', 'Ready'].includes(s.Status) && !s.BinId).map(s => ({ k: s.Ref, t: `${s.Kind} from ${s.Title}`, m: `${fmt(s.Amount)} · post it`, tag: s.Status })),
        ...S.data.Bins.filter(b => ['Closed', 'Deposited'].includes(b.Status)).map(b => ({ tab: 'bins', t: binName(b), m: b.Status === 'Closed' ? 'Ready to post' : 'Deposited, waiting to clear', tag: b.Status })),
        ...S.data.Requests.filter(r => r.Status !== 'Closed' && (r.Kind === 'Change request' || r.Status === 'Answered')).map(r => ({ k: r.id, t: r.Title, m: r.Kind, tag: r.Status }))]
-    : [...S.data.Submissions.filter(s => s.Status === 'Needs info').map(s => ({ k: s.Ref, t: `${s.Kind} from ${s.Title}`, m: s.Note, tag: 'Needs info' })),
+    : [...S.data.Submissions.filter(s => s.Status === 'Needs coding').map(s => ({ k: s.Ref, t: `Email from ${s.Title}`, m: (s.Note || '').split(' · ')[0], tag: 'Needs coding' })),
+       ...S.data.Submissions.filter(s => s.Status === 'Needs info').map(s => ({ k: s.Ref, t: `${s.Kind} from ${s.Title}`, m: s.Note, tag: 'Needs info' })),
        ...S.data.Bins.filter(b => ['Posted', 'Verified'].includes(b.Status)).map(b => ({ tab: 'bins', t: binName(b), m: b.Status === 'Posted' ? 'Check the journal against the bag' : 'Ready to deposit', tag: b.Status })),
        ...S.data.Requests.filter(r => r.Status === 'Open' && r.Kind !== 'Change request').map(r => ({ k: r.id, t: r.Title, m: `Due ${D(r.Due)}`, tag: 'Open' }))];
   const month = today().slice(0, 7);
@@ -104,7 +106,8 @@ function vHome() {
   const first = store.me.name.split(/[\s(]/)[0];
   return `<div class="head"><div><h1>${su() ? `${esc(S.school.name)} queue` : `Hello, ${esc(first)}`}</h1>
     <p class="sub">${su() ? 'What the school has sent, and what is ready to post.' : 'What StoreUp is waiting on, and where the current deposit stands.'}</p></div>
-    ${su() ? '' : '<button class="btn primary" data-tab="submit">Submit a receipt</button>'}</div>
+    ${su() ? (cfg.inbox ? `<button class="btn" data-act="inbox-sync">Check ${esc(cfg.inbox)}</button>` : '') : '<button class="btn primary" data-tab="submit">Submit a receipt</button>'}</div>
+  ${cfg.inbox ? `<p class="lock" style="margin:-14px 0 0">Forward receipts, wire confirmations and check photos to <b>${esc(cfg.inbox)}</b>. They show up here to be coded.</p>` : ''}
   <div class="stats">
     <div class="panel stat"><div class="n">Current bin</div><div class="v">${ob ? fmt(binTotal(ob)) : '—'}</div></div>
     <div class="panel stat"><div class="n">${su() ? 'Waiting on StoreUp' : 'Waiting on you'}</div><div class="v">${needs.length}</div></div>
@@ -130,7 +133,7 @@ function table(rows) {
 }
 
 function vHistory() {
-  const fs = ['All', 'Submitted', 'Needs info', 'Posted', 'Change requested'];
+  const fs = ['All', 'Needs coding', 'Submitted', 'Needs info', 'Posted', 'Change requested'];
   const rows = S.filter === 'All' ? subs() : subs().filter(s => statusOf(s) === S.filter);
   return `<div class="head"><div><h1>History</h1><p class="sub">Every receipt sent to StoreUp. Posted items are locked; request a change instead.</p></div>
   <div class="filters">${fs.map(f => `<button data-filter="${f}" aria-pressed="${S.filter === f}">${f}</button>`).join('')}</div></div>
@@ -232,13 +235,15 @@ function vSetup() {
 /* ---------- submit ---------- */
 function vSubmit() {
   const ob = openBin(), req = S.answering && S.data.Requests.find(r => r.id === S.answering);
+  const em = S.coding && subByRef(S.coding);
   return `<div class="head"><div><h1>Submit a receipt</h1><p class="sub">Say what it’s for once. StoreUp takes it from there.</p></div></div>
   ${req ? `<div class="banner">Answering: ${esc(req.Title)}</div>` : ''}
+  ${em ? `<div class="banner">Coding an email from ${esc(em.Title)}: ${esc((em.Note || '').split(' · ')[0])}<br><span class="lock">Attached: ${filesOf(em).map(f => esc(f.name)).join(', ') || 'nothing'}. Add more files below if needed.</span></div>` : ''}
   <form class="panel sub" id="sf" novalidate>
     <div class="f"><span class="lbl">What came in?</span><div class="types">${['Check', 'Cash', 'Wire', 'ACH', 'Export'].map((t, i) => `<label><input type="radio" name="type" value="${t}" ${(req ? t === (/deposit|export/i.test(req.Kind) ? 'Export' : 'Wire') : i === 0) ? 'checked' : ''}>${t}</label>`).join('')}</div></div>
     <div class="f"><label class="drop" id="drop" for="file">Drop scans or tap to choose<input id="file" type="file" accept="image/*,application/pdf,.csv,.xlsx" multiple hidden></label></div>
     <div class="pair"><div class="f"><label for="payer">From</label><input id="payer" placeholder="Herrera family" autocomplete="off"></div>
-    <div class="f"><label for="date">Received</label><input id="date" type="date" value="${today()}"></div></div>
+    <div class="f"><label for="date">Received</label><input id="date" type="date" value="${em ? esc(em.Received) : today()}"></div></div>
     <div class="f" id="ckf"><label for="checkno">Check number</label><input id="checkno" inputmode="numeric" placeholder="4471" style="max-width:200px"></div>
     <div class="f" id="cashf"><span class="lbl">Cash count</span><div class="denoms">${DENOMS.map(d => `<label>$${d}<input data-den="${d}" inputmode="numeric" placeholder="0"></label>`).join('')}<label>Coins $<input id="coins" inputmode="decimal" placeholder="0.00"></label></div>
       <div class="pair"><input id="by1" placeholder="Counted by"><input id="by2" placeholder="Second counter"></div><span class="hint" id="cashtot">Counted $0.00</span></div>
@@ -324,13 +329,22 @@ async function submit() {
     if (round2(cash.total) !== round2(lines.reduce((a, l) => a + l.amt, 0))) throw new Error(`The cash count (${fmt(cash.total)}) doesn’t match the amounts below.`);
     if (!cash.by[0] || !cash.by[1]) throw new Error('Cash needs two people’s names on the count.');
   }
-  if (type !== 'Cash' && !fileList.length) throw new Error('Attach the scan or confirmation.');
+  const em = S.coding && subByRef(S.coding);
+  if (type !== 'Cash' && !fileList.length && !(em && filesOf(em).length)) throw new Error('Attach the scan or confirmation.');
   const binId = ['Check', 'Cash'].includes(type) ? $('#bin').value : '';
   if (['Check', 'Cash'].includes(type) && !binId) throw new Error('There is no open bin. Ask StoreUp to open one.');
   const folder = `${schoolYear(date)}/${date.slice(0, 7)}`;
   const uploaded = [];
   for (const f of fileList) uploaded.push(await store.upload(f, folder, `${date}_${safeName(payer)}_${safeName(f.name)}`));
   const amount = round2(lines.reduce((a, l) => a + l.amt, 0));
+  if (em) {
+    await store.update('Submissions', em.id, { Title: payer, Kind: type, Amount: amount, Received: date, Lines: JSON.stringify(lines),
+      BinId: binId ? Number(binId) : null, Status: 'Submitted', Files: JSON.stringify([...filesOf(em), ...uploaded]),
+      CheckNo: checkNo || null, CashCount: cash ? JSON.stringify(cash) : null });
+    await log('Coded email', em.Ref, `${type} ${fmt(amount)}`);
+    S.coding = null; await load(); S.tab = 'history'; S.filter = 'All'; render(); toast(`${em.Ref} coded${binId ? ' and added to the current bin' : ''}.`);
+    return;
+  }
   const item = await store.create('Submissions', { Title: payer, Kind: type, Amount: amount, Received: date, Lines: JSON.stringify(lines),
     BinId: binId ? Number(binId) : undefined, Status: 'Submitted', Files: JSON.stringify(uploaded), SubmittedBy: store.me.name,
     CheckNo: checkNo || undefined, CashCount: cash ? JSON.stringify(cash) : undefined });
@@ -356,6 +370,7 @@ function renderDrawer() {
     ${linesOf(s).length ? `<div><div class="eyebrow" style="margin-bottom:6px">For</div>${linesOf(s).map(l => `<div style="display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--hair)"><span>${esc(l.cat)}${l.who ? `<div class="lock">${esc(l.who)}${'sub' in l ? (l.sub == null ? ' · no AASI #, will post for reclass' : (su() ? ` · AASI ${esc(l.sub)}` : '')) : ''}</div>` : ''}</span><span class="amt">${fmt(l.amt)}</span></div>`).join('')}</div>` : ''}
     ${s.CashCount ? (() => { const c = parse(s.CashCount, {}); return `<div><div class="eyebrow" style="margin-bottom:6px">Cash count</div><div class="lock">${Object.entries(c.dens || {}).map(([d, n]) => `${n} × $${d}`).join(' · ')}${c.coins ? ` · coins ${fmt(c.coins)}` : ''} = ${fmt(c.total)}<br>Counted by ${esc((c.by || []).join(' and '))}</div></div>`; })() : ''}
     <div><div class="eyebrow" style="margin-bottom:6px">Files</div><div class="files">${fl.length ? fl.map(f => `<button data-act="view" data-file="${esc(f.id)}">${esc(f.name)}</button>`).join('') : '<span class="lock">None attached.</span>'}</div></div>
+    ${s.Status === 'Needs coding' && s.Note ? `<div class="note"><b>Forwarded email</b><p style="margin:4px 0 0">${esc(s.Note)}</p><p class="lock" style="margin:6px 0 0">From ${esc(s.SubmittedBy)}</p></div>` : ''}
     ${s.Status === 'Needs info' && s.Note ? `<div class="note"><b>StoreUp needs</b><p style="margin:4px 0 0">${esc(s.Note)}</p></div>` : ''}
     ${chg ? `<div class="note"><b>Change requested</b><p style="margin:4px 0 0">${esc(chg.Details)}</p>${su() ? '<p class="lock" style="margin:6px 0 0">Book the correcting entry, then close the request in Requests.</p>' : '<p class="lock" style="margin:6px 0 0">StoreUp will book a correcting entry.</p>'}</div>` : ''}
     ${drawerActions(s)}`;
@@ -372,6 +387,7 @@ function renderDrawer() {
   $('#reply').addEventListener('submit', e => { e.preventDefault(); run(async () => { const v = $('#rtxt').value.trim(); if (!v) return; await say(ref, v); await load(); render(); }); });
 }
 function drawerActions(s) {
+  if (s.Status === 'Needs coding') return `<div class="inline"><button class="btn primary" data-act="code-this" data-ref="${esc(s.Ref)}">Code this</button><button class="btn" data-act="withdraw" data-ref="${esc(s.Ref)}">Not a receipt, dismiss</button></div>`;
   if (su()) {
     if (s._list !== 'Submissions') return '';
     const post = !s.BinId ? `<div class="f"><label for="je">Post it</label><div class="inline"><button class="btn" data-act="aasi-one" data-ref="${esc(s.Ref)}">AASI upload</button><input id="je" placeholder="AASI journal #"><button class="btn primary" data-act="post-one" data-ref="${esc(s.Ref)}">Mark posted</button></div></div>` : '<p class="lock" style="margin:0">Posts with its bin.</p>';
@@ -443,6 +459,8 @@ const ACTIONS = {
     await store.remove('Submissions', s.id); await log('Withdrew', s.Ref); S.drawer = null; await load(); render(); toast(`${s.Ref} withdrawn.`);
   },
   answer(el) { S.answering = el.dataset.id; S.drawer = null; S.tab = 'submit'; render(); },
+  'code-this'(el) { S.coding = el.dataset.ref; S.drawer = null; S.tab = 'submit'; render(); },
+  async 'inbox-sync'() { const n = await syncInbox(); await load(); render(); toast(n ? `${n} email${n === 1 ? '' : 's'} added. Code them from Home.` : 'No new email for this school.'); },
   async 'req-close'(el) {
     const r = S.data.Requests.find(x => x.id === el.dataset.id);
     await store.update('Requests', r.id, { Status: 'Closed' });
@@ -544,6 +562,39 @@ const ACTIONS = {
   async 'aasi-one'(el) { const s = subByRef(el.dataset.ref); await exportAasi([s], s.Received, `${S.school.id}_${s.Ref}`, s.Ref); },
   async 'stu-clear'() { for (const s of S.data.Students.filter(s => s.Active !== false)) await store.update('Students', s.id, { Active: false }); await load(); render(); toast('All students marked inactive. Add this year’s list.'); }
 };
+/* ---------- email inbox (shared mailbox) ---------- */
+function b64ToBlob(b64, type) { const bin = atob(b64), a = new Uint8Array(bin.length); for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i); return new Blob([a], { type: type || 'application/octet-stream' }); }
+async function syncInbox() {
+  if (!su() || !cfg.inbox || !store.ready) return 0;
+  const msgs = await store.mailList(cfg.inbox);
+  const mine = (S.school.emailDomains || []).map(d => d.toLowerCase());
+  let added = 0;
+  for (const m of msgs) {
+    const addr = (m.from?.emailAddress?.address || '').toLowerCase(), dom = addr.split('@')[1] || '';
+    const tagged = cfg.schools.find(sc => sc.id !== S.school.id && new RegExp(`\\[${sc.id}\\]`, 'i').test(m.subject || ''));
+    const fromStoreUp = cfg.storeUpDomains.includes(dom);
+    const forThisSchool = mine.includes(dom) || (fromStoreUp && !tagged);
+    const forOtherSchool = !forThisSchool && cfg.schools.some(sc => sc.id !== S.school.id && ((sc.emailDomains || []).includes(dom) || (fromStoreUp && tagged === sc)));
+    if (forOtherSchool) continue;                                  // leave it for that school's sync
+    if (!forThisSchool) { await store.mailMove(cfg.inbox, m.id, 'Not allowed'); continue; }   // unknown sender
+    const date = (m.receivedDateTime || new Date().toISOString()).slice(0, 10);
+    const files = [];
+    if (m.hasAttachments) for (const a of await store.mailAttachments(cfg.inbox, m.id)) {
+      if (a['@odata.type'] !== '#microsoft.graph.fileAttachment' || !a.contentBytes || (a.isInline && a.size < 20000)) continue;
+      files.push(await store.upload(b64ToBlob(a.contentBytes, a.contentType), `${schoolYear(date)}/${date.slice(0, 7)}/email`, `${date}_${safeName(a.name)}`));
+    }
+    const item = await store.create('Submissions', { Title: m.from?.emailAddress?.name || addr, Kind: 'Email', Amount: 0, Received: date, Lines: '[]',
+      Status: 'Needs coding', Note: `${m.subject || '(no subject)'} · ${(m.bodyPreview || '').slice(0, 300)}`, Files: JSON.stringify(files), SubmittedBy: addr });
+    const ref = 'RC-' + String(item.id).padStart(4, '0');
+    await store.update('Submissions', item.id, { Ref: ref });
+    await log('Email received', ref, `${addr}: ${m.subject || ''}`);
+    await store.mailMove(cfg.inbox, m.id, 'Processed');
+    added++;
+  }
+  try { localStorage.setItem('ledge-mail', '1'); } catch {}
+  return added;
+}
+
 /* ---------- AASI upload (contract from the aasi-upload-generator skill) ---------- */
 const KIND_ABBR = { Check: 'Ck', Cash: 'Cash', Wire: 'Wire', ACH: 'ACH' };
 function aasiRows(items, depositDate, label) {
@@ -605,7 +656,7 @@ function loadScript(src) { return new Promise((ok, no) => { if ([...document.scr
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-tab],[data-open],[data-act],[data-filter],[data-role]');
   if (!t || t.tagName === 'INPUT') return;
-  if (t.dataset.tab) { S.tab = t.dataset.tab; S.drawer = null; S.answering = null; render(); scrollTo(0, 0); return; }
+  if (t.dataset.tab) { S.tab = t.dataset.tab; S.drawer = null; S.answering = null; S.coding = null; render(); scrollTo(0, 0); return; }
   if (t.dataset.filter) { S.filter = t.dataset.filter; render(); return; }
   if (t.dataset.open) { S.drawer = t.dataset.open; renderDrawer(); return; }
   if (t.dataset.role) { store.me = t.dataset.role === 'su' ? { name: 'Kevin (demo)', email: 'kevin@storeupfinancials.com', isStoreUp: true } : { name: 'Juanita (demo)', email: 'juanita@school.example', isStoreUp: false }; S.tab = 'home'; S.drawer = null; run(async () => { await load(); render(); }); return; }
@@ -640,6 +691,8 @@ setInterval(() => { if (!store.demo && Date.now() - lastActive > cfg.idleMinutes
     await load();
     $('#gate').hidden = true; $('#app').hidden = false;
     render();
+    let auto = false; try { auto = localStorage.getItem('ledge-mail') === '1'; } catch {}
+    if (su() && auto && store.ready) run(async () => { if (await syncInbox()) { await load(); render(); } });
   } catch (e) {
     console.error(e);
     $('#gate-msg').textContent = `Ledge couldn’t load: ${e.message}`;

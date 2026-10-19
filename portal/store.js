@@ -45,6 +45,7 @@ export const SVA_SET = [
 const G = 'https://graph.microsoft.com/v1.0';
 const SCOPES = ['User.Read', 'Sites.ReadWrite.All'];
 const MANAGE = ['Sites.Manage.All'];
+const MAIL = ['Mail.ReadWrite.Shared'];
 
 function pick(id, fields, name) {
   const out = { id: String(id), Title: fields.Title || '' };
@@ -209,6 +210,24 @@ function graphStore(cfg) {
       this.ready = true; this.hasCoding = true;
     },
 
+    // ---- shared mailbox (StoreUp only; needs Mail.ReadWrite.Shared and Full Access to the mailbox) ----
+    async mailList(addr) {
+      const u = encodeURIComponent(addr);
+      return (await g(`/users/${u}/mailFolders/inbox/messages?$top=25&$orderby=receivedDateTime asc&$select=id,subject,from,receivedDateTime,hasAttachments,bodyPreview`, { scopes: MAIL })).value;
+    },
+    async mailAttachments(addr, id) {
+      return (await g(`/users/${encodeURIComponent(addr)}/messages/${id}/attachments`, { scopes: MAIL })).value;
+    },
+    async mailMove(addr, id, folder) {
+      const u = encodeURIComponent(addr);
+      this._folders = this._folders || {};
+      if (!this._folders[folder]) {
+        const found = (await g(`/users/${u}/mailFolders?$filter=displayName eq '${folder}'&$select=id`, { scopes: MAIL })).value[0];
+        this._folders[folder] = found ? found.id : (await g(`/users/${u}/mailFolders`, { method: 'POST', scopes: MAIL, body: { displayName: folder } })).id;
+      }
+      await g(`/users/${u}/messages/${id}/move`, { method: 'POST', scopes: MAIL, body: { destinationId: this._folders[folder] } });
+    },
+
     signOut() { sessionStorage.clear(); pca.logoutRedirect(); }
   };
 }
@@ -231,6 +250,7 @@ function demoStore(cfg) {
       { id: '38', Title: 'Deposit Sep 29', BinNo: 12, SchoolYear: '26-27', Status: 'Reconciled', Opened: '2026-09-23', Closed: '2026-09-29', Journal: 'JE-26-0987' }
     ],
     Submissions: [
+      { id: '62', Ref: 'RC-0062', Title: 'Juanita Rivera', Kind: 'Email', Received: '2026-10-18', Status: 'Needs coding', Amount: 0, Lines: '[]', Note: 'Fwd: Wire confirmation - Herrera tuition · Please see attached wire for Lucía Herrera, fall semester.', SubmittedBy: 'juanita@svasda.org' },
       { id: '61', Ref: 'RC-0061', Title: 'Thompson family', Kind: 'Check', Received: '2026-10-16', BinId: 41, Status: 'Submitted', CheckNo: '4471', Amount: 1250, Lines: L([{ cat: 'Student payment', who: 'Ava Thompson', amt: 1250 }]), SubmittedBy: 'Student accounts' },
       { id: '60', Ref: 'RC-0060', Title: 'Spirit club bake sale', Kind: 'Cash', Received: '2026-10-16', BinId: 41, Status: 'Submitted', Amount: 186.5, Lines: L([{ cat: 'Club or trust deposit', who: 'Spirit club bake sale', amt: 186.5 }]), SubmittedBy: 'Student accounts' },
       { id: '59', Ref: 'RC-0059', Title: 'Harold & June Pierce', Kind: 'Check', Received: '2026-10-15', BinId: 41, Status: 'Submitted', CheckNo: '1188', Amount: 500, Lines: L([{ cat: 'Capital gift · Ballfield Lights', who: 'Harold & June Pierce', amt: 500 }]), SubmittedBy: 'Student accounts' },
@@ -272,6 +292,9 @@ function demoStore(cfg) {
     async upload(file) { const id = 'f' + (++nextId); files.set(id, file); return { id, name: file.name }; },
     async download(id) { const f = files.get(id); if (!f) throw new Error('Sample items have no scan attached. Upload one with Submit to try this.'); return { blob: f, name: f.name, type: f.type }; },
     async provision() {},
+    async mailList() { return []; },
+    async mailAttachments() { return []; },
+    async mailMove() {},
     signOut() { location.reload(); }
   };
 }

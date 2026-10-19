@@ -14,9 +14,13 @@ window.LEDGE_CONFIG = {
       name: "Shenandoah Valley Academy",
       place: "New Market, VA",
       siteHost: "storeupfinancials.sharepoint.com",   // e.g. storeupfinancials.sharepoint.com
-      sitePath: "/sites/SVA-Ledge"
+      sitePath: "/sites/SVA-Ledge",
+      emailDomains: ["svasda.org"]      // mail forwarded from these domains lands in this school's inbox
     }
   ],
+
+  // Shared mailbox that schools and StoreUp forward receipts to.
+  inbox: "ledge@storeupfinancials.com",
 
   // Sign people out after this many minutes without activity.
   idleMinutes: 30
