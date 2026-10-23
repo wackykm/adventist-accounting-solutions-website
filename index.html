@@ -151,14 +151,62 @@
     .services h3 { font-weight: 400; font-size: 26px; color: var(--wheat); }
     .services p { margin: 10px 0 0; color: var(--on-pine-muted); }
 
+    /* Feature sections (two-tone headline) */
+    .feature { padding-top: var(--section); }
+    .two-tone { text-align: center; max-width: 20ch; margin: 0 auto; }
+    .two-tone span { display: block; color: #7A8580; }
+    .feature-body {
+      display: flex; flex-wrap: wrap; align-items: center; gap: 48px 64px;
+      margin-top: clamp(40px, 6vw, 72px);
+    }
+    .feature-body > * { flex: 1 1 340px; min-width: 0; }
+
     /* Tools */
-    #tools .split { padding-bottom: 0; }
-    .tools-text { margin: 0; font-size: 19px; line-height: 1.6; max-width: 56ch; }
+    .tools-text { margin: 0; font-size: 19px; line-height: 1.6; max-width: 52ch; }
     .tools-text + .tools-text { margin-top: 18px; }
+    .flow {
+      border: 1px solid var(--rule);
+      border-radius: 14px;
+      padding: clamp(24px, 4vw, 40px) clamp(18px, 3vw, 36px);
+      background-color: #F2F4F1;
+      background-image: radial-gradient(#CCD3CE 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+    .flow-steps { position: relative; display: flex; flex-direction: column; gap: 20px; }
+    .flow-steps::before {
+      content: ''; position: absolute; left: 15px; top: 16px; bottom: 16px;
+      width: 1px; background: var(--rule);
+    }
+    .flow-row {
+      position: relative;
+      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+      min-height: 32px; padding-left: 46px;
+      font-size: 15px; color: var(--muted);
+    }
+    .flow-icon {
+      position: absolute; left: 0; top: 0;
+      width: 32px; height: 32px; border-radius: 8px;
+      display: grid; place-items: center;
+      background: var(--pine); color: var(--on-pine);
+      font-size: 13px; font-weight: 500;
+    }
+    .chip {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #fff; color: var(--ink);
+      border: 1px solid #DCE1DD; border-radius: 8px;
+      padding: 6px 12px;
+      box-shadow: 0 1px 2px rgba(30, 58, 50, 0.06);
+    }
+    .initials {
+      display: grid; place-items: center;
+      width: 24px; height: 24px; border-radius: 6px;
+      background: #D5E3DA; color: var(--pine);
+      font-size: 11px; font-weight: 500;
+    }
+    .chip-done { background: var(--wheat); border-color: var(--wheat); }
 
     /* Always building */
-    #building .split { padding-bottom: 0; }
-    .build-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+    .build-list { list-style: none; margin: clamp(40px, 6vw, 72px) auto 0; padding: 0; max-width: 960px; border-top: 1px solid var(--rule); }
     .build-list li {
       display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px;
       padding: 22px 0; border-bottom: 1px solid var(--rule);
@@ -340,25 +388,29 @@
     </div>
   </section>
 
-  <section id="tools" aria-labelledby="tools-h">
-    <div class="wrap split">
-      <div>
-        <h2 id="tools-h" class="h2">More than bookkeeping</h2>
-        <p class="lede">Modern tools, set up and run for you.</p>
-      </div>
-      <div>
-        <p class="tools-text">Most schools know better tools exist. They just don’t have the time to set them up or the know-how to connect them to AASI. We handle that part.</p>
-        <p class="tools-text">We’ll move your credit cards and bills to Ramp, set up the coding and approvals, and build the imports into AASI, so your staff just snap a receipt or approve a bill. Less paperwork for your team, and accurate numbers sooner, in time to make decisions with them.</p>
+  <section id="tools" class="feature" aria-labelledby="tools-h">
+    <div class="wrap">
+      <h2 id="tools-h" class="h2 two-tone">More than bookkeeping. <span>Modern tools, set up and run for you.</span></h2>
+      <div class="feature-body">
+        <div>
+          <p class="tools-text">Most schools know better tools exist. They just don’t have the time to set them up or the know-how to connect them to AASI. We handle that part.</p>
+          <p class="tools-text">We’ll move your credit cards and bills to Ramp, set up the coding and approvals, and build the imports into AASI, so your staff just snap a receipt or approve a bill. Less paperwork for your team, and accurate numbers sooner, in time to make decisions with them.</p>
+        </div>
+        <div class="flow" role="img" aria-label="Example approval rule: when a bill is submitted over $1,000, the principal approves it, then it posts to AASI.">
+          <div class="flow-steps">
+            <div class="flow-row"><span class="flow-icon">1</span><span class="chip">When a bill is submitted</span></div>
+            <div class="flow-row"><span class="flow-icon">2</span>If the <span class="chip">Amount</span> is over <span class="chip">$1,000.00</span></div>
+            <div class="flow-row"><span class="flow-icon">3</span>Require <span class="chip"><span class="initials">PR</span>Principal</span></div>
+            <div class="flow-row"><span class="flow-icon">4</span>Then <span class="chip chip-done">Post to AASI</span></div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="building" aria-labelledby="building-h">
-    <div class="wrap split">
-      <div>
-        <h2 id="building-h" class="h2">Always building</h2>
-        <p class="lede">We don’t stop at setup. Every school we serve gets the improvements we make along the way, at no added cost.</p>
-      </div>
+  <section id="building" class="feature" aria-labelledby="building-h">
+    <div class="wrap">
+      <h2 id="building-h" class="h2 two-tone">Always building. <span>Every upgrade included, at no added cost.</span></h2>
       <ul class="build-list">
         <li><span class="build-name">Client portal</span><span class="build-desc">One place to send deposits and backup, with nothing lost in email.</span><span class="build-status">In progress</span></li>
         <li><span class="build-name">Faster month-end</span><span class="build-desc">Fewer manual steps between FACTS and AASI.</span><span class="build-status">In progress</span></li>
