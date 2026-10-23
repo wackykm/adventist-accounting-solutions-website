@@ -156,6 +156,20 @@
     .tools-text { margin: 0; font-size: 19px; line-height: 1.6; max-width: 56ch; }
     .tools-text + .tools-text { margin-top: 18px; }
 
+    /* Always building */
+    #building .split { padding-bottom: 0; }
+    .build-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+    .build-list li {
+      display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px;
+      padding: 22px 0; border-bottom: 1px solid var(--rule);
+    }
+    .build-name { flex: 0 0 200px; font-family: var(--serif); font-size: 26px; color: var(--pine); }
+    .build-desc { flex: 1 1 260px; font-size: 18px; color: var(--ink); }
+    .build-status {
+      flex: none; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--pine); background: var(--wheat); padding: 3px 10px;
+    }
+
     /* Pathways */
     .pathways { padding-top: var(--section); }
     .paths {
@@ -336,6 +350,20 @@
         <p class="tools-text">Most schools know better tools exist. They just don’t have the time to set them up or the know-how to connect them to AASI. We handle that part.</p>
         <p class="tools-text">We’ll move your credit cards and bills to Ramp, set up the coding and approvals, and build the imports into AASI, so your staff just snap a receipt or approve a bill. Less paperwork for your team, and accurate numbers sooner, in time to make decisions with them.</p>
       </div>
+    </div>
+  </section>
+
+  <section id="building" aria-labelledby="building-h">
+    <div class="wrap split">
+      <div>
+        <h2 id="building-h" class="h2">Always building</h2>
+        <p class="lede">We don’t stop at setup. Every school we serve gets the improvements we make along the way, at no added cost.</p>
+      </div>
+      <ul class="build-list">
+        <li><span class="build-name">Client portal</span><span class="build-desc">One place to send deposits and backup, with nothing lost in email.</span><span class="build-status">In progress</span></li>
+        <li><span class="build-name">Faster month-end</span><span class="build-desc">Fewer manual steps between FACTS and AASI.</span><span class="build-status">In progress</span></li>
+        <li><span class="build-name">Next</span><span class="build-desc">Whatever saves your office the most time.</span></li>
+      </ul>
     </div>
   </section>
 
