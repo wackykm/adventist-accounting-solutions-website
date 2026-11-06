@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StoreUp Financials | Systems and Operations Consulting</title>
+  <meta name="description" content="StoreUp Financials finds the manual work slowing your team down and builds the systems that take it off their plate." />
+  <link rel="canonical" href="https://storeupfinancials.com/systems/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://storeupfinancials.com/systems/" />
+  <meta property="og:site_name" content="StoreUp Financials" />
+  <meta property="og:title" content="StoreUp Financials | Systems and Operations Consulting" />
+  <meta property="og:description" content="We find the manual work slowing your team down and build the systems that take it off their plate." />
+  <meta property="og:image" content="https://storeupfinancials.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script>if (location.protocol === 'http:' && location.hostname !== 'localhost') location.replace('https://' + location.host + location.pathname + location.search + location.hash);</script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#1E3A32" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ground: #E8EBE7;
+      --pine: #1E3A32;
+      --pine-soft: #3E6B5D;
+      --wheat: #D9B866;
+      --wheat-bar: #CFA651;
+      --ink: #1E2A26;
+      --muted: #46504C;
+      --rule: #B9C2BC;
+      --on-pine: #EEF0EB;
+      --on-pine-muted: #C6CEC8;
+      --serif: 'Newsreader', Georgia, serif;
+      --sans: 'Instrument Sans', system-ui, sans-serif;
+      --gutter: clamp(16px, 4vw, 48px);
+      --section: clamp(64px, 9vw, 112px);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+    body {
+      margin: 0; background: var(--ground); color: var(--ink);
+      font-family: var(--sans); font-size: 17px; line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--pine); }
+    a:hover { color: var(--pine-soft); }
+    a:focus-visible, summary:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
+    .on-pine a:focus-visible { outline-color: var(--wheat); }
+    .wrap { max-width: 1280px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 300; margin: 0; color: var(--pine); }
+    .h2 { font-size: clamp(36px, 4.4vw, 60px); line-height: 1.05; letter-spacing: -0.015em; }
+    .lede { margin: 18px 0 0; color: var(--muted); max-width: 52ch; }
+    .eyebrow { margin: 0 0 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pine-soft); }
+
+    .btn { display: inline-block; padding: 14px 26px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid var(--pine); }
+    .btn-solid { background: var(--pine); color: var(--on-pine); }
+    .btn-solid:hover { background: var(--pine-soft); color: var(--on-pine); border-color: var(--pine-soft); }
+    .btn-line { color: var(--pine); }
+    .btn-line:hover { background: var(--pine); color: var(--on-pine); }
+    .btn-wheat { background: var(--wheat); color: var(--ink); border-color: var(--wheat); }
+    .btn-wheat:hover { background: #E5C981; color: var(--ink); }
+
+    .site-header { border-bottom: 1px solid var(--pine); }
+    .site-header .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; padding-top: 24px; padding-bottom: 24px; }
+    .brand { font-family: var(--serif); font-size: 24px; text-decoration: none; color: var(--pine); }
+    .site-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 15px; }
+    .site-nav a { text-decoration: none; }
+    .site-nav .nav-cta { font-weight: 500; }
+
+    .hero { text-align: center; padding-top: clamp(72px, 11vw, 150px); padding-bottom: var(--section); }
+    .hero h1 { font-size: clamp(50px, 7.4vw, 104px); line-height: 1; letter-spacing: -0.02em; max-width: 13ch; margin: 0 auto; }
+    .hero .lede { margin: 32px auto 0; font-size: 19px; max-width: 54ch; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 36px; }
+
+    .band { background: var(--pine); color: var(--on-pine); }
+    .band .wrap { padding-top: var(--section); padding-bottom: var(--section); }
+    .band h2, .band h3 { color: var(--on-pine); }
+    .intro { margin: 0 0 var(--section); padding-bottom: var(--section); border-bottom: 1px solid var(--pine-soft); font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 3.2vw, 42px); line-height: 1.3; max-width: 34ch; }
+    .intro strong { font-weight: 400; color: var(--wheat); }
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px 56px; margin-top: 56px; }
+    .services h3 { font-weight: 400; font-size: 26px; color: var(--wheat); }
+    .services p { margin: 10px 0 0; color: var(--on-pine-muted); }
+
+    .feature { padding-top: var(--section); }
+    .two-tone { text-align: center; max-width: 20ch; margin: 0 auto; }
+    .two-tone span { display: block; color: #7A8580; }
+    .feature-body { display: flex; flex-wrap: wrap; align-items: center; gap: 48px 64px; margin-top: clamp(40px, 6vw, 72px); }
+    .feature-body > * { flex: 1 1 340px; min-width: 0; }
+    .tools-text { margin: 0; font-size: 19px; line-height: 1.6; max-width: 52ch; }
+    .tools-text + .tools-text { margin-top: 18px; }
+
+    .flow { border: 1px solid var(--rule); border-radius: 14px; padding: clamp(24px, 4vw, 40px) clamp(18px, 3vw, 36px); background-color: #F2F4F1; background-image: radial-gradient(#CCD3CE 1px, transparent 1px); background-size: 18px 18px; }
+    .flow-label { margin: 0 0 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+    .flow-steps { position: relative; display: flex; flex-direction: column; gap: 20px; }
+    .flow-steps::before { content: ''; position: absolute; left: 15px; top: 16px; bottom: 16px; width: 1px; background: var(--rule); }
+    .flow-row { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 32px; padding-left: 46px; font-size: 15px; color: var(--muted); }
+    .flow-icon { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; background: var(--pine); color: var(--on-pine); font-size: 13px; font-weight: 500; }
+    .chip { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--ink); border: 1px solid #DCE1DD; border-radius: 8px; padding: 6px 12px; box-shadow: 0 1px 2px rgba(30, 58, 50, 0.06); }
+    .initials { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: #D5E3DA; color: var(--pine); font-size: 11px; font-weight: 500; }
+    .chip-done { background: var(--wheat); border-color: var(--wheat); }
+
+    /* Results */
+    .results { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: clamp(40px, 6vw, 72px) auto 0; max-width: 1040px; }
+    .result { border: 1px solid var(--pine); padding: 32px 30px 34px; background: #F2F4F1; }
+    .result-num { font-family: var(--serif); font-weight: 300; font-size: clamp(36px, 3.4vw, 46px); white-space: nowrap; line-height: 1; color: var(--pine); }
+    .result-num small { font-size: 0.5em; color: var(--muted); }
+    .result h3 { margin-top: 18px; font-family: var(--sans); font-weight: 500; font-size: 18px; color: var(--ink); }
+    .result p { margin: 8px 0 0; color: var(--muted); }
+    .results-note { margin: 24px auto 0; max-width: 1040px; font-size: 15px; color: var(--muted); }
+
+    .split { display: flex; flex-wrap: wrap; gap: 48px; padding-top: var(--section); padding-bottom: var(--section); }
+    .split > :first-child { flex: 1 1 300px; }
+    .split > :last-child { flex: 2 1 520px; }
+    .steps { margin: 0; padding: 0 0 0 1.4em; font-family: var(--serif); font-size: 26px; color: var(--pine); }
+    .steps li { padding: 24px 0 24px 12px; border-bottom: 1px solid var(--rule); }
+    .steps li:first-child { padding-top: 0; }
+    .steps li:last-child { border-bottom: 0; padding-bottom: 0; }
+    .steps strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 26px; color: var(--pine); }
+    .steps span { display: block; margin-top: 6px; font-family: var(--sans); font-size: 18px; line-height: 1.5; color: var(--ink); }
+
+    .faq { border-top: 1px solid var(--pine); }
+    .faq-list { margin-top: 0; border-top: 1px solid var(--rule); }
+    .faq details { border-bottom: 1px solid var(--rule); }
+    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; font-size: 19px; font-weight: 500; min-height: 44px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after { content: '+'; flex: none; font-family: var(--serif); font-size: 32px; line-height: 1; color: var(--pine); }
+    .faq details[open] summary::after { content: '–'; }
+    .faq details p { margin: 0 0 28px; max-width: 64ch; color: var(--muted); }
+
+    .about { border-top: 1px solid var(--pine); }
+    .about h2 { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--muted); }
+    .about-big { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.15; color: var(--pine); }
+    .about-text { margin: 14px 0 0; font-size: 19px; line-height: 1.6; max-width: 52ch; }
+    .about-text + .about-text { margin-top: 16px; }
+
+    .site-footer { background: var(--pine); color: var(--on-pine); }
+    .footer-top { display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between; padding-top: 56px; padding-bottom: 40px; }
+    .footer-top p { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 3vw, 40px); }
+    .footer-contact { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
+    .footer-contact a.email { color: var(--on-pine); font-size: 15px; }
+    .footer-contact a.email:hover { color: var(--wheat); }
+    .legal { margin: 0; padding-bottom: 32px; font-size: 14px; color: #A9B6AF; }
+    .legal a { color: #A9B6AF; }
+    .legal a:hover { color: var(--wheat); }
+  </style>
+  <script data-goatcounter="https://storeupfinancials.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="brand">StoreUp Financials</a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#work">What we fix</a>
+      <a href="#example">Example</a>
+      <a href="#results">Results</a>
+      <a href="#start">How it starts</a>
+      <a href="#faq">FAQ</a>
+      <a href="/">For schools</a>
+      <a href="https://calendly.com/kevinm-storeupfinancials" class="nav-cta" data-goatcounter-click="book-call-systems-nav">Book a call</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Systems and operations consulting</p>
+      <h1>Less time in spreadsheets. More time running the business.</h1>
+      <p class="lede">We find the manual work slowing your team down, the hand calculations, the retyping and the weekly rebuilds, and we build the systems that take it off their plate.</p>
+      <div class="hero-actions">
+        <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-solid" data-goatcounter-click="book-call-systems-hero">Book a call</a>
+        <a href="#start" class="btn btn-line">See how it starts</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="band on-pine" aria-labelledby="work-h">
+    <div class="wrap">
+      <p class="intro">In most growing companies, a few key people carry the processes in their heads and their spreadsheets. <strong>That works until it doesn’t.</strong> We turn that work into systems your team can run, check and trust.</p>
+      <h2 id="work-h" class="h2">What we fix</h2>
+      <div class="services">
+        <div><h3>Hours and payroll prep</h3><p>Timesheets gathered, totaled and checked automatically, ready for payroll instead of rebuilt every week.</p></div>
+        <div><h3>Estimating math</h3><p>Material and cost calculations done by hand turned into tools anyone on the team can run.</p></div>
+        <div><h3>Spreadsheet rebuilds</h3><p>Fragile workbooks replaced with clean ones that catch errors before they cost money.</p></div>
+        <div><h3>Connecting your tools</h3><p>Data moved between systems by import, not retyped by a person.</p></div>
+        <div><h3>Receipts and approvals</h3><p>Spending submitted from a phone, approved by the right manager, coded to the right job.</p></div>
+        <div><h3>Reports on time</h3><p>The numbers owners need, built automatically, in time to make decisions with them.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="example" class="feature" aria-labelledby="example-h">
+    <div class="wrap">
+      <h2 id="example-h" class="h2 two-tone">Built around how you work. <span>Using the tools you already have.</span></h2>
+      <div class="feature-body">
+        <div>
+          <p class="tools-text">We start with the software your team already uses, usually Excel, your accounting system and a phone. Most of the gain comes from connecting them and removing the steps a person repeats every week.</p>
+          <p class="tools-text">Take weekly hours. Instead of one person collecting texts and rebuilding a spreadsheet every Monday, crews submit their time, the totals and overtime calculate themselves, a supervisor approves, and the payroll file is ready.</p>
+        </div>
+        <div class="flow" role="img" aria-label="Example: crew submits weekly hours, totals and overtime calculate automatically, supervisor approves, payroll file is ready.">
+          <p class="flow-label">Example: weekly hours</p>
+          <div class="flow-steps">
+            <div class="flow-row"><span class="flow-icon">1</span><span class="chip">Crew submits hours</span>from a phone</div>
+            <div class="flow-row"><span class="flow-icon">2</span><span class="chip">Totals</span>and<span class="chip">Overtime</span>calculate</div>
+            <div class="flow-row"><span class="flow-icon">3</span>Require <span class="chip"><span class="initials">SV</span>Supervisor</span></div>
+            <div class="flow-row"><span class="flow-icon">4</span>Then <span class="chip chip-done">Payroll file ready</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="results" class="feature" aria-labelledby="results-h">
+    <div class="wrap">
+      <h2 id="results-h" class="h2 two-tone">What this looks like. <span>Hours back, every month.</span></h2>
+      <div class="results">
+        <div class="result">
+          <div class="result-num">5 hrs <small>to</small> 10 min</div>
+          <h3>Monthly staff payroll prep</h3>
+          <p>A multi-report payroll process rebuilt so it runs from a copy-and-paste and a quick review.</p>
+        </div>
+        <div class="result">
+          <div class="result-num">5 hrs <small>to</small> 10 min</div>
+          <h3>Hourly labor processing</h3>
+          <p>Hourly worker reports turned into ready-to-post accounting entries automatically.</p>
+        </div>
+        <div class="result">
+          <div class="result-num">Real time</div>
+          <h3>Mileage tracking</h3>
+          <p>Drivers scan a QR code to log trips, and reimbursements calculate as they go.</p>
+        </div>
+      </div>
+      <p class="results-note">Systems Kevin has designed and built for an organization with a distributed staff.</p>
+    </div>
+  </section>
+
+  <section id="start" aria-labelledby="start-h">
+    <div class="wrap split">
+      <div>
+        <h2 id="start-h" class="h2">How it starts</h2>
+        <p class="lede">Small first, so you can judge the work before committing to more.</p>
+      </div>
+      <ol class="steps">
+        <li><strong>One project</strong><span>Pick one process that eats time every week. We fix it, with a defined scope and a clear finish line.</span></li>
+        <li><strong>A full diagnostic</strong><span>If it works, we interview your team by role, map every handoff, and rank the manual work by hours you’d get back.</span></li>
+        <li><strong>Build and support</strong><span>We build the fixes in that order, document them, train your people, and keep them running on a monthly retainer.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="faq" class="faq" aria-labelledby="faq-h">
+    <div class="wrap split">
+      <div>
+        <h2 id="faq-h" class="h2">Straightforward answers</h2>
+      </div>
+      <div class="faq-list">
+        <details>
+          <summary>Do we need to buy new software?</summary>
+          <p>Usually not. We start with what you already pay for, such as Excel, Microsoft 365 and your accounting system. If a new tool would clearly pay for itself, we’ll show you the numbers first.</p>
+        </details>
+        <details>
+          <summary>Our team is spread across several states. Does that matter?</summary>
+          <p>No. Interviews and walkthroughs happen by video with screen sharing, so we see exactly how the work gets done, wherever your people are.</p>
+        </details>
+        <details>
+          <summary>Who owns what you build?</summary>
+          <p>You do. Everything lives in your accounts and comes with plain-language documentation, so your team isn’t dependent on us to keep it running.</p>
+        </details>
+        <details>
+          <summary>Is this about replacing people?</summary>
+          <p>No. It’s about giving your best people their time back from repetitive work, so they can spend it on the parts of the job that need their judgment.</p>
+        </details>
+        <details>
+          <summary>How is it priced?</summary>
+          <p>Fixed prices, not hourly billing. The first project and the diagnostic are each a set fee with a defined deliverable. Ongoing support is a flat monthly retainer.</p>
+        </details>
+        <details>
+          <summary>Do you also do accounting?</summary>
+          <p>Yes. Accounting is where we started, and we run the books for schools. That background is why we look at every process through the numbers it produces. <a href="/">See our school services.</a></p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="about" aria-labelledby="about-h">
+    <div class="wrap split">
+      <p class="about-big">A systems thinker who works in accounting.</p>
+      <div>
+        <h2 id="about-h">Who does the work</h2>
+        <p class="about-text">Kevin Martin spends his time diagnosing broken workflows and building the systems that replace them. Accounting is where he earned his credibility: years of payroll, reconciliations and month-end close taught him exactly where manual work hides and what it costs.</p>
+        <p class="about-text">He builds with modern tools, including automation and AI, but always around the way your team actually works.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer on-pine">
+  <div class="wrap footer-top">
+    <p>Tell us what eats your team’s week.</p>
+    <div class="footer-contact">
+      <a href="mailto:kevinm@storeupfinancials.com" class="email" data-goatcounter-click="email-systems-footer">kevinm@storeupfinancials.com</a>
+      <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-wheat" data-goatcounter-click="book-call-systems-footer">Book a call</a>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="legal">© 2026 StoreUp Financials, LLC · <a href="/privacy.html">Privacy</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

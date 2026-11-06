@@ -293,6 +293,15 @@
     .about h2 { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--muted); }
     .about-text { margin: 14px 0 0; font-size: 19px; line-height: 1.6; max-width: 48ch; }
 
+    /* Cross-link to systems consulting */
+    .crosslink .wrap { padding-bottom: var(--section); }
+    .cross-card {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px;
+      border: 1px solid var(--pine); padding: clamp(28px, 4vw, 44px) clamp(22px, 4vw, 44px);
+    }
+    .cross-card h2 { margin-top: 6px; font-weight: 400; font-size: clamp(28px, 3vw, 38px); }
+    .cross-text { margin: 10px 0 0; color: var(--muted); max-width: 52ch; }
+
     /* Footer */
     .site-footer { background: var(--pine); color: var(--on-pine); }
     .footer-top {
@@ -322,6 +331,7 @@
       <a href="#start">How it starts</a>
       <a href="#faq">FAQ</a>
       <a href="#about">About</a>
+      <a href="/systems/">For businesses</a>
       <a href="https://calendly.com/kevinm-storeupfinancials" class="nav-cta" data-goatcounter-click="book-call-nav">Book a call</a>
     </nav>
   </div>
@@ -498,6 +508,10 @@
           <summary>Do you handle payroll?</summary>
           <p>No. Faculty and staff payroll is typically managed through the conference, and student payroll stays with your school. We keep the books those payrolls post to.</p>
         </details>
+        <details>
+          <summary>Do you only work with schools?</summary>
+          <p>Our accounting service is built for Adventist schools. We also help businesses find and automate the manual work in their operations. <a href="/systems/">See systems consulting.</a></p>
+        </details>
       </div>
     </div>
   </section>
@@ -508,6 +522,19 @@
       <div>
         <h2 id="about-h">Who does the work</h2>
         <p class="about-text">Kevin Martin has more than four years of experience working inside the Adventist school system, and seven years as a boarding academy student before that. He works natively in AASI.NET and FACTS, knows how GCAS auditors review a school’s books, and understands the rhythms of campus life and the pressures on school leadership.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="crosslink" aria-labelledby="cross-h">
+    <div class="wrap">
+      <div class="cross-card">
+        <div>
+          <p class="path-kind">Not a school?</p>
+          <h2 id="cross-h">Systems and operations consulting</h2>
+          <p class="cross-text">We find the manual work slowing your team down and build the systems that take it off their plate.</p>
+        </div>
+        <a href="/systems/" class="btn btn-line" data-goatcounter-click="crosslink-systems">See how it works</a>
       </div>
     </div>
   </section>
