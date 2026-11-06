@@ -110,6 +110,11 @@
     .result-num small { font-size: 0.5em; color: var(--muted); }
     .result h3 { margin-top: 18px; font-family: var(--sans); font-weight: 500; font-size: 18px; color: var(--ink); }
     .result p { margin: 8px 0 0; color: var(--muted); }
+    .result-invite { background: var(--pine); border-top: 6px solid var(--wheat); }
+    .result-invite .result-num { color: var(--wheat); }
+    .result-invite h3 { color: var(--on-pine); }
+    .result-invite p { color: var(--on-pine-muted); }
+    .result-invite .btn { margin-top: 22px; }
     .results-note { margin: 24px auto 0; max-width: 1040px; font-size: 15px; color: var(--muted); }
 
     .split { display: flex; flex-wrap: wrap; gap: 48px; padding-top: var(--section); padding-bottom: var(--section); }
@@ -229,10 +234,11 @@
           <h3>Hourly labor processing</h3>
           <p>Hourly worker reports turned into ready-to-post accounting entries automatically.</p>
         </div>
-        <div class="result">
-          <div class="result-num">Sorted for you</div>
-          <h3>Document triage</h3>
-          <p>A pile of scanned documents read, renamed and filed into the right folders automatically.</p>
+        <div class="result result-invite on-pine">
+          <div class="result-num">Yours next</div>
+          <h3>Your first project</h3>
+          <p>Tell us the process that eats your team’s week, and we’ll scope it as a first project.</p>
+          <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-wheat" data-goatcounter-click="book-call-systems-results">Book a call</a>
         </div>
       </div>
       <p class="results-note">* Examples of systems Kevin has designed and built for an organization with a distributed staff. Results vary with each process, the work involved and the tools in place.</p>
