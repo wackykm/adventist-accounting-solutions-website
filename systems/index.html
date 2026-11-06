@@ -71,10 +71,32 @@
     .site-nav a { text-decoration: none; }
     .site-nav .nav-cta { font-weight: 500; }
 
-    .hero { text-align: center; padding-top: clamp(72px, 11vw, 150px); padding-bottom: var(--section); }
-    .hero h1 { font-size: clamp(50px, 7.4vw, 104px); line-height: 1; letter-spacing: -0.02em; max-width: 13ch; margin: 0 auto; }
+    .hero { text-align: center; padding-top: clamp(72px, 11vw, 150px); }
+    .hero h1 { font-size: clamp(50px, 7.4vw, 104px); line-height: 1; letter-spacing: -0.02em; max-width: 16ch; margin: 0 auto; }
     .hero .lede { margin: 32px auto 0; font-size: 19px; max-width: 54ch; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 36px; }
+
+    .bars {
+      display: flex; align-items: flex-end; gap: 6px;
+      height: clamp(140px, 20vw, 260px);
+      margin-top: clamp(64px, 9vw, 112px);
+    }
+    .bars span {
+      flex: 1 1 0;
+      background: var(--wheat-bar);
+      transform-origin: bottom;
+      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .bars .bar-dark { background: var(--pine); }
+    /* Hover ripple: hovered bar rises most, neighbors less */
+    .bars span:hover { transform: scaleY(1.18); }
+    .bars span:has(+ span:hover),
+    .bars span:hover + span { transform: scaleY(1.1); }
+    .bars span:has(+ span + span:hover),
+    .bars span:hover + span + span { transform: scaleY(1.04); }
+    @media (prefers-reduced-motion: reduce) {
+      .bars span { transition: none; transform: none !important; }
+    }
 
     .band { background: var(--pine); color: var(--on-pine); }
     .band .wrap { padding-top: var(--section); padding-bottom: var(--section); }
@@ -180,6 +202,40 @@
       <div class="hero-actions">
         <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-solid" data-goatcounter-click="book-call-systems-hero">Book a call</a>
         <a href="#start" class="btn btn-line">See how it starts</a>
+      </div>
+      <div class="bars" aria-hidden="true">
+        <span class="bar" style="height:14.0%"></span>
+        <span class="bar" style="height:22.5%"></span>
+        <span class="bar" style="height:17.6%"></span>
+        <span class="bar" style="height:16.2%"></span>
+        <span class="bar-dark" style="height:27.3%"></span>
+        <span class="bar" style="height:31.7%"></span>
+        <span class="bar" style="height:25.3%"></span>
+        <span class="bar" style="height:28.4%"></span>
+        <span class="bar" style="height:39.8%"></span>
+        <span class="bar-dark" style="height:39.6%"></span>
+        <span class="bar" style="height:34.0%"></span>
+        <span class="bar" style="height:41.5%"></span>
+        <span class="bar" style="height:51.0%"></span>
+        <span class="bar" style="height:46.9%"></span>
+        <span class="bar-dark" style="height:44.3%"></span>
+        <span class="bar" style="height:54.9%"></span>
+        <span class="bar" style="height:60.6%"></span>
+        <span class="bar" style="height:54.4%"></span>
+        <span class="bar" style="height:56.1%"></span>
+        <span class="bar-dark" style="height:67.7%"></span>
+        <span class="bar" style="height:68.8%"></span>
+        <span class="bar" style="height:62.7%"></span>
+        <span class="bar" style="height:69.0%"></span>
+        <span class="bar" style="height:79.3%"></span>
+        <span class="bar-dark" style="height:76.2%"></span>
+        <span class="bar" style="height:72.5%"></span>
+        <span class="bar" style="height:82.4%"></span>
+        <span class="bar" style="height:89.3%"></span>
+        <span class="bar" style="height:83.5%"></span>
+        <span class="bar-dark" style="height:83.9%"></span>
+        <span class="bar" style="height:95.4%"></span>
+        <span class="bar" style="height:97.9%"></span>
       </div>
     </div>
   </section>
