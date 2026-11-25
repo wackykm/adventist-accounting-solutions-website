@@ -1,50 +1,8 @@
-/* Hero visuals.
-   Homepage: ledger stack. Hover opens the top book.
-   Systems page: bar-line chart. Hover raises bars, the line follows. */
+/* Hero bar-line chart: hovered bar rises most, neighbors less,
+   and the green line tracks the bar tops while they move. */
 (function () {
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var noHover = window.matchMedia('(hover: none)').matches;
 
-  // ---------- Ledger (homepage) ----------
-  var ledger = document.querySelector('[data-ledger]');
-  if (ledger) {
-    var fit = function () {
-      ledger.style.setProperty('--k', ledger.clientWidth / 520);
-    };
-    fit();
-    window.addEventListener('resize', fit);
-
-    var open = function () { ledger.classList.add('is-open'); };
-    var close = function () { ledger.classList.remove('is-open'); };
-
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () { ledger.classList.remove('is-loading'); });
-    });
-
-    if (noHover) {
-      // Phones and tablets: open once it is on screen, tap to toggle.
-      if ('IntersectionObserver' in window) {
-        var seen = false;
-        new IntersectionObserver(function (entries, obs) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting && !seen) {
-              seen = true;
-              setTimeout(open, 1200);
-              obs.disconnect();
-            }
-          });
-        }, { threshold: 0.6 }).observe(ledger);
-      }
-      ledger.addEventListener('click', function () {
-        ledger.classList.toggle('is-open');
-      });
-    } else {
-      ledger.addEventListener('mouseenter', open);
-      ledger.addEventListener('mouseleave', close);
-    }
-  }
-
-  // ---------- Bar-line chart (systems page) ----------
   var chart = document.querySelector('[data-chart]');
   if (!chart) return;
   var wrap = chart.querySelector('.chart-bars');
