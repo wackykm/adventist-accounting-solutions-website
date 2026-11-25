@@ -9,32 +9,42 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#1E3A32" />
+  <meta name="theme-color" content="#0A0A0A" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root { --ground: #E8EBE7; --pine: #1E3A32; --pine-soft: #3E6B5D; --muted: #46504C; --rule: #B9C2BC; }
+    :root {
+      --paper: #FFFFFF; --subtle: #F5F5F5; --ink: #0A0A0A; --ink-2: #2E2E2E; --muted: #6B6B6B;
+      --line: #E5E5E5; --signal: #12B76A;
+      --sans: "Inter", system-ui, -apple-system, sans-serif;
+    }
     *, *::before, *::after { box-sizing: border-box; }
-    body { margin: 0; background: var(--ground); color: #1E2A26; font: 17px/1.6 'Instrument Sans', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
-    a { color: var(--pine); }
-    a:hover { color: var(--pine-soft); }
-    a:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
-    header { border-bottom: 1px solid var(--pine); padding: 24px clamp(16px, 4vw, 48px); }
-    .brand { font-family: 'Newsreader', Georgia, serif; font-size: 24px; text-decoration: none; }
+    a { color: var(--ink); text-underline-offset: 3px; }
+    a:hover { color: var(--ink-2); }
+    a:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 3px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); text-decoration: none; }
+    .brand svg { width: 28px; height: 28px; flex: none; }
+    .brand .wm span { font-weight: 400; color: var(--muted); }
+    .btn { display: inline-block; padding: 12px 20px; font: 500 15px/1.2 var(--sans); text-decoration: none; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); background: var(--paper); }
+    .btn:hover { background: var(--subtle); color: var(--ink); }
+    .btn-solid { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+    .btn-solid:hover { background: var(--ink-2); border-color: var(--ink-2); color: var(--paper); }
+    body { margin: 0; background: var(--paper); color: var(--ink); font: 17px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+    header { border-bottom: 1px solid var(--line); padding: 18px clamp(16px, 4vw, 48px); }
     main { max-width: 720px; margin: 0 auto; padding: clamp(48px, 8vw, 96px) clamp(16px, 4vw, 48px); }
-    h1 { margin: 0; font-family: 'Newsreader', Georgia, serif; font-weight: 300; font-size: clamp(40px, 5.5vw, 64px); line-height: 1.05; letter-spacing: -0.015em; color: var(--pine); }
+    h1 { margin: 0; font-weight: 600; font-size: clamp(40px, 5vw, 56px); line-height: 1.05; letter-spacing: -0.035em; }
     .updated { margin: 12px 0 0; font-size: 15px; color: var(--muted); }
-    h2 { margin: 48px 0 0; padding-top: 24px; border-top: 1px solid var(--rule); font-family: 'Newsreader', Georgia, serif; font-weight: 400; font-size: 26px; color: var(--pine); }
-    p, ul { margin: 14px 0 0; }
+    h2 { margin: 48px 0 0; padding-top: 24px; border-top: 1px solid var(--line); font-weight: 600; font-size: 20px; letter-spacing: -0.02em; }
+    p, ul { margin: 14px 0 0; color: var(--ink-2); }
     ul { padding-left: 1.2em; }
     li + li { margin-top: 6px; }
-    footer { border-top: 1px solid var(--pine); padding: 24px clamp(16px, 4vw, 48px); font-size: 14px; color: var(--muted); }
+    footer { border-top: 1px solid var(--line); padding: 24px clamp(16px, 4vw, 48px); font-size: 14px; color: var(--muted); }
   </style>
   <script data-goatcounter="https://storeupfinancials.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-  <header><a href="/" class="brand">StoreUp Financials</a></header>
+  <header><a href="/" class="brand" aria-label="StoreUp Financials home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#0A0A0A"/><g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg><span class="wm">StoreUp <span>Financials</span></span></a></header>
   <main>
     <h1>Privacy policy</h1>
     <p class="updated">Last updated October 17, 2026</p>

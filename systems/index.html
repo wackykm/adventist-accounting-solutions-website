@@ -17,170 +17,18 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#1E3A32" />
+  <meta name="theme-color" content="#0A0A0A" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ground: #E8EBE7;
-      --pine: #1E3A32;
-      --pine-soft: #3E6B5D;
-      --wheat: #D9B866;
-      --wheat-bar: #CFA651;
-      --ink: #1E2A26;
-      --muted: #46504C;
-      --rule: #B9C2BC;
-      --on-pine: #EEF0EB;
-      --on-pine-muted: #C6CEC8;
-      --serif: 'Newsreader', Georgia, serif;
-      --sans: 'Instrument Sans', system-ui, sans-serif;
-      --gutter: clamp(16px, 4vw, 48px);
-      --section: clamp(64px, 9vw, 112px);
-    }
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-    body {
-      margin: 0; background: var(--ground); color: var(--ink);
-      font-family: var(--sans); font-size: 17px; line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--pine); }
-    a:hover { color: var(--pine-soft); }
-    a:focus-visible, summary:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
-    .on-pine a:focus-visible { outline-color: var(--wheat); }
-    .wrap { max-width: 1280px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 300; margin: 0; color: var(--pine); }
-    .h2 { font-size: clamp(36px, 4.4vw, 60px); line-height: 1.05; letter-spacing: -0.015em; }
-    .lede { margin: 18px 0 0; color: var(--muted); max-width: 52ch; }
-    .eyebrow { margin: 0 0 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--pine-soft); }
-
-    .btn { display: inline-block; padding: 14px 26px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid var(--pine); }
-    .btn-solid { background: var(--pine); color: var(--on-pine); }
-    .btn-solid:hover { background: var(--pine-soft); color: var(--on-pine); border-color: var(--pine-soft); }
-    .btn-line { color: var(--pine); }
-    .btn-line:hover { background: var(--pine); color: var(--on-pine); }
-    .btn-wheat { background: var(--wheat); color: var(--ink); border-color: var(--wheat); }
-    .btn-wheat:hover { background: #E5C981; color: var(--ink); }
-
-    .site-header { border-bottom: 1px solid var(--pine); }
-    .site-header .wrap { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: center; justify-content: space-between; padding-top: 24px; padding-bottom: 24px; }
-    .brand { font-family: var(--serif); font-size: 24px; text-decoration: none; color: var(--pine); }
-    .site-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 15px; }
-    .site-nav a { text-decoration: none; }
-    .site-nav .nav-cta { font-weight: 500; }
-
-    .hero { text-align: center; padding-top: clamp(72px, 11vw, 150px); }
-    .hero h1 { font-size: clamp(50px, 7.4vw, 104px); line-height: 1; letter-spacing: -0.02em; max-width: 16ch; margin: 0 auto; }
-    .hero .lede { margin: 32px auto 0; font-size: 19px; max-width: 54ch; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 36px; }
-
-    .bars {
-      display: flex; align-items: flex-end; gap: 6px;
-      height: clamp(140px, 20vw, 260px);
-      margin-top: clamp(36px, 4.5vw, 60px);
-    }
-    .bars span {
-      flex: 1 1 0;
-      background: var(--wheat-bar);
-      transform-origin: bottom;
-      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .bars .bar-dark { background: var(--pine); }
-    /* Hover ripple: hovered bar rises most, neighbors less */
-    .bars span:hover { transform: scaleY(1.18); }
-    .bars span:has(+ span:hover),
-    .bars span:hover + span { transform: scaleY(1.1); }
-    .bars span:has(+ span + span:hover),
-    .bars span:hover + span + span { transform: scaleY(1.04); }
-    @media (prefers-reduced-motion: reduce) {
-      .bars span { transition: none; transform: none !important; }
-    }
-
-    .band { background: var(--pine); color: var(--on-pine); }
-    .band .wrap { padding-top: var(--section); padding-bottom: var(--section); }
-    .band h2, .band h3 { color: var(--on-pine); }
-    .intro { margin: 0 0 var(--section); padding-bottom: var(--section); border-bottom: 1px solid var(--pine-soft); font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 3.2vw, 42px); line-height: 1.3; max-width: 34ch; }
-    .intro strong { font-weight: 400; color: var(--wheat); }
-    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px 56px; margin-top: 56px; }
-    .services h3 { font-weight: 400; font-size: 26px; color: var(--wheat); }
-    .services p { margin: 10px 0 0; color: var(--on-pine-muted); }
-
-    .feature { padding-top: var(--section); }
-    .two-tone { text-align: center; max-width: 20ch; margin: 0 auto; }
-    .two-tone span { display: block; color: #7A8580; }
-    .feature-body { display: flex; flex-wrap: wrap; align-items: center; gap: 48px 64px; margin-top: clamp(40px, 6vw, 72px); }
-    .feature-body > * { flex: 1 1 340px; min-width: 0; }
-    .tools-text { margin: 0; font-size: 19px; line-height: 1.6; max-width: 52ch; }
-    .tools-text + .tools-text { margin-top: 18px; }
-
-    .flow { border: 1px solid var(--rule); border-radius: 14px; padding: clamp(24px, 4vw, 40px) clamp(18px, 3vw, 36px); background-color: #F2F4F1; background-image: radial-gradient(#CCD3CE 1px, transparent 1px); background-size: 18px 18px; }
-    .flow-label { margin: 0 0 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
-    .flow-steps { position: relative; display: flex; flex-direction: column; gap: 20px; }
-    .flow-steps::before { content: ''; position: absolute; left: 15px; top: 16px; bottom: 16px; width: 1px; background: var(--rule); }
-    .flow-row { position: relative; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; min-height: 32px; padding-left: 46px; font-size: 15px; color: var(--muted); }
-    .flow-icon { position: absolute; left: 0; top: 0; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; background: var(--pine); color: var(--on-pine); font-size: 13px; font-weight: 500; }
-    .chip { display: inline-flex; align-items: center; gap: 8px; background: #fff; color: var(--ink); border: 1px solid #DCE1DD; border-radius: 8px; padding: 6px 12px; box-shadow: 0 1px 2px rgba(30, 58, 50, 0.06); }
-    .initials { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 6px; background: #D5E3DA; color: var(--pine); font-size: 11px; font-weight: 500; }
-    .chip-done { background: var(--wheat); border-color: var(--wheat); }
-
-    /* Results */
-    .results { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin: clamp(40px, 6vw, 72px) auto 0; max-width: 1040px; }
-    .result { border: 1px solid var(--pine); padding: 32px 30px 34px; background: #F2F4F1; }
-    .result-num { font-family: var(--serif); font-weight: 300; font-size: clamp(36px, 3.4vw, 46px); white-space: nowrap; line-height: 1; color: var(--pine); }
-    .result-num small { font-size: 0.5em; color: var(--muted); }
-    .result h3 { margin-top: 18px; font-family: var(--sans); font-weight: 500; font-size: 18px; color: var(--ink); }
-    .result p { margin: 8px 0 0; color: var(--muted); }
-    .result-invite { background: var(--pine); border-top: 6px solid var(--wheat); }
-    .result-invite .result-num { color: var(--wheat); }
-    .result-invite h3 { color: var(--on-pine); }
-    .result-invite p { color: var(--on-pine-muted); }
-    .result-invite .btn { margin-top: 22px; }
-    .results-note { margin: 24px auto 0; max-width: 1040px; font-size: 15px; color: var(--muted); }
-
-    .split { display: flex; flex-wrap: wrap; gap: 48px; padding-top: var(--section); padding-bottom: var(--section); }
-    .split > :first-child { flex: 1 1 300px; }
-    .split > :last-child { flex: 2 1 520px; }
-    .steps { margin: 0; padding: 0 0 0 1.4em; font-family: var(--serif); font-size: 26px; color: var(--pine); }
-    .steps li { padding: 24px 0 24px 12px; border-bottom: 1px solid var(--rule); }
-    .steps li:first-child { padding-top: 0; }
-    .steps li:last-child { border-bottom: 0; padding-bottom: 0; }
-    .steps strong { display: block; font-family: var(--serif); font-weight: 400; font-size: 26px; color: var(--pine); }
-    .steps span { display: block; margin-top: 6px; font-family: var(--sans); font-size: 18px; line-height: 1.5; color: var(--ink); }
-
-    .faq { border-top: 1px solid var(--pine); }
-    .faq-list { margin-top: 0; border-top: 1px solid var(--rule); }
-    .faq details { border-bottom: 1px solid var(--rule); }
-    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 24px 0; font-size: 19px; font-weight: 500; min-height: 44px; }
-    .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after { content: '+'; flex: none; font-family: var(--serif); font-size: 32px; line-height: 1; color: var(--pine); }
-    .faq details[open] summary::after { content: '–'; }
-    .faq details p { margin: 0 0 28px; max-width: 64ch; color: var(--muted); }
-
-    .about { border-top: 1px solid var(--pine); }
-    .about h2 { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--muted); }
-    .about-big { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(32px, 3.6vw, 48px); line-height: 1.15; color: var(--pine); }
-    .about-text { margin: 14px 0 0; font-size: 19px; line-height: 1.6; max-width: 52ch; }
-    .about-text + .about-text { margin-top: 16px; }
-
-    .site-footer { background: var(--pine); color: var(--on-pine); }
-    .footer-top { display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between; padding-top: 56px; padding-bottom: 40px; }
-    .footer-top p { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 3vw, 40px); }
-    .footer-contact { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
-    .footer-contact a.email { color: var(--on-pine); font-size: 15px; }
-    .footer-contact a.email:hover { color: var(--wheat); }
-    .legal { margin: 0; padding-bottom: 32px; font-size: 14px; color: #A9B6AF; }
-    .legal a { color: #A9B6AF; }
-    .legal a:hover { color: var(--wheat); }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/site.css" />
   <script data-goatcounter="https://storeupfinancials.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <a href="/" class="brand">StoreUp Financials</a>
+    <a href="/" class="brand" aria-label="StoreUp Financials home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#0A0A0A"/><g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg><span class="wm">StoreUp <span>Financials</span></span></a>
     <nav class="site-nav" aria-label="Main">
       <a href="#work">What we fix</a>
       <a href="#example">Example</a>
@@ -196,51 +44,24 @@
 <main id="top">
   <section class="hero">
     <div class="wrap">
-      <p class="eyebrow">Systems and operations consulting</p>
+      <div>
+      <p class="label">Systems and operations consulting</p>
       <h1>Less time in spreadsheets. More time running the business.</h1>
       <p class="lede">We find the manual work slowing your team down, the hand calculations, the retyping and the weekly rebuilds, and we build the systems that take it off their plate.</p>
       <div class="hero-actions">
         <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-solid" data-goatcounter-click="book-call-systems-hero">Book a call</a>
         <a href="#start" class="btn btn-line">See how it starts</a>
       </div>
-      <div class="bars" aria-hidden="true">
-        <span class="bar" style="height:14.0%"></span>
-        <span class="bar" style="height:22.5%"></span>
-        <span class="bar" style="height:17.6%"></span>
-        <span class="bar" style="height:16.2%"></span>
-        <span class="bar-dark" style="height:27.3%"></span>
-        <span class="bar" style="height:31.7%"></span>
-        <span class="bar" style="height:25.3%"></span>
-        <span class="bar" style="height:28.4%"></span>
-        <span class="bar" style="height:39.8%"></span>
-        <span class="bar-dark" style="height:39.6%"></span>
-        <span class="bar" style="height:34.0%"></span>
-        <span class="bar" style="height:41.5%"></span>
-        <span class="bar" style="height:51.0%"></span>
-        <span class="bar" style="height:46.9%"></span>
-        <span class="bar-dark" style="height:44.3%"></span>
-        <span class="bar" style="height:54.9%"></span>
-        <span class="bar" style="height:60.6%"></span>
-        <span class="bar" style="height:54.4%"></span>
-        <span class="bar" style="height:56.1%"></span>
-        <span class="bar-dark" style="height:67.7%"></span>
-        <span class="bar" style="height:68.8%"></span>
-        <span class="bar" style="height:62.7%"></span>
-        <span class="bar" style="height:69.0%"></span>
-        <span class="bar" style="height:79.3%"></span>
-        <span class="bar-dark" style="height:76.2%"></span>
-        <span class="bar" style="height:72.5%"></span>
-        <span class="bar" style="height:82.4%"></span>
-        <span class="bar" style="height:89.3%"></span>
-        <span class="bar" style="height:83.5%"></span>
-        <span class="bar-dark" style="height:83.9%"></span>
-        <span class="bar" style="height:95.4%"></span>
-        <span class="bar" style="height:97.9%"></span>
+      </div>
+      <div class="brand-panel" aria-hidden="true">
+        <svg class="panel-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#12B76A"/><g fill="none" stroke="#0A0A0A" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg>
+        <span class="panel-bar"></span>
+        <span class="panel-square"></span>
       </div>
     </div>
   </section>
 
-  <section id="work" class="band on-pine" aria-labelledby="work-h">
+  <section id="work" class="band on-ink" aria-labelledby="work-h">
     <div class="wrap">
       <p class="intro">In most growing companies, a few key people carry the processes in their heads and their spreadsheets. <strong>That works until it doesn’t.</strong> We turn that work into systems your team can run, check and trust.</p>
       <h2 id="work-h" class="h2">What we fix</h2>
@@ -290,11 +111,11 @@
           <h3>Hourly labor processing</h3>
           <p>Hourly worker reports turned into ready-to-post accounting entries automatically.</p>
         </div>
-        <div class="result result-invite on-pine">
+        <div class="result result-invite on-ink">
           <div class="result-num">Yours next</div>
           <h3>Your first project</h3>
           <p>Tell us the process that eats your team’s week, and we’ll scope it as a first project.</p>
-          <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-wheat" data-goatcounter-click="book-call-systems-results">Book a call</a>
+          <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-light" data-goatcounter-click="book-call-systems-results">Book a call</a>
         </div>
       </div>
       <p class="results-note">* Examples of systems Kevin has designed and built for an organization with a distributed staff. Results vary with each process, the work involved and the tools in place.</p>
@@ -361,16 +182,16 @@
   </section>
 </main>
 
-<footer class="site-footer on-pine">
+<footer class="site-footer on-ink">
   <div class="wrap footer-top">
     <p>Tell us what eats your team’s week.</p>
     <div class="footer-contact">
       <a href="mailto:kevinm@storeupfinancials.com" class="email" data-goatcounter-click="email-systems-footer">kevinm@storeupfinancials.com</a>
-      <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-wheat" data-goatcounter-click="book-call-systems-footer">Book a call</a>
+      <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-light" data-goatcounter-click="book-call-systems-footer">Book a call</a>
     </div>
   </div>
   <div class="wrap">
-    <p class="legal">© 2026 StoreUp Financials, LLC · <a href="/privacy.html">Privacy</a></p>
+    <p class="legal"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#12B76A"/><g fill="none" stroke="#0A0A0A" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg>© 2026 StoreUp Financials, LLC · <a href="/privacy.html">Privacy</a></p>
   </div>
 </footer>
 

@@ -20,310 +20,18 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="apple-touch-icon.png" />
-  <meta name="theme-color" content="#1E3A32" />
+  <meta name="theme-color" content="#0A0A0A" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --ground: #E8EBE7;
-      --pine: #1E3A32;
-      --pine-soft: #3E6B5D;
-      --wheat: #D9B866;
-      --wheat-bar: #CFA651;
-      --ink: #1E2A26;
-      --muted: #46504C;
-      --rule: #B9C2BC;
-      --on-pine: #EEF0EB;
-      --on-pine-muted: #C6CEC8;
-      --serif: 'Newsreader', Georgia, serif;
-      --sans: 'Instrument Sans', system-ui, sans-serif;
-      --gutter: clamp(16px, 4vw, 48px);
-      --section: clamp(64px, 9vw, 112px);
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-
-    body {
-      margin: 0;
-      background: var(--ground);
-      color: var(--ink);
-      font-family: var(--sans);
-      font-size: 17px;
-      line-height: 1.55;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: var(--pine); }
-    a:hover { color: var(--pine-soft); }
-    a:focus-visible, summary:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
-    .on-pine a:focus-visible { outline-color: var(--wheat); }
-
-    .wrap { max-width: 1280px; margin: 0 auto; padding-left: var(--gutter); padding-right: var(--gutter); }
-
-    h1, h2, h3 { font-family: var(--serif); font-weight: 300; margin: 0; color: var(--pine); }
-    .h2 { font-size: clamp(36px, 4.4vw, 60px); line-height: 1.05; letter-spacing: -0.015em; }
-    .lede { margin: 18px 0 0; color: var(--muted); max-width: 52ch; }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 26px;
-      font-size: 15px;
-      font-weight: 500;
-      text-decoration: none;
-      border: 1px solid var(--pine);
-    }
-    .btn-solid { background: var(--pine); color: var(--on-pine); }
-    .btn-solid:hover { background: var(--pine-soft); color: var(--on-pine); border-color: var(--pine-soft); }
-    .btn-line { color: var(--pine); }
-    .btn-line:hover { background: var(--pine); color: var(--on-pine); }
-    .btn-wheat { background: var(--wheat); color: var(--ink); border-color: var(--wheat); }
-    .btn-wheat:hover { background: #E5C981; color: var(--ink); }
-
-    /* Header */
-    .site-header { border-bottom: 1px solid var(--pine); }
-    .site-header .wrap {
-      display: flex; flex-wrap: wrap; gap: 16px 32px;
-      align-items: center; justify-content: space-between;
-      padding-top: 24px; padding-bottom: 24px;
-    }
-    .brand { font-family: var(--serif); font-size: 24px; text-decoration: none; color: var(--pine); }
-    .site-nav { display: flex; flex-wrap: wrap; gap: 12px 28px; font-size: 15px; }
-    .site-nav a { text-decoration: none; }
-    .site-nav .nav-cta { font-weight: 500; }
-
-    /* Hero */
-    .hero { text-align: center; padding-top: clamp(72px, 11vw, 150px); }
-    .hero h1 {
-      font-size: clamp(54px, 8vw, 112px);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      max-width: 12ch;
-      margin: 0 auto;
-    }
-    .hero .lede { margin: 32px auto 0; font-size: 19px; max-width: 50ch; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 36px; }
-    .bars {
-      display: flex; align-items: flex-end; gap: 6px;
-      height: clamp(140px, 20vw, 260px);
-      margin-top: clamp(36px, 4.5vw, 60px);
-    }
-    .bars span {
-      flex: 1 1 0;
-      background: var(--wheat-bar);
-      transform-origin: bottom;
-      transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
-    }
-    .bars .bar-dark { background: var(--pine); }
-    /* Hover ripple: hovered bar rises most, neighbors less */
-    .bars span:hover { transform: scaleY(1.18); }
-    .bars span:has(+ span:hover),
-    .bars span:hover + span { transform: scaleY(1.1); }
-    .bars span:has(+ span + span:hover),
-    .bars span:hover + span + span { transform: scaleY(1.04); }
-    @media (prefers-reduced-motion: reduce) {
-      .bars span { transition: none; transform: none !important; }
-    }
-
-    /* Work band */
-    .band { background: var(--pine); color: var(--on-pine); }
-    .band .wrap { padding-top: var(--section); padding-bottom: var(--section); }
-    .band h2, .band h3 { color: var(--on-pine); }
-    .intro {
-      margin: 0 0 var(--section);
-      padding-bottom: var(--section);
-      border-bottom: 1px solid var(--pine-soft);
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(28px, 3.2vw, 42px);
-      line-height: 1.3;
-      max-width: 34ch;
-    }
-    .intro strong { font-weight: 400; color: var(--wheat); }
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 48px 56px;
-      margin-top: 56px;
-    }
-    .services h3 { font-weight: 400; font-size: 26px; color: var(--wheat); }
-    .services p { margin: 10px 0 0; color: var(--on-pine-muted); }
-
-    /* Feature sections (two-tone headline) */
-    .feature { padding-top: var(--section); }
-    .two-tone { text-align: center; max-width: 20ch; margin: 0 auto; }
-    .two-tone span { display: block; color: #7A8580; }
-    .feature-body {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 48px 64px;
-      margin-top: clamp(40px, 6vw, 72px);
-    }
-    .feature-body > * { flex: 1 1 340px; min-width: 0; }
-
-    /* Tools */
-    .tools-text { margin: 0; font-size: 19px; line-height: 1.6; max-width: 52ch; }
-    .tools-text + .tools-text { margin-top: 18px; }
-    .flow {
-      border: 1px solid var(--rule);
-      border-radius: 14px;
-      padding: clamp(24px, 4vw, 40px) clamp(18px, 3vw, 36px);
-      background-color: #F2F4F1;
-      background-image: radial-gradient(#CCD3CE 1px, transparent 1px);
-      background-size: 18px 18px;
-    }
-    .flow-steps { position: relative; display: flex; flex-direction: column; gap: 20px; }
-    .flow-steps::before {
-      content: ''; position: absolute; left: 15px; top: 16px; bottom: 16px;
-      width: 1px; background: var(--rule);
-    }
-    .flow-row {
-      position: relative;
-      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
-      min-height: 32px; padding-left: 46px;
-      font-size: 15px; color: var(--muted);
-    }
-    .flow-icon {
-      position: absolute; left: 0; top: 0;
-      width: 32px; height: 32px; border-radius: 8px;
-      display: grid; place-items: center;
-      background: var(--pine); color: var(--on-pine);
-      font-size: 13px; font-weight: 500;
-    }
-    .chip {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: #fff; color: var(--ink);
-      border: 1px solid #DCE1DD; border-radius: 8px;
-      padding: 6px 12px;
-      box-shadow: 0 1px 2px rgba(30, 58, 50, 0.06);
-    }
-    .initials {
-      display: grid; place-items: center;
-      width: 24px; height: 24px; border-radius: 6px;
-      background: #D5E3DA; color: var(--pine);
-      font-size: 11px; font-weight: 500;
-    }
-    .chip-done { background: var(--wheat); border-color: var(--wheat); }
-
-    /* Always building */
-    .build-list { list-style: none; margin: clamp(40px, 6vw, 72px) auto 0; padding: 0; max-width: 960px; border-top: 1px solid var(--rule); }
-    .build-list li {
-      display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 20px;
-      padding: 22px 0; border-bottom: 1px solid var(--rule);
-    }
-    .build-name { flex: 0 0 200px; font-family: var(--serif); font-size: 26px; color: var(--pine); }
-    .build-desc { flex: 1 1 260px; font-size: 18px; color: var(--ink); }
-    .build-status {
-      flex: none; font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
-      color: var(--pine); background: var(--wheat); padding: 3px 10px;
-    }
-
-    /* Pathways */
-    .pathways { padding-top: var(--section); }
-    .paths {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 24px;
-      margin-top: 48px;
-    }
-    .path { border: 1px solid var(--pine); padding: 36px 32px 40px; }
-    .path-featured { background: var(--pine); color: var(--on-pine); border-top: 6px solid var(--wheat); }
-    .path-kind { margin: 0; font-size: 15px; color: var(--muted); }
-    .path-featured .path-kind { color: var(--on-pine-muted); }
-    .path h3 { margin-top: 8px; font-weight: 400; font-size: 36px; }
-    .path-featured h3 { color: var(--on-pine); }
-    .path-tagline { margin: 6px 0 0; font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--muted); }
-    .path-featured .path-tagline { color: var(--wheat); }
-    .path ul {
-      margin: 28px 0 0;
-      padding: 24px 0 0 1.1em;
-      border-top: 1px solid var(--rule);
-      display: flex; flex-direction: column; gap: 10px;
-      line-height: 1.45;
-    }
-    .path-featured ul { border-top-color: var(--pine-soft); }
-    .pricing-note { margin: 28px 0 0; font-size: 16px; color: var(--muted); }
-
-    /* Steps */
-    .split { display: flex; flex-wrap: wrap; gap: 48px; padding-top: var(--section); padding-bottom: var(--section); }
-    .split > :first-child { flex: 1 1 300px; }
-    .split > :last-child { flex: 2 1 520px; }
-    .steps { margin: 0; padding: 0 0 0 1.4em; font-family: var(--serif); font-size: 26px; color: var(--pine); }
-    .steps li { padding: 24px 0 24px 12px; border-bottom: 1px solid var(--rule); }
-    .steps li:first-child { padding-top: 0; }
-    .steps li:last-child { border-bottom: 0; padding-bottom: 0; }
-    .steps span { font-family: var(--sans); font-size: 19px; line-height: 1.5; color: var(--ink); }
-
-    /* FAQ */
-    .faq { border-top: 1px solid var(--pine); }
-    .faq-list { margin-top: 0; border-top: 1px solid var(--rule); }
-    .faq details { border-bottom: 1px solid var(--rule); }
-    .faq summary {
-      list-style: none;
-      cursor: pointer;
-      display: flex; justify-content: space-between; align-items: center; gap: 24px;
-      padding: 24px 0;
-      font-size: 19px;
-      font-weight: 500;
-      min-height: 44px;
-    }
-    .faq summary::-webkit-details-marker { display: none; }
-    .faq summary::after {
-      content: '+';
-      flex: none;
-      font-family: var(--serif);
-      font-size: 32px;
-      line-height: 1;
-      color: var(--pine);
-    }
-    .faq details[open] summary::after { content: '–'; }
-    .faq details p { margin: 0 0 28px; max-width: 64ch; color: var(--muted); }
-
-    /* About */
-    .about { border-top: 1px solid var(--pine); }
-    .verse {
-      margin: 0;
-      font-family: var(--serif);
-      font-weight: 300;
-      font-size: clamp(34px, 3.8vw, 52px);
-      line-height: 1.15;
-      color: var(--pine);
-    }
-    .verse footer { margin-top: 20px; font-family: var(--sans); font-size: 15px; color: var(--muted); }
-    .about h2 { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--muted); }
-    .about-text { margin: 14px 0 0; font-size: 19px; line-height: 1.6; max-width: 48ch; }
-
-    /* Cross-link to systems consulting */
-    .crosslink .wrap { padding-bottom: var(--section); }
-    .cross-card {
-      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px 48px;
-      border: 1px solid var(--pine); padding: clamp(28px, 4vw, 44px) clamp(22px, 4vw, 44px);
-    }
-    .cross-card h2 { margin-top: 6px; font-weight: 400; font-size: clamp(28px, 3vw, 38px); }
-    .cross-text { margin: 10px 0 0; color: var(--muted); max-width: 52ch; }
-
-    /* Footer */
-    .site-footer { background: var(--pine); color: var(--on-pine); }
-    .footer-top {
-      display: flex; flex-wrap: wrap; gap: 32px;
-      align-items: center; justify-content: space-between;
-      padding-top: 56px; padding-bottom: 40px;
-    }
-    .footer-top p { margin: 0; font-family: var(--serif); font-weight: 300; font-size: clamp(28px, 3vw, 40px); }
-    .footer-contact { display: flex; flex-wrap: wrap; gap: 24px; align-items: center; }
-    .footer-contact a.email { color: var(--on-pine); font-size: 15px; }
-    .footer-contact a.email:hover { color: var(--wheat); }
-    .legal { margin: 0; padding-bottom: 32px; font-size: 14px; color: #A9B6AF; }
-    .legal a { color: #A9B6AF; }
-    .legal a:hover { color: var(--wheat); }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/site.css" />
   <script data-goatcounter="https://storeupfinancials.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="wrap">
-    <a href="#top" class="brand">StoreUp Financials</a>
+    <a href="#top" class="brand" aria-label="StoreUp Financials home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#0A0A0A"/><g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg><span class="wm">StoreUp <span>Financials</span></span></a>
     <nav class="site-nav" aria-label="Main">
       <a href="#work">What we handle</a>
       <a href="#tools">Tools</a>
@@ -340,50 +48,23 @@
 <main id="top">
   <section class="hero">
     <div class="wrap">
+      <div>
       <h1>Your school’s books, kept faithfully.</h1>
       <p class="lede">We run the accounting for Seventh-day Adventist K–12 schools, for one flat monthly fee, so your staff can spend their time with families and students.</p>
       <div class="hero-actions">
         <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-solid" data-goatcounter-click="book-call-hero">Book a call</a>
         <a href="#work" class="btn btn-line">See what we handle</a>
       </div>
-      <div class="bars" aria-hidden="true">
-        <span class="bar" style="height:14.0%"></span>
-        <span class="bar" style="height:22.5%"></span>
-        <span class="bar" style="height:17.6%"></span>
-        <span class="bar" style="height:16.2%"></span>
-        <span class="bar-dark" style="height:27.3%"></span>
-        <span class="bar" style="height:31.7%"></span>
-        <span class="bar" style="height:25.3%"></span>
-        <span class="bar" style="height:28.4%"></span>
-        <span class="bar" style="height:39.8%"></span>
-        <span class="bar-dark" style="height:39.6%"></span>
-        <span class="bar" style="height:34.0%"></span>
-        <span class="bar" style="height:41.5%"></span>
-        <span class="bar" style="height:51.0%"></span>
-        <span class="bar" style="height:46.9%"></span>
-        <span class="bar-dark" style="height:44.3%"></span>
-        <span class="bar" style="height:54.9%"></span>
-        <span class="bar" style="height:60.6%"></span>
-        <span class="bar" style="height:54.4%"></span>
-        <span class="bar" style="height:56.1%"></span>
-        <span class="bar-dark" style="height:67.7%"></span>
-        <span class="bar" style="height:68.8%"></span>
-        <span class="bar" style="height:62.7%"></span>
-        <span class="bar" style="height:69.0%"></span>
-        <span class="bar" style="height:79.3%"></span>
-        <span class="bar-dark" style="height:76.2%"></span>
-        <span class="bar" style="height:72.5%"></span>
-        <span class="bar" style="height:82.4%"></span>
-        <span class="bar" style="height:89.3%"></span>
-        <span class="bar" style="height:83.5%"></span>
-        <span class="bar-dark" style="height:83.9%"></span>
-        <span class="bar" style="height:95.4%"></span>
-        <span class="bar" style="height:97.9%"></span>
+      </div>
+      <div class="brand-panel" aria-hidden="true">
+        <svg class="panel-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#12B76A"/><g fill="none" stroke="#0A0A0A" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg>
+        <span class="panel-bar"></span>
+        <span class="panel-square"></span>
       </div>
     </div>
   </section>
 
-  <section id="work" class="band on-pine" aria-labelledby="work-h">
+  <section id="work" class="band on-ink" aria-labelledby="work-h">
     <div class="wrap">
       <p class="intro">Most schools can’t afford a full-time business manager, or can’t find one who truly understands Adventist education. <strong>We do.</strong> From student accounts to monthly close, we handle the entire financial back-office so your leadership can focus on the school.</p>
       <h2 id="work-h" class="h2">What comes off your plate</h2>
@@ -446,7 +127,7 @@
             <li>Works alongside your on-site staff</li>
           </ul>
         </div>
-        <div class="path path-featured on-pine">
+        <div class="path path-featured on-ink">
           <p class="path-kind">Complete service</p>
           <h3>Full Back-Office</h3>
           <p class="path-tagline">We become your financial department.</p>
@@ -540,16 +221,16 @@
   </section>
 </main>
 
-<footer class="site-footer on-pine">
+<footer class="site-footer on-ink">
   <div class="wrap footer-top">
     <p>Talk through your school’s books.</p>
     <div class="footer-contact">
       <a href="mailto:kevinm@storeupfinancials.com" class="email" data-goatcounter-click="email-footer">kevinm@storeupfinancials.com</a>
-      <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-wheat" data-goatcounter-click="book-call-footer">Book a call</a>
+      <a href="https://calendly.com/kevinm-storeupfinancials" class="btn btn-light" data-goatcounter-click="book-call-footer">Book a call</a>
     </div>
   </div>
   <div class="wrap">
-    <p class="legal">© 2026 StoreUp Financials, LLC · <a href="/privacy.html">Privacy</a></p>
+    <p class="legal"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#12B76A"/><g fill="none" stroke="#0A0A0A" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg>© 2026 StoreUp Financials, LLC · <a href="/privacy.html">Privacy</a></p>
   </div>
 </footer>
 
