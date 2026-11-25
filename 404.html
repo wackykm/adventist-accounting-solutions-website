@@ -8,38 +8,44 @@
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-  <meta name="theme-color" content="#1E3A32" />
+  <meta name="theme-color" content="#0A0A0A" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
-    :root { --ground: #E8EBE7; --pine: #1E3A32; --pine-soft: #3E6B5D; --wheat-bar: #CFA651; --muted: #46504C; --on-pine: #EEF0EB; }
+    :root {
+      --paper: #FFFFFF; --subtle: #F5F5F5; --ink: #0A0A0A; --ink-2: #2E2E2E; --muted: #6B6B6B;
+      --line: #E5E5E5; --signal: #12B76A;
+      --sans: "Inter", system-ui, -apple-system, sans-serif;
+    }
     *, *::before, *::after { box-sizing: border-box; }
+    a { color: var(--ink); text-underline-offset: 3px; }
+    a:hover { color: var(--ink-2); }
+    a:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; border-radius: 3px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); text-decoration: none; }
+    .brand svg { width: 28px; height: 28px; flex: none; }
+    .brand .wm span { font-weight: 400; color: var(--muted); }
+    .btn { display: inline-block; padding: 12px 20px; font: 500 15px/1.2 var(--sans); text-decoration: none; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); background: var(--paper); }
+    .btn:hover { background: var(--subtle); color: var(--ink); }
+    .btn-solid { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+    .btn-solid:hover { background: var(--ink-2); border-color: var(--ink-2); color: var(--paper); }
     body {
       margin: 0; min-height: 100svh; display: flex; flex-direction: column;
-      background: var(--ground); color: #1E2A26;
-      font: 17px/1.55 'Instrument Sans', system-ui, sans-serif;
-      -webkit-font-smoothing: antialiased;
+      background: var(--paper); color: var(--ink);
+      font: 17px/1.55 var(--sans); -webkit-font-smoothing: antialiased;
     }
-    a:focus-visible { outline: 2px solid var(--pine); outline-offset: 3px; }
-    header { border-bottom: 1px solid var(--pine); padding: 24px clamp(16px, 4vw, 48px); }
-    .brand { font-family: 'Newsreader', Georgia, serif; font-size: 24px; color: var(--pine); text-decoration: none; }
+    header { border-bottom: 1px solid var(--line); padding: 18px clamp(16px, 4vw, 48px); }
     main { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 64px clamp(16px, 4vw, 48px); }
-    h1 { margin: 0; font-family: 'Newsreader', Georgia, serif; font-weight: 300; font-size: clamp(48px, 7vw, 88px); line-height: 1.02; letter-spacing: -0.02em; color: var(--pine); max-width: 12ch; }
+    h1 { margin: 0; font-weight: 600; font-size: clamp(44px, 6vw, 76px); line-height: 1.02; letter-spacing: -0.035em; max-width: 12ch; }
     p { margin: 24px 0 0; color: var(--muted); max-width: 44ch; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 32px; }
-    .btn { display: inline-block; padding: 14px 26px; font-size: 15px; font-weight: 500; text-decoration: none; border: 1px solid var(--pine); color: var(--pine); }
-    .btn:hover { background: var(--pine); color: var(--on-pine); }
-    .btn-solid { background: var(--pine); color: var(--on-pine); }
-    .btn-solid:hover { background: var(--pine-soft); border-color: var(--pine-soft); }
-    .bars { display: flex; align-items: flex-end; gap: 6px; height: 96px; padding: 0 clamp(16px, 4vw, 48px); }
-    .bars span { flex: 1 1 0; background: var(--wheat-bar); }
-    .bars .gap { background: transparent; border-top: 2px dashed var(--pine-soft); }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 32px; }
+    .strip { position: relative; overflow: hidden; height: 120px; background: var(--ink); }
+    .strip span { position: absolute; right: 8%; top: -40px; width: 160px; height: 160px; background: var(--signal); }
   </style>
   <script data-goatcounter="https://storeupfinancials.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
-  <header><a href="/" class="brand">StoreUp Financials</a></header>
+  <header><a href="/" class="brand" aria-label="StoreUp Financials home"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#0A0A0A"/><g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg><span class="wm">StoreUp <span>Financials</span></span></a></header>
   <main>
     <h1>This page didn’t balance.</h1>
     <p>We couldn’t find what you were looking for. The link may be old or mistyped.</p>
@@ -48,11 +54,6 @@
       <a href="https://calendly.com/kevinm-storeupfinancials" class="btn" data-goatcounter-click="book-call-404">Book a call</a>
     </div>
   </main>
-  <div class="bars" aria-hidden="true">
-    <span style="height:22%"></span><span style="height:30%"></span><span style="height:27%"></span><span style="height:38%"></span>
-    <span style="height:44%"></span><span style="height:41%"></span><span style="height:52%"></span><span class="gap" style="height:58%"></span>
-    <span style="height:63%"></span><span style="height:70%"></span><span style="height:68%"></span><span style="height:80%"></span>
-    <span style="height:86%"></span><span style="height:83%"></span><span style="height:94%"></span><span style="height:100%"></span>
-  </div>
+  <div class="strip" aria-hidden="true"><span></span></div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Kevin Martin · StoreUp Financials</title>
 <meta name="description" content="Kevin Martin, Founder of StoreUp Financials. Accounting for Seventh-day Adventist K–12 schools.">
-<meta name="theme-color" content="#E8EBE7">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://storeupfinancials.com/card/">
 <meta property="og:title" content="Kevin Martin · StoreUp Financials">
@@ -16,13 +16,12 @@
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,400&family=Instrument+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
 <style>
   :root {
-    --ground: #E8EBE7; --pine: #1E3A32; --pine-soft: #3E6B5D; --wheat: #D9B866;
-    --ink: #1E2A26; --muted: #46504C; --rule: #B9C2BC; --on-pine: #EEF0EB;
-    --serif: 'Newsreader', Georgia, serif;
-    --sans: 'Instrument Sans', system-ui, -apple-system, sans-serif;
+    --paper: #FFFFFF; --subtle: #F5F5F5; --ink: #0A0A0A; --ink-2: #2E2E2E; --muted: #6B6B6B;
+    --line: #E5E5E5; --signal: #12B76A;
+    --sans: "Inter", system-ui, -apple-system, sans-serif;
     color-scheme: light;
   }
   *, *::before, *::after { box-sizing: border-box; }
@@ -30,7 +29,7 @@
   body {
     min-height: 100svh;
     display: flex; justify-content: center; align-items: center;
-    background: var(--ground); color: var(--ink);
+    background: var(--paper); color: var(--ink);
     font: 16px/1.5 var(--sans);
     padding-block: calc(40px + env(safe-area-inset-top, 0px)) calc(40px + env(safe-area-inset-bottom, 0px));
     padding-left: max(24px, env(safe-area-inset-left, 0px));
@@ -39,37 +38,37 @@
   }
   main { width: 100%; max-width: 380px; }
 
-  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-size: 19px; color: var(--pine); text-decoration: none; }
-  .brand svg { width: 26px; height: 26px; flex: none; }
+  .brand { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 600; letter-spacing: -0.015em; color: var(--ink); text-decoration: none; }
+  .brand svg { width: 28px; height: 28px; flex: none; }
+  .brand .wm span { font-weight: 400; color: var(--muted); }
 
-  .name { font-family: var(--serif); font-weight: 300; color: var(--pine);
-    font-size: 54px; line-height: 1; letter-spacing: -0.02em; margin: 56px 0 10px; }
-  .title { margin: 0; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-  .line { font-family: var(--serif); font-style: italic; font-size: 21px; line-height: 1.35; color: var(--ink);
-    margin: 28px 0 0; padding-top: 22px; border-top: 1px solid var(--rule); }
+  .name { font-weight: 600; font-size: 48px; line-height: 1; letter-spacing: -0.035em; margin: 56px 0 10px; }
+  .title { margin: 0; font-size: 15px; color: var(--muted); }
+  .line { font-size: 18px; line-height: 1.4; color: var(--ink-2);
+    margin: 28px 0 0; padding-top: 22px; border-top: 1px solid var(--line); }
 
   .actions { display: grid; gap: 10px; margin-top: 36px; }
-  .btn { display: block; text-align: center; padding: 15px 20px; font: 500 15px/1.2 var(--sans);
-    text-decoration: none; border: 1px solid var(--pine); color: var(--pine); background: transparent; }
-  .btn-solid { background: var(--pine); color: var(--on-pine); }
-  .btn:hover { background: var(--pine-soft); border-color: var(--pine-soft); color: var(--on-pine); }
-  .btn:focus-visible, .row:focus-visible { outline: 2px solid var(--wheat); outline-offset: 3px; }
+  .btn { display: block; text-align: center; padding: 14px 20px; font: 500 15px/1.2 var(--sans);
+    text-decoration: none; border: 1px solid var(--line); border-radius: 4px; color: var(--ink); background: var(--paper); }
+  .btn:hover { background: var(--subtle); }
+  .btn-solid { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+  .btn-solid:hover { background: var(--ink-2); border-color: var(--ink-2); }
+  .btn:focus-visible, .row:focus-visible { outline: 2px solid var(--signal); outline-offset: 3px; }
 
   .list { margin: 36px 0 0; }
   .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
-    padding: 14px 0; border-top: 1px solid var(--rule); color: inherit; text-decoration: none; }
-  .row:last-child { border-bottom: 1px solid var(--rule); }
-  .k { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); flex: none; }
+    padding: 14px 0; border-top: 1px solid var(--line); color: inherit; text-decoration: none; }
+  .row:last-child { border-bottom: 1px solid var(--line); }
+  .k { font-size: 13px; font-weight: 500; color: var(--muted); flex: none; }
   .v { margin: 0; font-size: 15px; text-align: right; min-width: 0; overflow-wrap: anywhere; }
-
 </style>
 <script data-goatcounter="https://storeupfinancials.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
 <main>
   <a class="brand" href="https://storeupfinancials.com">
-    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#1E3A32"/><rect x="13" y="36" width="10" height="16" fill="#D9B866"/><rect x="27" y="26" width="10" height="26" fill="#D9B866"/><rect x="41" y="14" width="10" height="38" fill="#D9B866"/></svg>
-    StoreUp Financials
+    <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#0A0A0A"/><g fill="none" stroke="#FFFFFF" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg>
+    <span class="wm">StoreUp <span>Financials</span></span>
   </a>
 
   <h1 class="name">Kevin Martin</h1>
