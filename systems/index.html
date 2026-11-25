@@ -11,17 +11,17 @@
   <meta property="og:site_name" content="StoreUp Financials" />
   <meta property="og:title" content="StoreUp Financials | Systems and Operations Consulting" />
   <meta property="og:description" content="We find the manual work slowing your team down and build the systems that take it off their plate." />
-  <meta property="og:image" content="https://storeupfinancials.com/og-image.png" />
+  <meta property="og:image" content="https://storeupfinancials.com/og-image.png?v=2" />
   <meta name="twitter:card" content="summary_large_image" />
   <script>if (location.protocol === 'http:' && location.hostname !== 'localhost') location.replace('https://' + location.host + location.pathname + location.search + location.hash);</script>
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2" />
   <meta name="theme-color" content="#0A0A0A" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/site.css" />
+  <link rel="stylesheet" href="/site.css?v=4" />
   <script data-goatcounter="https://storeupfinancials.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -53,10 +53,19 @@
         <a href="#start" class="btn btn-line">See how it starts</a>
       </div>
       </div>
-      <div class="brand-panel" aria-hidden="true">
-        <svg class="panel-mark" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="12" fill="#12B76A"/><g fill="none" stroke="#0A0A0A" stroke-width="7" stroke-linejoin="miter"><path d="M16 16 L48 48"/><path d="M16 48 L27.7 36.3 M36.3 27.7 L46 18"/><path d="M31 17.5 H46.5 V33"/></g></svg>
-        <span class="panel-bar"></span>
-        <span class="panel-square"></span>
+      <div class="chart is-loading" aria-hidden="true" data-chart>
+        <div class="chart-bars">
+          <span style="--h:20"></span>
+          <span style="--h:28"></span>
+          <span style="--h:25"></span>
+          <span style="--h:36"></span>
+          <span style="--h:42"></span>
+          <span style="--h:39"></span>
+          <span style="--h:50"></span>
+          <span style="--h:56"></span>
+          <span style="--h:88" class="is-peak"></span>
+        </div>
+        <svg class="chart-line"><polyline points=""/></svg>
       </div>
     </div>
   </section>
@@ -195,5 +204,6 @@
   </div>
 </footer>
 
+<script src="/site.js?v=4" defer></script>
 </body>
 </html>
